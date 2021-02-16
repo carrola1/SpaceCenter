@@ -1,0 +1,5 @@
+NeoPixel.cpp:8:1:NeoPixel::NeoPixel(uint16_t)	16	static
+NeoPixel.cpp:12:1:NeoPixel::~NeoPixel()	16	static
+NeoPixel.cpp:15:6:void NeoPixel::updateLength(uint16_t)	16	static
+NeoPixel.cpp:23:6:void NeoPixel::setPixelColor(uint16_t, uint8_t, uint8_t, uint8_t)	24	static
+NeoPixel.cpp:29:6:void NeoPixel::show()	24	static

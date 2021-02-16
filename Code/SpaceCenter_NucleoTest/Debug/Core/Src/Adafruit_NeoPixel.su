@@ -1,0 +1,17 @@
+Adafruit_NeoPixel.cpp:62:1:Adafruit_NeoPixel::Adafruit_NeoPixel(uint16_t, GPIO_TypeDef*, uint16_t, neoPixelType)	32	static
+Adafruit_NeoPixel.cpp:79:1:Adafruit_NeoPixel::Adafruit_NeoPixel()	16	static
+Adafruit_NeoPixel.cpp:87:1:Adafruit_NeoPixel::~Adafruit_NeoPixel()	16	static
+Adafruit_NeoPixel.cpp:94:6:void Adafruit_NeoPixel::begin()	16	static
+Adafruit_NeoPixel.cpp:108:6:void Adafruit_NeoPixel::updateLength(uint16_t)	16	static
+Adafruit_NeoPixel.cpp:133:6:void Adafruit_NeoPixel::updateType(neoPixelType)	24	static
+Adafruit_NeoPixel.cpp:160:6:void Adafruit_NeoPixel::show()	40	static
+Adafruit_NeoPixel.cpp:241:6:void Adafruit_NeoPixel::setPin(GPIO_TypeDef*, uint16_t)	24	static
+Adafruit_NeoPixel.cpp:254:6:void Adafruit_NeoPixel::setPixelColor(uint16_t, uint8_t, uint8_t, uint8_t)	32	static
+Adafruit_NeoPixel.cpp:286:6:void Adafruit_NeoPixel::setPixelColor(uint16_t, uint8_t, uint8_t, uint8_t, uint8_t)	32	static
+Adafruit_NeoPixel.cpp:316:6:void Adafruit_NeoPixel::setPixelColor(uint16_t, uint32_t)	32	static
+Adafruit_NeoPixel.cpp:351:6:void Adafruit_NeoPixel::fill(uint32_t, uint16_t, uint16_t)	40	static
+Adafruit_NeoPixel.cpp:396:10:static uint32_t Adafruit_NeoPixel::ColorHSV(uint16_t, uint8_t, uint8_t)	40	static
+Adafruit_NeoPixel.cpp:483:10:uint32_t Adafruit_NeoPixel::getPixelColor(uint16_t) const	32	static
+Adafruit_NeoPixel.cpp:537:6:void Adafruit_NeoPixel::setBrightness(uint8_t)	32	static
+Adafruit_NeoPixel.cpp:575:9:uint8_t Adafruit_NeoPixel::getBrightness() const	16	static
+Adafruit_NeoPixel.cpp:582:6:void Adafruit_NeoPixel::clear()	16	static

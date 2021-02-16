@@ -1,0 +1,325 @@
+EESchema Schematic File Version 4
+LIBS:SpaceCenter_MainBoard_KiCAD-cache
+EELAYER 29 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 4 4
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Logic_LevelTranslator:SN74LVC2T45DCUR U?
+U 1 1 5F529DC1
+P 5920 2950
+F 0 "U?" H 6270 2480 50  0000 C CNN
+F 1 "SN74LVC2T45DCUR" H 6380 2380 50  0000 C CNN
+F 2 "Package_SO:VSSOP-8_2.4x2.1mm_P0.5mm" H 5970 2400 50  0001 C CNN
+F 3 "http://www.ti.com/lit/ds/symlink/sn74lvc2t45.pdf" H 5020 2400 50  0001 C CNN
+	1    5920 2950
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:Conn_01x05_Male J?
+U 1 1 5F529DC7
+P 3470 2500
+F 0 "J?" H 3510 2800 50  0000 C CNN
+F 1 "Conn_01x05_Male" H 3578 2790 50  0001 C CNN
+F 2 "" H 3470 2500 50  0001 C CNN
+F 3 "~" H 3470 2500 50  0001 C CNN
+	1    3470 2500
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR?
+U 1 1 5F529DCD
+P 3810 2230
+F 0 "#PWR?" H 3810 2080 50  0001 C CNN
+F 1 "+5V" H 3825 2403 50  0000 C CNN
+F 2 "" H 3810 2230 50  0001 C CNN
+F 3 "" H 3810 2230 50  0001 C CNN
+	1    3810 2230
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 5F529DD3
+P 3820 2500
+F 0 "TP?" V 3820 2688 50  0000 L CNN
+F 1 "TestPoint" V 3865 2688 50  0001 L CNN
+F 2 "" H 4020 2500 50  0001 C CNN
+F 3 "~" H 4020 2500 50  0001 C CNN
+	1    3820 2500
+	0    1    1    0   
+$EndComp
+Text GLabel 3820 2600 2    50   Output ~ 0
+CAP_TOUCH_BUTTON_L
+$Comp
+L power:GND #PWR?
+U 1 1 5F529DDA
+P 3820 2740
+F 0 "#PWR?" H 3820 2490 50  0001 C CNN
+F 1 "GND" H 3825 2567 50  0000 C CNN
+F 2 "" H 3820 2740 50  0001 C CNN
+F 3 "" H 3820 2740 50  0001 C CNN
+	1    3820 2740
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3670 2700 3820 2700
+Wire Wire Line
+	3820 2700 3820 2740
+Wire Wire Line
+	3670 2600 3820 2600
+Wire Wire Line
+	3670 2500 3820 2500
+Wire Wire Line
+	3670 2300 3810 2300
+Wire Wire Line
+	3810 2300 3810 2230
+$Comp
+L Connector:Conn_01x05_Male J?
+U 1 1 5F529DE6
+P 3480 3520
+F 0 "J?" H 3520 3820 50  0000 C CNN
+F 1 "Conn_01x05_Male" H 3588 3810 50  0001 C CNN
+F 2 "" H 3480 3520 50  0001 C CNN
+F 3 "~" H 3480 3520 50  0001 C CNN
+	1    3480 3520
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR?
+U 1 1 5F529DEC
+P 3820 3250
+F 0 "#PWR?" H 3820 3100 50  0001 C CNN
+F 1 "+5V" H 3835 3423 50  0000 C CNN
+F 2 "" H 3820 3250 50  0001 C CNN
+F 3 "" H 3820 3250 50  0001 C CNN
+	1    3820 3250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 5F529DF2
+P 3830 3520
+F 0 "TP?" V 3830 3708 50  0000 L CNN
+F 1 "TestPoint" V 3875 3708 50  0001 L CNN
+F 2 "" H 4030 3520 50  0001 C CNN
+F 3 "~" H 4030 3520 50  0001 C CNN
+	1    3830 3520
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5F529DF8
+P 3830 3760
+F 0 "#PWR?" H 3830 3510 50  0001 C CNN
+F 1 "GND" H 3835 3587 50  0000 C CNN
+F 2 "" H 3830 3760 50  0001 C CNN
+F 3 "" H 3830 3760 50  0001 C CNN
+	1    3830 3760
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3680 3720 3830 3720
+Wire Wire Line
+	3830 3720 3830 3760
+Wire Wire Line
+	3680 3620 3830 3620
+Wire Wire Line
+	3680 3520 3830 3520
+Wire Wire Line
+	3680 3320 3820 3320
+Wire Wire Line
+	3820 3320 3820 3250
+Text GLabel 6490 2850 2    50   Input ~ 0
+NEO_PIX_BUTTON_L
+Text GLabel 6490 3050 2    50   Input ~ 0
+NEO_PIX_ROCKET_L
+$Comp
+L Device:R R?
+U 1 1 5F529E06
+P 5230 2850
+F 0 "R?" V 5140 2850 50  0000 C CNN
+F 1 "24.9" V 5230 2850 50  0000 C CNN
+F 2 "" V 5160 2850 50  0001 C CNN
+F 3 "~" H 5230 2850 50  0001 C CNN
+	1    5230 2850
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5F529E0C
+P 5230 3050
+F 0 "R?" V 5140 3050 50  0000 C CNN
+F 1 "24.9" V 5230 3050 50  0000 C CNN
+F 2 "" V 5160 3050 50  0001 C CNN
+F 3 "~" H 5230 3050 50  0001 C CNN
+	1    5230 3050
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5080 2850 5080 2400
+Wire Wire Line
+	3670 2400 5080 2400
+Wire Wire Line
+	5080 3050 5080 3420
+Wire Wire Line
+	3680 3420 5080 3420
+$Comp
+L power:+5V #PWR?
+U 1 1 5F529E16
+P 5820 2160
+F 0 "#PWR?" H 5820 2010 50  0001 C CNN
+F 1 "+5V" H 5800 2320 50  0000 C CNN
+F 2 "" H 5820 2160 50  0001 C CNN
+F 3 "" H 5820 2160 50  0001 C CNN
+	1    5820 2160
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5820 2160 5820 2180
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5F529E1D
+P 6020 2160
+F 0 "#PWR?" H 6020 2010 50  0001 C CNN
+F 1 "+3.3V" H 6030 2320 50  0000 C CNN
+F 2 "" H 6020 2160 50  0001 C CNN
+F 3 "" H 6020 2160 50  0001 C CNN
+	1    6020 2160
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6020 2160 6020 2180
+$Comp
+L Device:C C?
+U 1 1 5F529E24
+P 6360 2360
+F 0 "C?" H 6475 2406 50  0000 L CNN
+F 1 "0.1u" H 6475 2315 50  0000 L CNN
+F 2 "" H 6398 2210 50  0001 C CNN
+F 3 "~" H 6360 2360 50  0001 C CNN
+	1    6360 2360
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 5F529E2A
+P 5480 2350
+F 0 "C?" H 5595 2396 50  0000 L CNN
+F 1 "0.1u" H 5595 2305 50  0000 L CNN
+F 2 "" H 5518 2200 50  0001 C CNN
+F 3 "~" H 5480 2350 50  0001 C CNN
+	1    5480 2350
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5F529E30
+P 5480 2540
+F 0 "#PWR?" H 5480 2290 50  0001 C CNN
+F 1 "GND" H 5485 2367 50  0000 C CNN
+F 2 "" H 5480 2540 50  0001 C CNN
+F 3 "" H 5480 2540 50  0001 C CNN
+	1    5480 2540
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5F529E36
+P 6360 2540
+F 0 "#PWR?" H 6360 2290 50  0001 C CNN
+F 1 "GND" H 6365 2367 50  0000 C CNN
+F 2 "" H 6360 2540 50  0001 C CNN
+F 3 "" H 6360 2540 50  0001 C CNN
+	1    6360 2540
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5480 2200 5480 2180
+Wire Wire Line
+	5480 2180 5820 2180
+Wire Wire Line
+	5480 2500 5480 2540
+Wire Wire Line
+	6360 2210 6360 2180
+Wire Wire Line
+	6360 2180 6020 2180
+Wire Wire Line
+	6360 2510 6360 2540
+$Comp
+L power:GND #PWR?
+U 1 1 5F529E42
+P 5920 3500
+F 0 "#PWR?" H 5920 3250 50  0001 C CNN
+F 1 "GND" H 5925 3327 50  0000 C CNN
+F 2 "" H 5920 3500 50  0001 C CNN
+F 3 "" H 5920 3500 50  0001 C CNN
+	1    5920 3500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6020 2450 6020 2180
+Connection ~ 6020 2180
+Wire Wire Line
+	5820 2450 5820 2180
+Connection ~ 5820 2180
+Wire Wire Line
+	5520 2850 5380 2850
+Wire Wire Line
+	5520 3050 5380 3050
+Wire Wire Line
+	6320 2850 6490 2850
+Wire Wire Line
+	6320 3050 6490 3050
+Wire Wire Line
+	5920 3450 5920 3500
+$Comp
+L power:GND #PWR?
+U 1 1 5F529E51
+P 5430 3340
+F 0 "#PWR?" H 5430 3090 50  0001 C CNN
+F 1 "GND" H 5435 3167 50  0000 C CNN
+F 2 "" H 5430 3340 50  0001 C CNN
+F 3 "" H 5430 3340 50  0001 C CNN
+	1    5430 3340
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5430 3340 5430 3250
+Wire Wire Line
+	5430 3250 5520 3250
+Wire Notes Line
+	3280 1820 3280 4020
+Wire Notes Line
+	3280 4020 7460 4020
+Wire Notes Line
+	7460 4020 7460 1820
+Wire Notes Line
+	7460 1820 3280 1820
+Text Notes 4190 2210 0    118  ~ 0
+Left Button/\nRocket
+$Comp
+L Connector:TestPoint TP?
+U 1 1 5F529E5E
+P 3830 3620
+F 0 "TP?" V 3830 3808 50  0000 L CNN
+F 1 "TestPoint" V 3875 3808 50  0001 L CNN
+F 2 "" H 4030 3620 50  0001 C CNN
+F 3 "~" H 4030 3620 50  0001 C CNN
+	1    3830 3620
+	0    1    1    0   
+$EndComp
+Text Label 3910 2400 0    50   ~ 0
+NEO_PIX_BUTTON_L_5V
+Text Label 3920 3420 0    50   ~ 0
+NEO_PIX_ROCKET_L_5V
+$EndSCHEMATC

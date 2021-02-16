@@ -1,0 +1,454 @@
+EESchema Schematic File Version 4
+LIBS:SpaceCenter_MainBoard_KiCAD-cache
+EELAYER 29 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 5 5
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+Text GLabel 2780 4140 2    50   Input ~ 0
+BUTTON_LED_L
+Wire Wire Line
+	1720 3470 1780 3470
+Connection ~ 1720 3470
+Wire Wire Line
+	1720 3370 1720 3470
+Wire Wire Line
+	1720 3030 1720 3070
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5F95436F
+P 1720 3030
+AR Path="/5F95436F" Ref="#PWR?"  Part="1" 
+AR Path="/5F947010/5F95436F" Ref="#PWR0135"  Part="1" 
+F 0 "#PWR0135" H 1720 2880 50  0001 C CNN
+F 1 "+3.3V" H 1735 3203 50  0000 C CNN
+F 2 "" H 1720 3030 50  0001 C CNN
+F 3 "" H 1720 3030 50  0001 C CNN
+	1    1720 3030
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5F954375
+P 1720 3220
+AR Path="/5F954375" Ref="R?"  Part="1" 
+AR Path="/5F947010/5F954375" Ref="R21"  Part="1" 
+F 0 "R21" H 1540 3290 50  0000 L CNN
+F 1 "10k" H 1520 3200 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 1650 3220 50  0001 C CNN
+F 3 "~" H 1720 3220 50  0001 C CNN
+	1    1720 3220
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	1730 3570 1730 3920
+Wire Wire Line
+	1670 3570 1730 3570
+$Comp
+L power:GND #PWR?
+U 1 1 5F95437D
+P 1730 3920
+AR Path="/5F95437D" Ref="#PWR?"  Part="1" 
+AR Path="/5F947010/5F95437D" Ref="#PWR0136"  Part="1" 
+F 0 "#PWR0136" H 1730 3670 50  0001 C CNN
+F 1 "GND" H 1735 3747 50  0000 C CNN
+F 2 "" H 1730 3920 50  0001 C CNN
+F 3 "" H 1730 3920 50  0001 C CNN
+	1    1730 3920
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	1670 3470 1720 3470
+Text GLabel 1780 3470 2    50   Output ~ 0
+BUTTON_L
+Wire Wire Line
+	2420 3770 2420 3840
+Wire Wire Line
+	1670 3770 2420 3770
+Wire Wire Line
+	2420 3670 1670 3670
+Wire Wire Line
+	2420 3670 2420 3660
+Wire Wire Line
+	2420 3310 2420 3360
+$Comp
+L power:+5V #PWR?
+U 1 1 5F954390
+P 2420 3310
+AR Path="/5F954390" Ref="#PWR?"  Part="1" 
+AR Path="/5F947010/5F954390" Ref="#PWR0137"  Part="1" 
+F 0 "#PWR0137" H 2420 3160 50  0001 C CNN
+F 1 "+5V" H 2435 3483 50  0000 C CNN
+F 2 "" H 2420 3310 50  0001 C CNN
+F 3 "" H 2420 3310 50  0001 C CNN
+	1    2420 3310
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	2420 4240 2420 4290
+$Comp
+L Device:R R?
+U 1 1 5F954397
+P 2420 3510
+AR Path="/5F954397" Ref="R?"  Part="1" 
+AR Path="/5F947010/5F954397" Ref="R22"  Part="1" 
+F 0 "R22" H 2490 3556 50  0000 L CNN
+F 1 "121" H 2490 3465 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 2350 3510 50  0001 C CNN
+F 3 "~" H 2420 3510 50  0001 C CNN
+	1    2420 3510
+	-1   0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5F95439D
+P 2420 4290
+AR Path="/5F95439D" Ref="#PWR?"  Part="1" 
+AR Path="/5F947010/5F95439D" Ref="#PWR0138"  Part="1" 
+F 0 "#PWR0138" H 2420 4040 50  0001 C CNN
+F 1 "GND" H 2425 4117 50  0000 C CNN
+F 2 "" H 2420 4290 50  0001 C CNN
+F 3 "" H 2420 4290 50  0001 C CNN
+	1    2420 4290
+	-1   0    0    -1  
+$EndComp
+$Comp
+L dk_Transistors-FETs-MOSFETs-Single:DMG1012T-7 Q?
+U 1 1 5F9543AC
+P 2420 4040
+AR Path="/5F9543AC" Ref="Q?"  Part="1" 
+AR Path="/5F947010/5F9543AC" Ref="Q1"  Part="1" 
+F 0 "Q1" H 1910 4190 60  0000 L CNN
+F 1 "DMG1012T-7" H 1600 4080 60  0000 L CNN
+F 2 "digikey-footprints:SOT-523" H 2620 4240 60  0001 L CNN
+F 3 "https://www.diodes.com/assets/Datasheets/ds31783.pdf" H 2620 4340 60  0001 L CNN
+F 4 "DMG1012T-7DICT-ND" H 2620 4440 60  0001 L CNN "Digi-Key_PN"
+F 5 "DMG1012T-7" H 2620 4540 60  0001 L CNN "MPN"
+F 6 "Discrete Semiconductor Products" H 2620 4640 60  0001 L CNN "Category"
+F 7 "Transistors - FETs, MOSFETs - Single" H 2620 4740 60  0001 L CNN "Family"
+F 8 "https://www.diodes.com/assets/Datasheets/ds31783.pdf" H 2620 4840 60  0001 L CNN "DK_Datasheet_Link"
+F 9 "/product-detail/en/diodes-incorporated/DMG1012T-7/DMG1012T-7DICT-ND/2181232" H 2620 4940 60  0001 L CNN "DK_Detail_Page"
+F 10 "MOSFET N-CH 20V 630MA SOT-523" H 2620 5040 60  0001 L CNN "Description"
+F 11 "Diodes Incorporated" H 2620 5140 60  0001 L CNN "Manufacturer"
+F 12 "Active" H 2620 5240 60  0001 L CNN "Status"
+	1    2420 4040
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	2780 4140 2750 4140
+$Comp
+L Device:R R?
+U 1 1 5F9543B3
+P 2750 4400
+AR Path="/5F9543B3" Ref="R?"  Part="1" 
+AR Path="/5F947010/5F9543B3" Ref="R23"  Part="1" 
+F 0 "R23" H 2590 4450 50  0000 L CNN
+F 1 "10k" H 2540 4350 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 2680 4400 50  0001 C CNN
+F 3 "~" H 2750 4400 50  0001 C CNN
+	1    2750 4400
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	2750 4250 2750 4140
+Connection ~ 2750 4140
+Wire Wire Line
+	2750 4140 2720 4140
+$Comp
+L power:GND #PWR?
+U 1 1 5F9543BC
+P 2750 4590
+AR Path="/5F9543BC" Ref="#PWR?"  Part="1" 
+AR Path="/5F947010/5F9543BC" Ref="#PWR0139"  Part="1" 
+F 0 "#PWR0139" H 2750 4340 50  0001 C CNN
+F 1 "GND" H 2755 4417 50  0000 C CNN
+F 2 "" H 2750 4590 50  0001 C CNN
+F 3 "" H 2750 4590 50  0001 C CNN
+	1    2750 4590
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	2750 4590 2750 4550
+Text GLabel 6160 4180 2    50   Input ~ 0
+BUTTON_LED_R
+Wire Wire Line
+	5100 3510 5160 3510
+Connection ~ 5100 3510
+Wire Wire Line
+	5100 3410 5100 3510
+Wire Wire Line
+	5100 3070 5100 3110
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5F956AC4
+P 5100 3070
+AR Path="/5F956AC4" Ref="#PWR?"  Part="1" 
+AR Path="/5F947010/5F956AC4" Ref="#PWR0140"  Part="1" 
+F 0 "#PWR0140" H 5100 2920 50  0001 C CNN
+F 1 "+3.3V" H 5115 3243 50  0000 C CNN
+F 2 "" H 5100 3070 50  0001 C CNN
+F 3 "" H 5100 3070 50  0001 C CNN
+	1    5100 3070
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5F956ACA
+P 5100 3260
+AR Path="/5F956ACA" Ref="R?"  Part="1" 
+AR Path="/5F947010/5F956ACA" Ref="R24"  Part="1" 
+F 0 "R24" H 4920 3330 50  0000 L CNN
+F 1 "10k" H 4900 3240 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 5030 3260 50  0001 C CNN
+F 3 "~" H 5100 3260 50  0001 C CNN
+	1    5100 3260
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	5110 3610 5110 3970
+Wire Wire Line
+	5050 3610 5110 3610
+$Comp
+L power:GND #PWR?
+U 1 1 5F956AD2
+P 5110 3970
+AR Path="/5F956AD2" Ref="#PWR?"  Part="1" 
+AR Path="/5F947010/5F956AD2" Ref="#PWR0141"  Part="1" 
+F 0 "#PWR0141" H 5110 3720 50  0001 C CNN
+F 1 "GND" H 5115 3797 50  0000 C CNN
+F 2 "" H 5110 3970 50  0001 C CNN
+F 3 "" H 5110 3970 50  0001 C CNN
+	1    5110 3970
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	5050 3510 5100 3510
+Text GLabel 5160 3510 2    50   Output ~ 0
+BUTTON_R
+Wire Wire Line
+	5800 3810 5800 3880
+Wire Wire Line
+	5050 3810 5800 3810
+Wire Wire Line
+	5800 3710 5050 3710
+Wire Wire Line
+	5800 3710 5800 3700
+Wire Wire Line
+	5800 3350 5800 3400
+$Comp
+L power:+5V #PWR?
+U 1 1 5F956AE5
+P 5800 3350
+AR Path="/5F956AE5" Ref="#PWR?"  Part="1" 
+AR Path="/5F947010/5F956AE5" Ref="#PWR0142"  Part="1" 
+F 0 "#PWR0142" H 5800 3200 50  0001 C CNN
+F 1 "+5V" H 5815 3523 50  0000 C CNN
+F 2 "" H 5800 3350 50  0001 C CNN
+F 3 "" H 5800 3350 50  0001 C CNN
+	1    5800 3350
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	5800 4280 5800 4330
+$Comp
+L Device:R R?
+U 1 1 5F956AEC
+P 5800 3550
+AR Path="/5F956AEC" Ref="R?"  Part="1" 
+AR Path="/5F947010/5F956AEC" Ref="R25"  Part="1" 
+F 0 "R25" H 5870 3596 50  0000 L CNN
+F 1 "121" H 5870 3505 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 5730 3550 50  0001 C CNN
+F 3 "~" H 5800 3550 50  0001 C CNN
+	1    5800 3550
+	-1   0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5F956AF2
+P 5800 4330
+AR Path="/5F956AF2" Ref="#PWR?"  Part="1" 
+AR Path="/5F947010/5F956AF2" Ref="#PWR0143"  Part="1" 
+F 0 "#PWR0143" H 5800 4080 50  0001 C CNN
+F 1 "GND" H 5805 4157 50  0000 C CNN
+F 2 "" H 5800 4330 50  0001 C CNN
+F 3 "" H 5800 4330 50  0001 C CNN
+	1    5800 4330
+	-1   0    0    -1  
+$EndComp
+$Comp
+L dk_Transistors-FETs-MOSFETs-Single:DMG1012T-7 Q?
+U 1 1 5F956B01
+P 5800 4080
+AR Path="/5F956B01" Ref="Q?"  Part="1" 
+AR Path="/5F947010/5F956B01" Ref="Q2"  Part="1" 
+F 0 "Q2" H 5290 4230 60  0000 L CNN
+F 1 "DMG1012T-7" H 4980 4120 60  0000 L CNN
+F 2 "digikey-footprints:SOT-523" H 6000 4280 60  0001 L CNN
+F 3 "https://www.diodes.com/assets/Datasheets/ds31783.pdf" H 6000 4380 60  0001 L CNN
+F 4 "DMG1012T-7DICT-ND" H 6000 4480 60  0001 L CNN "Digi-Key_PN"
+F 5 "DMG1012T-7" H 6000 4580 60  0001 L CNN "MPN"
+F 6 "Discrete Semiconductor Products" H 6000 4680 60  0001 L CNN "Category"
+F 7 "Transistors - FETs, MOSFETs - Single" H 6000 4780 60  0001 L CNN "Family"
+F 8 "https://www.diodes.com/assets/Datasheets/ds31783.pdf" H 6000 4880 60  0001 L CNN "DK_Datasheet_Link"
+F 9 "/product-detail/en/diodes-incorporated/DMG1012T-7/DMG1012T-7DICT-ND/2181232" H 6000 4980 60  0001 L CNN "DK_Detail_Page"
+F 10 "MOSFET N-CH 20V 630MA SOT-523" H 6000 5080 60  0001 L CNN "Description"
+F 11 "Diodes Incorporated" H 6000 5180 60  0001 L CNN "Manufacturer"
+F 12 "Active" H 6000 5280 60  0001 L CNN "Status"
+	1    5800 4080
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	6160 4180 6130 4180
+$Comp
+L Device:R R?
+U 1 1 5F956B08
+P 6130 4440
+AR Path="/5F956B08" Ref="R?"  Part="1" 
+AR Path="/5F947010/5F956B08" Ref="R26"  Part="1" 
+F 0 "R26" H 5970 4490 50  0000 L CNN
+F 1 "10k" H 5920 4390 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 6060 4440 50  0001 C CNN
+F 3 "~" H 6130 4440 50  0001 C CNN
+	1    6130 4440
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	6130 4290 6130 4180
+Connection ~ 6130 4180
+Wire Wire Line
+	6130 4180 6100 4180
+$Comp
+L power:GND #PWR?
+U 1 1 5F956B11
+P 6130 4630
+AR Path="/5F956B11" Ref="#PWR?"  Part="1" 
+AR Path="/5F947010/5F956B11" Ref="#PWR0144"  Part="1" 
+F 0 "#PWR0144" H 6130 4380 50  0001 C CNN
+F 1 "GND" H 6135 4457 50  0000 C CNN
+F 2 "" H 6130 4630 50  0001 C CNN
+F 3 "" H 6130 4630 50  0001 C CNN
+	1    6130 4630
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	6130 4630 6130 4590
+Text Notes 1750 2400 0    197  ~ 0
+Left/Right Buttons and LEDs
+$Comp
+L Connector:Conn_01x02_Male J42
+U 1 1 5F9A9412
+P 8760 3670
+F 0 "J42" H 8868 3759 50  0000 C CNN
+F 1 "Conn_01x02_Male" H 8868 3760 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 8760 3670 50  0001 C CNN
+F 3 "~" H 8760 3670 50  0001 C CNN
+	1    8760 3670
+	1    0    0    -1  
+$EndComp
+Text Notes 8330 2760 0    197  ~ 0
+Mode Switch
+Wire Wire Line
+	9190 3260 9190 3300
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5F9B5BC2
+P 9190 3260
+AR Path="/5F9B5BC2" Ref="#PWR?"  Part="1" 
+AR Path="/5F947010/5F9B5BC2" Ref="#PWR0146"  Part="1" 
+F 0 "#PWR0146" H 9190 3110 50  0001 C CNN
+F 1 "+3.3V" H 9205 3433 50  0000 C CNN
+F 2 "" H 9190 3260 50  0001 C CNN
+F 3 "" H 9190 3260 50  0001 C CNN
+	1    9190 3260
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5F9B5BC8
+P 9190 3450
+AR Path="/5F9B5BC8" Ref="R?"  Part="1" 
+AR Path="/5F947010/5F9B5BC8" Ref="R27"  Part="1" 
+F 0 "R27" H 9010 3520 50  0000 L CNN
+F 1 "10k" H 8990 3430 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 9120 3450 50  0001 C CNN
+F 3 "~" H 9190 3450 50  0001 C CNN
+	1    9190 3450
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	8960 3670 9190 3670
+Wire Wire Line
+	9190 3670 9190 3600
+Text GLabel 9390 3670 2    50   Output ~ 0
+MODE_SW
+Wire Wire Line
+	9390 3670 9190 3670
+Connection ~ 9190 3670
+$Comp
+L power:GND #PWR?
+U 1 1 5F9B7B85
+P 9040 3820
+AR Path="/5F9B7B85" Ref="#PWR?"  Part="1" 
+AR Path="/5F947010/5F9B7B85" Ref="#PWR0145"  Part="1" 
+F 0 "#PWR0145" H 9040 3570 50  0001 C CNN
+F 1 "GND" H 9045 3647 50  0000 C CNN
+F 2 "" H 9040 3820 50  0001 C CNN
+F 3 "" H 9040 3820 50  0001 C CNN
+	1    9040 3820
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	8960 3770 9040 3770
+Wire Wire Line
+	9040 3770 9040 3820
+Wire Notes Line
+	1180 1960 1180 5180
+Wire Notes Line
+	1180 5180 6920 5180
+Wire Notes Line
+	6920 5180 6920 1960
+Wire Notes Line
+	6920 1960 1180 1960
+Wire Notes Line
+	8200 2440 8200 4130
+Wire Notes Line
+	8200 4130 10320 4130
+Wire Notes Line
+	10320 4130 10320 2440
+Wire Notes Line
+	10320 2440 8200 2440
+$Comp
+L Connector:Conn_01x05_Male J41
+U 1 1 5FB706FA
+P 4850 3710
+F 0 "J41" H 4958 3999 50  0000 C CNN
+F 1 "Conn_01x05_Male" H 4958 4000 50  0001 C CNN
+F 2 "Connector_JST:JST_SH_BM05B-SRSS-TB_1x05-1MP_P1.00mm_Vertical" H 4850 3710 50  0001 C CNN
+F 3 "~" H 4850 3710 50  0001 C CNN
+	1    4850 3710
+	1    0    0    -1  
+$EndComp
+NoConn ~ 5050 3910
+$Comp
+L Connector:Conn_01x05_Male J40
+U 1 1 5FB72E1A
+P 1470 3670
+F 0 "J40" H 1578 3959 50  0000 C CNN
+F 1 "Conn_01x05_Male" H 1578 3960 50  0001 C CNN
+F 2 "Connector_JST:JST_SH_BM05B-SRSS-TB_1x05-1MP_P1.00mm_Vertical" H 1470 3670 50  0001 C CNN
+F 3 "~" H 1470 3670 50  0001 C CNN
+	1    1470 3670
+	1    0    0    -1  
+$EndComp
+NoConn ~ 1670 3870
+$EndSCHEMATC

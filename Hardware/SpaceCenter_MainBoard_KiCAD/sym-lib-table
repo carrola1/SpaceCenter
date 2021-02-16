@@ -1,0 +1,3 @@
+(sym_lib_table
+  (lib (name MAX98357)(type Legacy)(uri ${KIPRJMOD}/Libraries/Symbols/MAX98357.lib)(options "")(descr ""))
+)
