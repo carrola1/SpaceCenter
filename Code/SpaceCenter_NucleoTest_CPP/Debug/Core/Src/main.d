@@ -45,7 +45,7 @@ Core/Src/main.o: ../Core/Src/main.cpp ../Core/Inc/main.h \
  ../Middlewares/ST/STM32_TouchSensing_Library/inc/tsl_ecs.h \
  ../Middlewares/ST/STM32_TouchSensing_Library/inc/tsl_filter.h \
  ../Middlewares/ST/STM32_TouchSensing_Library/inc/tsl_globals.h \
- ../Core/Inc/NeoPixel.hpp
+ ../Core/Inc/TouchBoardGroup.hpp ../Core/Inc/NeoPixel.hpp
 
 ../Core/Inc/main.h:
 
@@ -142,5 +142,7 @@ Core/Src/main.o: ../Core/Src/main.cpp ../Core/Inc/main.h \
 ../Middlewares/ST/STM32_TouchSensing_Library/inc/tsl_filter.h:
 
 ../Middlewares/ST/STM32_TouchSensing_Library/inc/tsl_globals.h:
+
+../Core/Inc/TouchBoardGroup.hpp:
 
 ../Core/Inc/NeoPixel.hpp:

@@ -49,7 +49,7 @@ TSC_HandleTypeDef htsc;
 UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
-NeoPixel pix = NeoPixel(2);
+TouchBoardGroup touchGroup0 = TouchBoardGroup(2, 0, htim2, 0, hdma_tim2_ch1);
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -112,16 +112,14 @@ int main(void)
   tsl_user_Exec();
   touch_st_last = MyTKeysB[0].p_Data->StateId;
   HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
-  pix.setPixelColor(0, 0, 0, 255);
-  pix.setPixelColor(1, 0, 0, 255);
-  pix.show();
+  touchGroup0.setAllPixelColor(0,0,255);
 
   while (1)
   {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	tsl_user_Exec();
+	/*tsl_user_Exec();
 	if (MyTKeysB[0].p_Data->StateId != touch_st_last) {
 		if (MyTKeysB[0].p_Data->StateId == TSL_STATEID_DETECT) {
 		  HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
@@ -136,7 +134,11 @@ int main(void)
 		}
 	}
 	touch_st_last = MyTKeysB[0].p_Data->StateId;
-	HAL_Delay(1);
+  */
+	HAL_Delay(500);
+  touchGroup0.setAllPixelColor(0,0,255);
+  HAL_Delay(500);
+  touchGroup0.setAllPixelColor(0,255,0);
   }
   /* USER CODE END 3 */
 }
@@ -364,44 +366,11 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PWM_PulseFinishedHalfCpltCallback(TIM_HandleTypeDef *htim) {
-  // DMA buffer set from LED(wr_buf_p) to LED(wr_buf_p + 1)
-  if(pix.wr_buf_p < pix.numLEDs) {
-    // We're in. Fill the even buffer
-    for(uint_fast8_t i = 0; i < 8; ++i) {
-      pix.wr_buf[i     ] = pix.PWM_LO << (((pix.pixels[3 * pix.wr_buf_p    ] << i) & 0x80) > 0);
-      pix.wr_buf[i +  8] = pix.PWM_LO << (((pix.pixels[3 * pix.wr_buf_p + 1] << i) & 0x80) > 0);
-      pix.wr_buf[i + 16] = pix.PWM_LO << (((pix.pixels[3 * pix.wr_buf_p + 2] << i) & 0x80) > 0);
-    }
-    pix.wr_buf_p++;
-  } else if (pix.wr_buf_p < pix.numLEDs + 2) {
-    // Last two transfers are resets. 64 * 1.25 us = 80 us == good enough reset
-    // First half reset zero fill
-    for(uint8_t i = 0; i < pix.WR_BUF_LEN / 2; ++i) pix.wr_buf[i] = 0;
-    pix.wr_buf_p++;
-  } else {
-    HAL_TIM_PWM_Stop_DMA(&htim2, TIM_CHANNEL_1);
-  }
+  touchGroup0.updateHalfDMA();
 }
 
 void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim) {
-  // DMA buffer set from LED(wr_buf_p) to LED(wr_buf_p + 1)
-  if(pix.wr_buf_p < pix.numLEDs) {
-    // We're in. Fill the even buffer
-    for(uint_fast8_t i = 0; i < 8; ++i) {
-      pix.wr_buf[i + 24] = pix.PWM_LO << (((pix.pixels[3 * pix.wr_buf_p    ] << i) & 0x80) > 0);
-      pix.wr_buf[i + 32] = pix.PWM_LO << (((pix.pixels[3 * pix.wr_buf_p + 1] << i) & 0x80) > 0);
-      pix.wr_buf[i + 40] = pix.PWM_LO << (((pix.pixels[3 * pix.wr_buf_p + 2] << i) & 0x80) > 0);
-    }
-    pix.wr_buf_p++;
-  } else if (pix.wr_buf_p < pix.numLEDs + 2) {
-    // Last two transfers are resets. 64 * 1.25 us = 80 us == good enough reset
-    // Second half reset zero fill
-    for(uint8_t i = pix.WR_BUF_LEN / 2; i < pix.WR_BUF_LEN; ++i) pix.wr_buf[i] = 0;
-    pix.wr_buf_p++;
-  } else {
-    pix.wr_buf_p = 0;
-    HAL_TIM_PWM_Stop_DMA(&htim2, TIM_CHANNEL_1);
-  }
+  touchGroup0.updateDMA();
 }
 /* USER CODE END 4 */
 

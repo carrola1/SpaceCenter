@@ -1,0 +1,6 @@
+TouchBoardGroup.cpp:3:1:TouchBoardGroup::TouchBoardGroup(uint8_t, uint8_t, TIM_HandleTypeDef&, uint32_t, DMA_HandleTypeDef&)	48	static
+TouchBoardGroup.cpp:10:1:TouchBoardGroup::~TouchBoardGroup()	16	static
+TouchBoardGroup.cpp:13:6:void TouchBoardGroup::setPixelColor(uint8_t, uint8_t, uint8_t, uint8_t)	32	static
+TouchBoardGroup.cpp:19:6:void TouchBoardGroup::setAllPixelColor(uint8_t, uint8_t, uint8_t)	40	static
+TouchBoardGroup.cpp:27:6:void TouchBoardGroup::updateDMA()	16	static
+TouchBoardGroup.cpp:31:6:void TouchBoardGroup::updateHalfDMA()	16	static

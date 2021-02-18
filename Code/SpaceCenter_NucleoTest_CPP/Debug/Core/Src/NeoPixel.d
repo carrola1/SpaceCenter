@@ -1,4 +1,4 @@
-Core/Src/NeoPixel.o: ../Core/Src/NeoPixel.cpp \
+Core/Src/NeoPixel.o: ../Core/Src/NeoPixel.cpp ../Core/Inc/NeoPixel.hpp \
  ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h \
  ../Core/Inc/stm32f0xx_hal_conf.h \
  ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_rcc.h \
@@ -27,8 +27,9 @@ Core/Src/NeoPixel.o: ../Core/Src/NeoPixel.cpp \
  ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim_ex.h \
  ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tsc.h \
  ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart.h \
- ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart_ex.h \
- ../Core/Inc/NeoPixel.hpp
+ ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart_ex.h
+
+../Core/Inc/NeoPixel.hpp:
 
 ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h:
 
@@ -87,5 +88,3 @@ Core/Src/NeoPixel.o: ../Core/Src/NeoPixel.cpp \
 ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart.h:
 
 ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart_ex.h:
-
-../Core/Inc/NeoPixel.hpp:

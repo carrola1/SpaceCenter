@@ -45,26 +45,34 @@ endif
 
 -include ../makefile.defs
 
+BUILD_ARTIFACT_NAME := SpaceCenter_NucleoTest_CPP
+BUILD_ARTIFACT_EXTENSION := elf
+BUILD_ARTIFACT_PREFIX := 
+BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME).$(BUILD_ARTIFACT_EXTENSION)
+
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-SpaceCenter_NucleoTest.elf \
+SpaceCenter_NucleoTest_CPP.elf \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-SpaceCenter_NucleoTest.list \
+SpaceCenter_NucleoTest_CPP.list \
 
 OBJCOPY_BIN += \
-SpaceCenter_NucleoTest.bin \
+SpaceCenter_NucleoTest_CPP.bin \
 
 
 # All Target
-all: SpaceCenter_NucleoTest.elf secondary-outputs
+all: main-build
+
+# Main-build Target
+main-build: SpaceCenter_NucleoTest_CPP.elf secondary-outputs
 
 # Tool invocations
-SpaceCenter_NucleoTest.elf: $(OBJS) $(USER_OBJS) C:\GitHub\SpaceCenter\Code\SpaceCenter_NucleoTest\STM32F042K6TX_FLASH.ld
-	arm-none-eabi-g++ -o "SpaceCenter_NucleoTest.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m0 -T"C:\GitHub\SpaceCenter\Code\SpaceCenter_NucleoTest\STM32F042K6TX_FLASH.ld" -Wl,-Map="SpaceCenter_NucleoTest.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+SpaceCenter_NucleoTest_CPP.elf: $(OBJS) $(USER_OBJS) C:\GitHub\SpaceCenter\Code\SpaceCenter_NucleoTest_CPP\STM32F042K6TX_FLASH.ld
+	arm-none-eabi-g++ -o "SpaceCenter_NucleoTest_CPP.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m0 -T"C:\GitHub\SpaceCenter\Code\SpaceCenter_NucleoTest_CPP\STM32F042K6TX_FLASH.ld" -Wl,-Map="SpaceCenter_NucleoTest_CPP.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -73,13 +81,13 @@ default.size.stdout: $(EXECUTABLES)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-SpaceCenter_NucleoTest.list: $(EXECUTABLES)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "SpaceCenter_NucleoTest.list"
+SpaceCenter_NucleoTest_CPP.list: $(EXECUTABLES)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "SpaceCenter_NucleoTest_CPP.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-SpaceCenter_NucleoTest.bin: $(EXECUTABLES)
-	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "SpaceCenter_NucleoTest.bin"
+SpaceCenter_NucleoTest_CPP.bin: $(EXECUTABLES)
+	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "SpaceCenter_NucleoTest_CPP.bin"
 	@echo 'Finished building: $@'
 	@echo ' '
 
@@ -90,7 +98,14 @@ clean:
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST) $(OBJCOPY_BIN)
 
-.PHONY: all clean dependents
+fail-specified-linker-script-missing:
+	@echo 'Error: Cannot find the specified linker script. Check the linker settings in the build configuration.'
+	@exit 2
+
+warn-no-linker-script-specified:
+	@echo 'Warning: No linker script specified. Check the linker settings in the build configuration.'
+
+.PHONY: all clean dependents fail-specified-linker-script-missing warn-no-linker-script-specified
 .SECONDARY:
 
 -include ../makefile.targets
