@@ -56,7 +56,7 @@ void NeoPixel::show(void) {
 }
 
 // Halfway through DMA wr_buf write, load up next 3 bytes in first half of wr_buf
-void NeoPixel::updateHalfDMA() {
+void NeoPixel::updatePixelHalfDMA() {
   // Make sure callback is not from a different NeoPixel by checking dmaRunning
   if (dmaRunning) {
     // DMA buffer set from LED(wr_buf_p) to LED(wr_buf_p + 1)
@@ -82,7 +82,7 @@ void NeoPixel::updateHalfDMA() {
 }
 
 // End of wr_buf write, load up next 3 bytes in second half of wr_buf
-void NeoPixel::updateDMA() {
+void NeoPixel::updatePixelDMA() {
   // Make sure callback is not from a different NeoPixel by checking dmaRunning
   if (dmaRunning) {
     // DMA buffer set from LED(wr_buf_p) to LED(wr_buf_p + 1)

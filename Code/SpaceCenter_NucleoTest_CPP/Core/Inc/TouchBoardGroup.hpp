@@ -2,6 +2,7 @@
 #define TOUCHBOARDGROUP_HPP
 
 #include <stdint.h>
+#include <vector>
 #include "NeoPixel.hpp"
 #include "touchsensing.h"
 
@@ -16,17 +17,19 @@ public:
 
   void setPixelColor(uint8_t board_num, uint8_t r, uint8_t g, uint8_t b);
   void setAllPixelColor(uint8_t r, uint8_t g, uint8_t b);
-  uint8_t getTouchStates();
-  uint8_t getTouchStateChanges();
-  bool touchStateChangeDet();
-  void updateDMA();
-  void updateHalfDMA();
+  std::vector<TSL_StateId_enum_T> getTouchStates();
+  void updateTouchStates();
+  bool getTouchDetected();
+  void updatePixelDMA();
+  void updatePixelHalfDMA();
 
 private:
   uint8_t numBoards;
   NeoPixel ledArray;
   uint8_t myTouchKeyOffset;
   bool dmaRunning;
+  std::vector<TSL_StateId_enum_T> touch_states;
+  bool touchDetected;
 };
 
 #endif // TOUCHBOARDGROUP_HPP

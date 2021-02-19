@@ -15,8 +15,8 @@ class NeoPixel {
     void show(void);
     void setPixelColor(uint16_t n, uint8_t r, uint8_t g, uint8_t b);
     void updateLength(uint16_t n);
-    void updateHalfDMA();
-    void updateDMA();
+    void updatePixelHalfDMA();
+    void updatePixelDMA();
 
   private:
 
