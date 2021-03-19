@@ -1,5 +1,6 @@
 ################################################################################
 # Automatically-generated file. Do not edit!
+# Toolchain: GNU Tools for STM32 (9-2020-q2-update)
 ################################################################################
 
 -include ../makefile.init
@@ -8,6 +9,9 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
+-include TOUCHSENSING/App/subdir.mk
+-include Middlewares/Third_Party/FatFs/src/subdir.mk
+-include Middlewares/ST/STM32_TouchSensing_Library/src/subdir.mk
 -include Drivers/STM32L0xx_HAL_Driver/Src/subdir.mk
 -include Core/Startup/subdir.mk
 -include Core/Src/subdir.mk
@@ -43,6 +47,17 @@ endif
 
 -include ../makefile.defs
 
+OPTIONAL_TOOL_DEPS := \
+$(wildcard ../makefile.defs) \
+$(wildcard ../makefile.init) \
+$(wildcard ../makefile.targets) \
+
+
+BUILD_ARTIFACT_NAME := SpaceCenter
+BUILD_ARTIFACT_EXTENSION := elf
+BUILD_ARTIFACT_PREFIX := 
+BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME).$(BUILD_ARTIFACT_EXTENSION)
+
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
 SpaceCenter.elf \
@@ -58,25 +73,28 @@ SpaceCenter.bin \
 
 
 # All Target
-all: SpaceCenter.elf secondary-outputs
+all: main-build
+
+# Main-build Target
+main-build: SpaceCenter.elf secondary-outputs
 
 # Tool invocations
-SpaceCenter.elf: $(OBJS) $(USER_OBJS) C:\GitHub\SpaceCenter\Code\SpaceCenter\STM32L072VBTX_FLASH.ld
+SpaceCenter.elf: $(OBJS) $(USER_OBJS) C:\GitHub\SpaceCenter\Code\SpaceCenter\STM32L072VBTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	arm-none-eabi-g++ -o "SpaceCenter.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m0plus -T"C:\GitHub\SpaceCenter\Code\SpaceCenter\STM32L072VBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SpaceCenter.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-default.size.stdout: $(EXECUTABLES)
+default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	arm-none-eabi-size  $(EXECUTABLES)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-SpaceCenter.list: $(EXECUTABLES)
+SpaceCenter.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "SpaceCenter.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-SpaceCenter.bin: $(EXECUTABLES)
+SpaceCenter.bin: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "SpaceCenter.bin"
 	@echo 'Finished building: $@'
 	@echo ' '
@@ -88,7 +106,14 @@ clean:
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST) $(OBJCOPY_BIN)
 
-.PHONY: all clean dependents
+fail-specified-linker-script-missing:
+	@echo 'Error: Cannot find the specified linker script. Check the linker settings in the build configuration.'
+	@exit 2
+
+warn-no-linker-script-specified:
+	@echo 'Warning: No linker script specified. Check the linker settings in the build configuration.'
+
+.PHONY: all clean dependents fail-specified-linker-script-missing warn-no-linker-script-specified
 .SECONDARY:
 
 -include ../makefile.targets

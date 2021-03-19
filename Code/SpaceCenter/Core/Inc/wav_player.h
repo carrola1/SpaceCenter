@@ -8,7 +8,6 @@
 #include "stm32l0xx_hal.h"
 #include "diskio.h"
 #include "ff.h"
-#include "i2s.h"
 
 //const uint16_t buf_size = 256;
 

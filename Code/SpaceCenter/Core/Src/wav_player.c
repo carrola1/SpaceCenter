@@ -1,5 +1,7 @@
 #include "wav_player.h"
 
+extern I2S_HandleTypeDef hi2s2;
+
 static FIL fil;        // audio file
 static uint16_t audio_buf_0[256];
 static uint16_t audio_buf_1[256];
@@ -7,8 +9,8 @@ static uint16_t *audio_buf_ptr;
 static uint16_t *audio_buf_ptr_start;
 
 void play_wav(char wav_file[32]) {
-    HAL_GPIO_WritePin(AUDIO_SD_N_0_GPIO_Port, AUDIO_SD_N_0_Pin, GPIO_PIN_SET);
-    HAL_GPIO_WritePin(AUDIO_SD_N_1_GPIO_Port, AUDIO_SD_N_1_Pin, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(AUDIO_SD_N_L_GPIO_Port, AUDIO_SD_N_L_Pin, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(AUDIO_SD_N_R_GPIO_Port, AUDIO_SD_N_R_Pin, GPIO_PIN_SET);
     fr = f_open(&fil, wav_file, FA_READ);  // open file
     //f_lseek(&fil, 76);                      // move to data region of .wav
     audio_buf_ptr = audio_buf_0;        // point to buffer 0 first
@@ -20,8 +22,8 @@ void play_wav(char wav_file[32]) {
         //////////// End of File ////////////
         if (bytes_read < 512) {
             f_close(&fil);
-            HAL_GPIO_WritePin(AUDIO_SD_N_0_GPIO_Port, AUDIO_SD_N_0_Pin, GPIO_PIN_RESET);
-            HAL_GPIO_WritePin(AUDIO_SD_N_1_GPIO_Port, AUDIO_SD_N_1_Pin, GPIO_PIN_RESET);
+            HAL_GPIO_WritePin(AUDIO_SD_N_L_GPIO_Port, AUDIO_SD_N_L_Pin, GPIO_PIN_RESET);
+            HAL_GPIO_WritePin(AUDIO_SD_N_R_GPIO_Port, AUDIO_SD_N_R_Pin, GPIO_PIN_RESET);
             return;
         }
         //////////// End of File ////////////
@@ -53,8 +55,8 @@ void play_wav(char wav_file[32]) {
 }
 
 void open_wav(char wav_file[32]) {
-  HAL_GPIO_WritePin(AUDIO_SD_N_0_GPIO_Port, AUDIO_SD_N_0_Pin, GPIO_PIN_SET);
-  HAL_GPIO_WritePin(AUDIO_SD_N_1_GPIO_Port, AUDIO_SD_N_1_Pin, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(AUDIO_SD_N_L_GPIO_Port, AUDIO_SD_N_L_Pin, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(AUDIO_SD_N_R_GPIO_Port, AUDIO_SD_N_R_Pin, GPIO_PIN_SET);
   fr = f_open(&fil, wav_file, FA_READ);  // open file
   audio_buf_ptr = audio_buf_0;        // point to buffer 0 first
   audio_buf_ptr_start = audio_buf_0;
@@ -97,8 +99,8 @@ uint8_t play_chunk(void) {
 
 void close_wav(void) {
   f_close(&fil);
-  HAL_GPIO_WritePin(AUDIO_SD_N_0_GPIO_Port, AUDIO_SD_N_0_Pin, GPIO_PIN_RESET);
-  HAL_GPIO_WritePin(AUDIO_SD_N_1_GPIO_Port, AUDIO_SD_N_1_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(AUDIO_SD_N_L_GPIO_Port, AUDIO_SD_N_L_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(AUDIO_SD_N_R_GPIO_Port, AUDIO_SD_N_R_Pin, GPIO_PIN_RESET);
 }
 
 void HAL_I2S_TxCpltCallback(I2S_HandleTypeDef* hi2s) {

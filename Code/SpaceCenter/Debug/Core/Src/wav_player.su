@@ -1,0 +1,5 @@
+wav_player.c:11:6:play_wav	24	static
+wav_player.c:57:6:open_wav	16	static
+wav_player.c:65:9:play_chunk	16	static
+wav_player.c:100:6:close_wav	8	static
+wav_player.c:106:6:HAL_I2S_TxCpltCallback	16	static

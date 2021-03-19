@@ -1,7 +1,8 @@
 #include "diskio.h"
-#include "spi.h"
-#include "gpio.h"
+#include <stdint.h>
+#include "stm32l0xx_hal.h"
 
+extern SPI_HandleTypeDef hspi1;
 #define FAT_SD_SPI hspi1
 #define FAT_SD_CS GPIOA, GPIO_PIN_15
 
