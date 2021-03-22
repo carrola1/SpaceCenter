@@ -120,6 +120,18 @@ int main(void)
 
   HAL_GPIO_WritePin(TEST_LED_GPIO_Port, TEST_LED_Pin, GPIO_PIN_RESET);
   HAL_Delay(500);
+
+  static FIL fil;
+  uint8_t wav_buf[512];
+  UINT bytes_read;
+  fr = f_open(&fil, "blue.wav", FA_READ);
+  f_read(&fil, &wav_buf[0], 512, &bytes_read);
+  if (wav_buf[0] > 2) {
+    HAL_GPIO_WritePin(TEST_LED_GPIO_Port, TEST_LED_Pin, GPIO_PIN_SET);
+  } else {
+    HAL_GPIO_WritePin(TEST_LED_GPIO_Port, TEST_LED_Pin, GPIO_PIN_RESET);
+  }
+
   play_wav("blue.wav");
   /* USER CODE END 2 */
 
