@@ -1,4 +1,4 @@
-Core/Src/main.o: ../Core/Src/main.cpp ../Core/Inc/main.h \
+Core/Src/NeoPixel.o: ../Core/Src/NeoPixel.cpp ../Core/Inc/NeoPixel.hpp \
  ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal.h \
  ../Core/Inc/stm32l0xx_hal_conf.h \
  ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_rcc.h \
@@ -27,32 +27,9 @@ Core/Src/main.o: ../Core/Src/main.cpp ../Core/Inc/main.h \
  ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_spi.h \
  ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_tim.h \
  ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_tim_ex.h \
- ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_tsc.h \
- ../TOUCHSENSING/App/touchsensing.h ../TOUCHSENSING/App/tsl_conf.h \
- ../Middlewares/ST/STM32_TouchSensing_Library/inc/tsl_acq_tsc.h \
- ../TOUCHSENSING/App/tsl_conf.h \
- ../Middlewares/ST/STM32_TouchSensing_Library/inc/tsl_types.h \
- ../Middlewares/ST/STM32_TouchSensing_Library/inc/tsl_check_config_tsc.h \
- ../Middlewares/ST/STM32_TouchSensing_Library/inc/tsl_check_config.h \
- ../TOUCHSENSING/App/tsl_user.h \
- ../Middlewares/ST/STM32_TouchSensing_Library/inc/tsl.h \
- ../Middlewares/ST/STM32_TouchSensing_Library/inc/tsl_acq.h \
- ../Middlewares/ST/STM32_TouchSensing_Library/inc/tsl_time.h \
- ../Middlewares/ST/STM32_TouchSensing_Library/inc/tsl_touchkey.h \
- ../Middlewares/ST/STM32_TouchSensing_Library/inc/tsl_linrot.h \
- ../Middlewares/ST/STM32_TouchSensing_Library/inc/tsl_object.h \
- ../Middlewares/ST/STM32_TouchSensing_Library/inc/tsl_dxs.h \
- ../Middlewares/ST/STM32_TouchSensing_Library/inc/tsl_ecs.h \
- ../Middlewares/ST/STM32_TouchSensing_Library/inc/tsl_filter.h \
- ../Middlewares/ST/STM32_TouchSensing_Library/inc/tsl_globals.h \
- ../Middlewares/Third_Party/FatFs/src/diskio.h \
- ../Middlewares/Third_Party/FatFs/src/integer.h \
- ../Middlewares/Third_Party/FatFs/src/ff.h \
- ../Middlewares/Third_Party/FatFs/src/ffconf.h ../Core/Inc/wav_player.h \
- ../Core/Inc/main.h ../Core/Inc/TouchBoardGroup.hpp \
- ../Core/Inc/NeoPixel.hpp
+ ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_tsc.h
 
-../Core/Inc/main.h:
+../Core/Inc/NeoPixel.hpp:
 
 ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal.h:
 
@@ -111,55 +88,3 @@ Core/Src/main.o: ../Core/Src/main.cpp ../Core/Inc/main.h \
 ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_tim_ex.h:
 
 ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_tsc.h:
-
-../TOUCHSENSING/App/touchsensing.h:
-
-../TOUCHSENSING/App/tsl_conf.h:
-
-../Middlewares/ST/STM32_TouchSensing_Library/inc/tsl_acq_tsc.h:
-
-../TOUCHSENSING/App/tsl_conf.h:
-
-../Middlewares/ST/STM32_TouchSensing_Library/inc/tsl_types.h:
-
-../Middlewares/ST/STM32_TouchSensing_Library/inc/tsl_check_config_tsc.h:
-
-../Middlewares/ST/STM32_TouchSensing_Library/inc/tsl_check_config.h:
-
-../TOUCHSENSING/App/tsl_user.h:
-
-../Middlewares/ST/STM32_TouchSensing_Library/inc/tsl.h:
-
-../Middlewares/ST/STM32_TouchSensing_Library/inc/tsl_acq.h:
-
-../Middlewares/ST/STM32_TouchSensing_Library/inc/tsl_time.h:
-
-../Middlewares/ST/STM32_TouchSensing_Library/inc/tsl_touchkey.h:
-
-../Middlewares/ST/STM32_TouchSensing_Library/inc/tsl_linrot.h:
-
-../Middlewares/ST/STM32_TouchSensing_Library/inc/tsl_object.h:
-
-../Middlewares/ST/STM32_TouchSensing_Library/inc/tsl_dxs.h:
-
-../Middlewares/ST/STM32_TouchSensing_Library/inc/tsl_ecs.h:
-
-../Middlewares/ST/STM32_TouchSensing_Library/inc/tsl_filter.h:
-
-../Middlewares/ST/STM32_TouchSensing_Library/inc/tsl_globals.h:
-
-../Middlewares/Third_Party/FatFs/src/diskio.h:
-
-../Middlewares/Third_Party/FatFs/src/integer.h:
-
-../Middlewares/Third_Party/FatFs/src/ff.h:
-
-../Middlewares/Third_Party/FatFs/src/ffconf.h:
-
-../Core/Inc/wav_player.h:
-
-../Core/Inc/main.h:
-
-../Core/Inc/TouchBoardGroup.hpp:
-
-../Core/Inc/NeoPixel.hpp:

@@ -41,20 +41,20 @@
 
 /** Total number of channels in application (range=1..255)
 */
-#define TSLPRM_TOTAL_CHANNELS (24)
+#define TSLPRM_TOTAL_CHANNELS (1)
 
 /** Total number of banks in application (range=1..255)
 */
 
-#define TSLPRM_TOTAL_BANKS (3)
+#define TSLPRM_TOTAL_BANKS (1)
 
 /** Total number of "Extended" TouchKeys in application (range=0..255)
 */
-#define TSLPRM_TOTAL_TOUCHKEYS (24)
+#define TSLPRM_TOTAL_TOUCHKEYS (0)
 
 /** Total number of "Basic" TouchKeys in application (range=0..255)
 */
-#define TSLPRM_TOTAL_TOUCHKEYS_B (0)
+#define TSLPRM_TOTAL_TOUCHKEYS_B (1)
 
 /** Total number of "Extended" Linear and Rotary sensors in application (range=0..255)
   - Count also the 1-channel linear sensor used as TouchKey
@@ -74,7 +74,7 @@
 /** Total number of sensors/objects in application (range=1..255)
   - Count all TouchKeys, Linear and Rotary sensors
 */
-#define TSLPRM_TOTAL_OBJECTS (24)
+#define TSLPRM_TOTAL_OBJECTS (1)
 
 /** @} Common_Parameters_Number_Of_Elements */
 
@@ -92,7 +92,7 @@
 
 /** Proximity detection usage (0=No, 1=Yes)
 */
-#define TSLPRM_USE_PROX (1)
+#define TSLPRM_USE_PROX (0)
 
 /** @} Common_Parameters_Options */
 
@@ -107,13 +107,13 @@
   - This is the minimum acceptable value for the acquisition measure.
   - The acquisition will be in error if the measure is below this value.
 */
-#define TSLPRM_ACQ_MIN (10)
+#define TSLPRM_ACQ_MIN (1)
 
 /** Maximum acquisition measurement (range=255, 511, 1023, 2047, 8191, 16383)
   - This is the maximum acceptable value for the acquisition measure.
   - The acquisition will be in error if the measure is above this value.
 */
-#define TSLPRM_ACQ_MAX (8191)
+#define TSLPRM_ACQ_MAX (16383)
 
 /** @} Common_Parameters_Acquisition_Limits */
 
@@ -128,7 +128,7 @@
   - Low value = faster calibration but less precision.
   - High value = slower calibration but more precision.
 */
-#define TSLPRM_CALIB_SAMPLES (4)
+#define TSLPRM_CALIB_SAMPLES (8)
 
 /** Delay in measurement samples before starting the calibration (range=0..40)
   - This is useful if a noise filter is used.
@@ -148,28 +148,28 @@
 /** TouchKeys Proximity state input threshold (range=0..255)
   - Enter Proximity state if delta is above
 */
-#define TSLPRM_TKEY_PROX_IN_TH (10)
+#define TSLPRM_TKEY_PROX_IN_TH (100)
 
 /** TouchKeys Proximity state output threshold (range=0..255)
   - Exit Proximity state if delta is below
 */
-#define TSLPRM_TKEY_PROX_OUT_TH (5)
+#define TSLPRM_TKEY_PROX_OUT_TH (60)
 
 /** TouchKeys Detect state input threshold (range=0..255)
   - Enter Detect state if delta is above
 */
-#define TSLPRM_TKEY_DETECT_IN_TH (120)
+#define TSLPRM_TKEY_DETECT_IN_TH (150)
 
 /** TouchKeys Detect state output threshold (range=0..255)
   - Exit Detect state if delta is below
 */
-#define TSLPRM_TKEY_DETECT_OUT_TH (110)
+#define TSLPRM_TKEY_DETECT_OUT_TH (125)
 
 /** TouchKeys re-Calibration threshold (range=0..255)
   - @warning The value is inverted in the sensor state machine
   - Enter Calibration state if delta is below
 */
-#define TSLPRM_TKEY_CALIB_TH (120)
+#define TSLPRM_TKEY_CALIB_TH (20)
 
 /** TouchKey, Linear and Rotary sensors thresholds coefficient (range=0..4)
     This multiplier coefficient is applied on Detect and Re-Calibration thresholds only.

@@ -1,5 +1,5 @@
 tsl_acq_tsc.c:301:6:SoftDelay	24	static
-tsl_acq_tsc.c:45:19:TSL_acq_BankConfig	24	static
+tsl_acq_tsc.c:45:19:TSL_acq_BankConfig	32	static
 tsl_acq_tsc.c:168:19:TSL_acq_BankWaitEOC	0	static
 tsl_acq_tsc.c:201:13:TSL_acq_GetMeas	0	static
 tsl_acq_tsc.c:220:14:TSL_acq_ComputeDelta	0	static

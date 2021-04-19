@@ -2,7 +2,7 @@
 #define NEOPIXEL_HPP
 
 #include <stdint.h>
-#include "stm32f0xx_hal.h"
+#include "stm32l0xx_hal.h"
 
 class NeoPixel {
 
@@ -21,8 +21,8 @@ class NeoPixel {
   private:
 
     static const uint8_t WR_BUF_LEN = 8*6; // Hold 2 NeoPixels at a time
-    static const uint8_t PWM_HI = 38;
-    static const uint8_t PWM_LO = 19;
+    static const uint8_t PWM_HI = 29;
+    static const uint8_t PWM_LO = 10;
 
     uint16_t numLEDs;    ///< Number of RGB LEDs in strip
     uint16_t numBytes;   ///< Size of 'pixels' buffer below

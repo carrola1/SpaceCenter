@@ -312,11 +312,11 @@ void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* htim_base)
     /* TIM2_CH1 Init */
     hdma_tim2_ch1.Instance = DMA1_Channel5;
     hdma_tim2_ch1.Init.Request = DMA_REQUEST_8;
-    hdma_tim2_ch1.Init.Direction = DMA_PERIPH_TO_MEMORY;
+    hdma_tim2_ch1.Init.Direction = DMA_MEMORY_TO_PERIPH;
     hdma_tim2_ch1.Init.PeriphInc = DMA_PINC_DISABLE;
     hdma_tim2_ch1.Init.MemInc = DMA_MINC_ENABLE;
-    hdma_tim2_ch1.Init.PeriphDataAlignment = DMA_PDATAALIGN_BYTE;
-    hdma_tim2_ch1.Init.MemDataAlignment = DMA_MDATAALIGN_HALFWORD;
+    hdma_tim2_ch1.Init.PeriphDataAlignment = DMA_PDATAALIGN_WORD;
+    hdma_tim2_ch1.Init.MemDataAlignment = DMA_MDATAALIGN_BYTE;
     hdma_tim2_ch1.Init.Mode = DMA_CIRCULAR;
     hdma_tim2_ch1.Init.Priority = DMA_PRIORITY_LOW;
     if (HAL_DMA_Init(&hdma_tim2_ch1) != HAL_OK)
@@ -329,11 +329,11 @@ void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* htim_base)
     /* TIM2_CH3 Init */
     hdma_tim2_ch3.Instance = DMA1_Channel1;
     hdma_tim2_ch3.Init.Request = DMA_REQUEST_8;
-    hdma_tim2_ch3.Init.Direction = DMA_PERIPH_TO_MEMORY;
+    hdma_tim2_ch3.Init.Direction = DMA_MEMORY_TO_PERIPH;
     hdma_tim2_ch3.Init.PeriphInc = DMA_PINC_DISABLE;
     hdma_tim2_ch3.Init.MemInc = DMA_MINC_ENABLE;
-    hdma_tim2_ch3.Init.PeriphDataAlignment = DMA_PDATAALIGN_BYTE;
-    hdma_tim2_ch3.Init.MemDataAlignment = DMA_MDATAALIGN_HALFWORD;
+    hdma_tim2_ch3.Init.PeriphDataAlignment = DMA_PDATAALIGN_WORD;
+    hdma_tim2_ch3.Init.MemDataAlignment = DMA_MDATAALIGN_BYTE;
     hdma_tim2_ch3.Init.Mode = DMA_CIRCULAR;
     hdma_tim2_ch3.Init.Priority = DMA_PRIORITY_LOW;
     if (HAL_DMA_Init(&hdma_tim2_ch3) != HAL_OK)
@@ -346,11 +346,11 @@ void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* htim_base)
     /* TIM2_CH4 Init */
     hdma_tim2_ch4.Instance = DMA1_Channel4;
     hdma_tim2_ch4.Init.Request = DMA_REQUEST_8;
-    hdma_tim2_ch4.Init.Direction = DMA_PERIPH_TO_MEMORY;
+    hdma_tim2_ch4.Init.Direction = DMA_MEMORY_TO_PERIPH;
     hdma_tim2_ch4.Init.PeriphInc = DMA_PINC_DISABLE;
     hdma_tim2_ch4.Init.MemInc = DMA_MINC_ENABLE;
-    hdma_tim2_ch4.Init.PeriphDataAlignment = DMA_PDATAALIGN_BYTE;
-    hdma_tim2_ch4.Init.MemDataAlignment = DMA_MDATAALIGN_HALFWORD;
+    hdma_tim2_ch4.Init.PeriphDataAlignment = DMA_PDATAALIGN_WORD;
+    hdma_tim2_ch4.Init.MemDataAlignment = DMA_MDATAALIGN_BYTE;
     hdma_tim2_ch4.Init.Mode = DMA_CIRCULAR;
     hdma_tim2_ch4.Init.Priority = DMA_PRIORITY_LOW;
     if (HAL_DMA_Init(&hdma_tim2_ch4) != HAL_OK)
@@ -440,88 +440,23 @@ void HAL_TSC_MspInit(TSC_HandleTypeDef* htsc)
     __HAL_RCC_TSC_CLK_ENABLE();
 
     __HAL_RCC_GPIOC_CLK_ENABLE();
-    __HAL_RCC_GPIOA_CLK_ENABLE();
-    __HAL_RCC_GPIOB_CLK_ENABLE();
     /**TSC GPIO Configuration
     PC0     ------> TSC_G7_IO1
     PC1     ------> TSC_G7_IO2
-    PC2     ------> TSC_G7_IO3
-    PC3     ------> TSC_G7_IO4
-    PA0     ------> TSC_G1_IO1
-    PA1     ------> TSC_G1_IO2
-    PA2     ------> TSC_G1_IO3
-    PA3     ------> TSC_G1_IO4
-    PA4     ------> TSC_G2_IO1
-    PA5     ------> TSC_G2_IO2
-    PA6     ------> TSC_G2_IO3
-    PA7     ------> TSC_G2_IO4
-    PC5     ------> TSC_G3_IO1
-    PB0     ------> TSC_G3_IO2
-    PB1     ------> TSC_G3_IO3
-    PB2     ------> TSC_G3_IO4
-    PB11     ------> TSC_G6_IO1
-    PB12     ------> TSC_G6_IO2
-    PB13     ------> TSC_G6_IO3
-    PB14     ------> TSC_G6_IO4
-    PC6     ------> TSC_G8_IO1
-    PC7     ------> TSC_G8_IO2
-    PC8     ------> TSC_G8_IO3
-    PC9     ------> TSC_G8_IO4
-    PA9     ------> TSC_G4_IO1
-    PA10     ------> TSC_G4_IO2
-    PA11     ------> TSC_G4_IO3
-    PA12     ------> TSC_G4_IO4
-    PB3     ------> TSC_G5_IO1
-    PB4     ------> TSC_G5_IO2
-    PB6     ------> TSC_G5_IO3
-    PB7     ------> TSC_G5_IO4
     */
-    GPIO_InitStruct.Pin = TOUCH_G7_1_SAMP_Pin|TOUCH_G3_1_SAMP_Pin|TOUCH_G8_1_SAMP_Pin;
+    GPIO_InitStruct.Pin = TOUCH_G7_1_SAMP_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
     GPIO_InitStruct.Alternate = GPIO_AF3_TSC;
-    HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+    HAL_GPIO_Init(TOUCH_G7_1_SAMP_GPIO_Port, &GPIO_InitStruct);
 
-    GPIO_InitStruct.Pin = TOUCH_G7_2_STAR_0_Pin|TOUCH_G7_3_STAR_1_Pin|TOUCH_G7_4_STAR_2_Pin|TOUCH_G8_2_STAR_15_Pin
-                          |TOUCH_G8_3_STAR_16_Pin|TOUCH_G8_4_STAR_17_Pin;
+    GPIO_InitStruct.Pin = TOUCH_G7_2_STAR_0_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
     GPIO_InitStruct.Alternate = GPIO_AF3_TSC;
-    HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
-
-    GPIO_InitStruct.Pin = TOUCH_G1_1_SAMP_Pin|TOUCH_G2_1_SAMP_Pin|TOUCH_G4_1_SAMP_Pin;
-    GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-    GPIO_InitStruct.Alternate = GPIO_AF3_TSC;
-    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
-    GPIO_InitStruct.Pin = TOUCH_G1_2_STAR_3_Pin|TOUCH_G1_3_STAR_4_Pin|TOUCH_G1_4_STAR_5_Pin|TOUCH_G2_2_STAR_6_Pin
-                          |TOUCH_G2_3_STAR_7_Pin|TOUCH_G2_4_STAR_8_Pin|TOUCH_G4_2_STAR_18_Pin|TOUCH_G4_3_STAR_19_Pin
-                          |TOUCH_G4_4_STAR_20_Pin;
-    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-    GPIO_InitStruct.Alternate = GPIO_AF3_TSC;
-    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
-    GPIO_InitStruct.Pin = TOUCH_G3_2_STAR_9_Pin|TOUCH_G3_3_STAR_10_Pin|TOUCH_G3_4_STAR_11_Pin|TOUCH_G6_2_STAR_12_Pin
-                          |TOUCH_G6_3_STAR_13_Pin|TOUCH_G6_4_STAR_14_Pin|TOUCH_G5_2_STAR_21_Pin|TOUCH_G5_3_STAR_22_Pin
-                          |TOUCH_G5_4_STAR_23_Pin;
-    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-    GPIO_InitStruct.Alternate = GPIO_AF3_TSC;
-    HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
-
-    GPIO_InitStruct.Pin = TOUCH_G6_1_SAMP_Pin|TOUCH_G4_1_SAMPB3_Pin;
-    GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-    GPIO_InitStruct.Alternate = GPIO_AF3_TSC;
-    HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+    HAL_GPIO_Init(TOUCH_G7_2_STAR_0_GPIO_Port, &GPIO_InitStruct);
 
   /* USER CODE BEGIN TSC_MspInit 1 */
 
@@ -549,48 +484,8 @@ void HAL_TSC_MspDeInit(TSC_HandleTypeDef* htsc)
     /**TSC GPIO Configuration
     PC0     ------> TSC_G7_IO1
     PC1     ------> TSC_G7_IO2
-    PC2     ------> TSC_G7_IO3
-    PC3     ------> TSC_G7_IO4
-    PA0     ------> TSC_G1_IO1
-    PA1     ------> TSC_G1_IO2
-    PA2     ------> TSC_G1_IO3
-    PA3     ------> TSC_G1_IO4
-    PA4     ------> TSC_G2_IO1
-    PA5     ------> TSC_G2_IO2
-    PA6     ------> TSC_G2_IO3
-    PA7     ------> TSC_G2_IO4
-    PC5     ------> TSC_G3_IO1
-    PB0     ------> TSC_G3_IO2
-    PB1     ------> TSC_G3_IO3
-    PB2     ------> TSC_G3_IO4
-    PB11     ------> TSC_G6_IO1
-    PB12     ------> TSC_G6_IO2
-    PB13     ------> TSC_G6_IO3
-    PB14     ------> TSC_G6_IO4
-    PC6     ------> TSC_G8_IO1
-    PC7     ------> TSC_G8_IO2
-    PC8     ------> TSC_G8_IO3
-    PC9     ------> TSC_G8_IO4
-    PA9     ------> TSC_G4_IO1
-    PA10     ------> TSC_G4_IO2
-    PA11     ------> TSC_G4_IO3
-    PA12     ------> TSC_G4_IO4
-    PB3     ------> TSC_G5_IO1
-    PB4     ------> TSC_G5_IO2
-    PB6     ------> TSC_G5_IO3
-    PB7     ------> TSC_G5_IO4
     */
-    HAL_GPIO_DeInit(GPIOC, TOUCH_G7_1_SAMP_Pin|TOUCH_G7_2_STAR_0_Pin|TOUCH_G7_3_STAR_1_Pin|TOUCH_G7_4_STAR_2_Pin
-                          |TOUCH_G3_1_SAMP_Pin|TOUCH_G8_1_SAMP_Pin|TOUCH_G8_2_STAR_15_Pin|TOUCH_G8_3_STAR_16_Pin
-                          |TOUCH_G8_4_STAR_17_Pin);
-
-    HAL_GPIO_DeInit(GPIOA, TOUCH_G1_1_SAMP_Pin|TOUCH_G1_2_STAR_3_Pin|TOUCH_G1_3_STAR_4_Pin|TOUCH_G1_4_STAR_5_Pin
-                          |TOUCH_G2_1_SAMP_Pin|TOUCH_G2_2_STAR_6_Pin|TOUCH_G2_3_STAR_7_Pin|TOUCH_G2_4_STAR_8_Pin
-                          |TOUCH_G4_1_SAMP_Pin|TOUCH_G4_2_STAR_18_Pin|TOUCH_G4_3_STAR_19_Pin|TOUCH_G4_4_STAR_20_Pin);
-
-    HAL_GPIO_DeInit(GPIOB, TOUCH_G3_2_STAR_9_Pin|TOUCH_G3_3_STAR_10_Pin|TOUCH_G3_4_STAR_11_Pin|TOUCH_G6_1_SAMP_Pin
-                          |TOUCH_G6_2_STAR_12_Pin|TOUCH_G6_3_STAR_13_Pin|TOUCH_G6_4_STAR_14_Pin|TOUCH_G4_1_SAMPB3_Pin
-                          |TOUCH_G5_2_STAR_21_Pin|TOUCH_G5_3_STAR_22_Pin|TOUCH_G5_4_STAR_23_Pin);
+    HAL_GPIO_DeInit(GPIOC, TOUCH_G7_1_SAMP_Pin|TOUCH_G7_2_STAR_0_Pin);
 
   /* USER CODE BEGIN TSC_MspDeInit 1 */
 

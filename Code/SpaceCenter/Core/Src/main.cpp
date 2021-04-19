@@ -20,13 +20,12 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "touchsensing.h"
+/* Private includes ----------------------------------------------------------*/
+/* USER CODE BEGIN Includes */
 #include "diskio.h"
 #include "ff.h"
 #include "wav_player.h"
-
-/* Private includes ----------------------------------------------------------*/
-/* USER CODE BEGIN Includes */
-
+#include "TouchBoardGroup.hpp"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -60,6 +59,7 @@ TSC_HandleTypeDef htsc;
 
 /* USER CODE BEGIN PV */
 FATFS FatFs;
+TouchBoardGroup touchGroup0 = TouchBoardGroup(1, 0, htim2, 0, hdma_tim2_ch1);
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -114,35 +114,44 @@ int main(void)
   MX_TOUCHSENSING_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
+  
+  // Init ST touch application
+  tsl_user_Init();
+
+  // Mount SD Card
   HAL_GPIO_WritePin(SD_SPI1_CS_N_GPIO_Port, SD_SPI1_CS_N_Pin, GPIO_PIN_SET);
   FRESULT fr;
   fr = f_mount(&FatFs, "", 1);
 
-  HAL_GPIO_WritePin(TEST_LED_GPIO_Port, TEST_LED_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(TEST_LED_GPIO_Port, TEST_LED_Pin, GPIO_PIN_SET);
   HAL_Delay(500);
 
-  static FIL fil;
-  uint8_t wav_buf[512];
-  UINT bytes_read;
-  fr = f_open(&fil, "blue.wav", FA_READ);
-  f_read(&fil, &wav_buf[0], 512, &bytes_read);
-  if (wav_buf[0] > 2) {
-    HAL_GPIO_WritePin(TEST_LED_GPIO_Port, TEST_LED_Pin, GPIO_PIN_SET);
-  } else {
-    HAL_GPIO_WritePin(TEST_LED_GPIO_Port, TEST_LED_Pin, GPIO_PIN_RESET);
-  }
-
-  play_wav("blue.wav");
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  tsl_user_Exec();
+  touchGroup0.setAllPixelColor(255,0,0);
+  tsl_user_Exec();
+  bool touched = false;
+  bool touched_last = false;
+
   while (1)
   {
-	HAL_Delay(500);
-	HAL_GPIO_WritePin(TEST_LED_GPIO_Port, TEST_LED_Pin, GPIO_PIN_SET);
-	HAL_Delay(500);
-	HAL_GPIO_WritePin(TEST_LED_GPIO_Port, TEST_LED_Pin, GPIO_PIN_RESET);
+    
+    tsl_user_Exec();
+    touchGroup0.updateTouchStates();
+    touched = touchGroup0.getTouchDetected();
+    if ((touched == true) && (touched_last == false)) 
+    {
+      touchGroup0.setAllPixelColor(0,255,0);
+    }
+    else if ((touched == false) && (touched_last == true)) 
+    { 
+      touchGroup0.setAllPixelColor(0,0,255);
+    }
+    touched_last = touched;
+    HAL_Delay(50);
 	/* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -346,26 +355,20 @@ static void MX_TSC_Init(void)
   /** Configure the TSC peripheral
   */
   htsc.Instance = TSC;
-  htsc.Init.CTPulseHighLength = TSC_CTPH_2CYCLES;
-  htsc.Init.CTPulseLowLength = TSC_CTPL_2CYCLES;
+  htsc.Init.CTPulseHighLength = TSC_CTPH_8CYCLES;
+  htsc.Init.CTPulseLowLength = TSC_CTPL_8CYCLES;
   htsc.Init.SpreadSpectrum = DISABLE;
   htsc.Init.SpreadSpectrumDeviation = 1;
   htsc.Init.SpreadSpectrumPrescaler = TSC_SS_PRESC_DIV1;
-  htsc.Init.PulseGeneratorPrescaler = TSC_PG_PRESC_DIV4;
-  htsc.Init.MaxCountValue = TSC_MCV_8191;
+  htsc.Init.PulseGeneratorPrescaler = TSC_PG_PRESC_DIV8;
+  htsc.Init.MaxCountValue = TSC_MCV_16383;
   htsc.Init.IODefaultMode = TSC_IODEF_OUT_PP_LOW;
   htsc.Init.SynchroPinPolarity = TSC_SYNC_POLARITY_FALLING;
   htsc.Init.AcquisitionMode = TSC_ACQ_MODE_NORMAL;
   htsc.Init.MaxCountInterrupt = DISABLE;
-  htsc.Init.ChannelIOs = TSC_GROUP1_IO2|TSC_GROUP1_IO3|TSC_GROUP1_IO4|TSC_GROUP2_IO2
-                    |TSC_GROUP2_IO3|TSC_GROUP2_IO4|TSC_GROUP3_IO2|TSC_GROUP3_IO3
-                    |TSC_GROUP3_IO4|TSC_GROUP4_IO2|TSC_GROUP4_IO3|TSC_GROUP4_IO4
-                    |TSC_GROUP5_IO2|TSC_GROUP5_IO3|TSC_GROUP5_IO4|TSC_GROUP6_IO2
-                    |TSC_GROUP6_IO3|TSC_GROUP6_IO4|TSC_GROUP7_IO2|TSC_GROUP7_IO3
-                    |TSC_GROUP7_IO4|TSC_GROUP8_IO2|TSC_GROUP8_IO3|TSC_GROUP8_IO4;
+  htsc.Init.ChannelIOs = TSC_GROUP7_IO2;
   htsc.Init.ShieldIOs = 0;
-  htsc.Init.SamplingIOs = TSC_GROUP1_IO1|TSC_GROUP2_IO1|TSC_GROUP3_IO1|TSC_GROUP4_IO1
-                    |TSC_GROUP5_IO1|TSC_GROUP6_IO1|TSC_GROUP7_IO1|TSC_GROUP8_IO1;
+  htsc.Init.SamplingIOs = TSC_GROUP7_IO1;
   if (HAL_TSC_Init(&htsc) != HAL_OK)
   {
     Error_Handler();
@@ -490,7 +493,13 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+void HAL_TIM_PWM_PulseFinishedHalfCpltCallback(TIM_HandleTypeDef *htim) {
+  touchGroup0.updatePixelHalfDMA();
+}
 
+void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim) {
+  touchGroup0.updatePixelDMA();
+}
 /* USER CODE END 4 */
 
 /**
