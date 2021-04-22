@@ -41,12 +41,12 @@
 
 /** Total number of channels in application (range=1..255)
 */
-#define TSLPRM_TOTAL_CHANNELS (1)
+#define TSLPRM_TOTAL_CHANNELS (2)
 
 /** Total number of banks in application (range=1..255)
 */
 
-#define TSLPRM_TOTAL_BANKS (1)
+#define TSLPRM_TOTAL_BANKS (2)
 
 /** Total number of "Extended" TouchKeys in application (range=0..255)
 */
@@ -54,7 +54,7 @@
 
 /** Total number of "Basic" TouchKeys in application (range=0..255)
 */
-#define TSLPRM_TOTAL_TOUCHKEYS_B (1)
+#define TSLPRM_TOTAL_TOUCHKEYS_B (2)
 
 /** Total number of "Extended" Linear and Rotary sensors in application (range=0..255)
   - Count also the 1-channel linear sensor used as TouchKey
@@ -74,7 +74,7 @@
 /** Total number of sensors/objects in application (range=1..255)
   - Count all TouchKeys, Linear and Rotary sensors
 */
-#define TSLPRM_TOTAL_OBJECTS (1)
+#define TSLPRM_TOTAL_OBJECTS (2)
 
 /** @} Common_Parameters_Number_Of_Elements */
 
@@ -107,13 +107,13 @@
   - This is the minimum acceptable value for the acquisition measure.
   - The acquisition will be in error if the measure is below this value.
 */
-#define TSLPRM_ACQ_MIN (1)
+#define TSLPRM_ACQ_MIN (100)
 
 /** Maximum acquisition measurement (range=255, 511, 1023, 2047, 8191, 16383)
   - This is the maximum acceptable value for the acquisition measure.
   - The acquisition will be in error if the measure is above this value.
 */
-#define TSLPRM_ACQ_MAX (16383)
+#define TSLPRM_ACQ_MAX (8191)
 
 /** @} Common_Parameters_Acquisition_Limits */
 
@@ -148,28 +148,28 @@
 /** TouchKeys Proximity state input threshold (range=0..255)
   - Enter Proximity state if delta is above
 */
-#define TSLPRM_TKEY_PROX_IN_TH (100)
+#define TSLPRM_TKEY_PROX_IN_TH (6)
 
 /** TouchKeys Proximity state output threshold (range=0..255)
   - Exit Proximity state if delta is below
 */
-#define TSLPRM_TKEY_PROX_OUT_TH (60)
+#define TSLPRM_TKEY_PROX_OUT_TH (4)
 
 /** TouchKeys Detect state input threshold (range=0..255)
   - Enter Detect state if delta is above
 */
-#define TSLPRM_TKEY_DETECT_IN_TH (150)
+#define TSLPRM_TKEY_DETECT_IN_TH (12)
 
 /** TouchKeys Detect state output threshold (range=0..255)
   - Exit Detect state if delta is below
 */
-#define TSLPRM_TKEY_DETECT_OUT_TH (125)
+#define TSLPRM_TKEY_DETECT_OUT_TH (8)
 
 /** TouchKeys re-Calibration threshold (range=0..255)
   - @warning The value is inverted in the sensor state machine
   - Enter Calibration state if delta is below
 */
-#define TSLPRM_TKEY_CALIB_TH (20)
+#define TSLPRM_TKEY_CALIB_TH (6)
 
 /** TouchKey, Linear and Rotary sensors thresholds coefficient (range=0..4)
     This multiplier coefficient is applied on Detect and Re-Calibration thresholds only.
@@ -327,25 +327,25 @@
   - A Low value will result in a higher sensitivity during the detection but with less noise filtering.
   - A High value will result in improving the system noise immunity but will increase the system response time.
 */
-#define TSLPRM_DEBOUNCE_DETECT (2)
+#define TSLPRM_DEBOUNCE_DETECT (3)
 
 /** Release state debounce in samples unit (range=0..63)
   - A Low value will result in a higher sensitivity during the end-detection but with less noise filtering.
   - A High value will result in a lower sensitivity during the end-detection but with more noise filtering.
 */
-#define TSLPRM_DEBOUNCE_RELEASE (2)
+#define TSLPRM_DEBOUNCE_RELEASE (3)
 
 /** Re-calibration state debounce in samples unit (range=0..63)
   - A Low value will result in a higher sensitivity during the recalibration but with less noise filtering.
   - A High value will result in a lower sensitivity during the recalibration but with more noise filtering.
 */
-#define TSLPRM_DEBOUNCE_CALIB (3)
+#define TSLPRM_DEBOUNCE_CALIB (10)
 
 /** Error state debounce in samples unit (range=0..63)
   - A Low value will result in a higher sensitivity to enter in error state.
   - A High value will result in a lower sensitivity to enter in error state.
 */
-#define TSLPRM_DEBOUNCE_ERROR (3)
+#define TSLPRM_DEBOUNCE_ERROR (30)
 
 /** @} Common_Parameters_Debounce */
 
@@ -425,7 +425,7 @@
     - 1000 gives around 125 microseconds delay whatever HCLK
     - 2000 gives around 250 microseconds delay whatever HCLK
 */
-#define TSLPRM_DELAY_DISCHARGE_ALL (1000)
+#define TSLPRM_DELAY_DISCHARGE_ALL (2000)
 
 /** IOs default mode when no on-going acquisition (range=0..1)
     - 0: Output push-pull low

@@ -45,10 +45,6 @@ std::vector<TSL_StateId_enum_T> TouchBoardGroup::getTouchStates() {
   return touch_states;
 }
 
-void TouchBoardGroup::updatePixelDMA() {
-  ledArray.updatePixelDMA();
-}
-
 void TouchBoardGroup::updatePixelHalfDMA() {
   ledArray.updatePixelHalfDMA();
 }

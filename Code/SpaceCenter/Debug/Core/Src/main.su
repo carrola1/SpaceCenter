@@ -7,8 +7,7 @@ main.cpp:345:13:void MX_TSC_Init()	8	static
 main.cpp:385:13:void MX_DMA_Init()	16	static
 main.cpp:409:13:void MX_GPIO_Init()	64	static
 main.cpp:496:6:void HAL_TIM_PWM_PulseFinishedHalfCpltCallback(TIM_HandleTypeDef*)	16	static
-main.cpp:500:6:void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef*)	16	static
-main.cpp:509:6:void Error_Handler()	8	static,ignoring_inline_asm
-main.cpp:518:1:void __static_initialization_and_destruction_0(int, int)	24	static
-main.cpp:518:1:cpp)	8	static
-main.cpp:518:1:cpp)	8	static
+main.cpp:506:6:void Error_Handler()	8	static,ignoring_inline_asm
+main.cpp:515:1:void __static_initialization_and_destruction_0(int, int)	24	static
+main.cpp:515:1:cpp)	8	static
+main.cpp:515:1:cpp)	8	static

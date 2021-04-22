@@ -16,7 +16,6 @@ class NeoPixel {
     void setPixelColor(uint16_t n, uint8_t r, uint8_t g, uint8_t b);
     void updateLength(uint16_t n);
     void updatePixelHalfDMA();
-    void updatePixelDMA();
 
   private:
 
@@ -33,6 +32,7 @@ class NeoPixel {
     DMA_HandleTypeDef &hdma; 
     uint32_t timCh;
     bool dmaRunning;
+    uint8_t ping_pong;
   
 };
 

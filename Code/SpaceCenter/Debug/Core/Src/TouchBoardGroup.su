@@ -5,8 +5,7 @@ TouchBoardGroup.cpp:22:6:void TouchBoardGroup::setAllPixelColor(uint8_t, uint8_t
 TouchBoardGroup.cpp:30:6:void TouchBoardGroup::updateTouchStates()	32	static
 TouchBoardGroup.cpp:40:6:bool TouchBoardGroup::getTouchDetected()	16	static
 TouchBoardGroup.cpp:44:33:std::vector<TSL_StateId_enum_T> TouchBoardGroup::getTouchStates()	16	static
-TouchBoardGroup.cpp:48:6:void TouchBoardGroup::updatePixelDMA()	16	static
-TouchBoardGroup.cpp:52:6:void TouchBoardGroup::updatePixelHalfDMA()	16	static
+TouchBoardGroup.cpp:48:6:void TouchBoardGroup::updatePixelHalfDMA()	16	static
 allocator.h:138:7:std::allocator< <template-parameter-1-1> >::allocator() [with _Tp = TSL_StateId_enum_T]	16	static
 allocator.h:153:7:std::allocator< <template-parameter-1-1> >::~allocator() [with _Tp = TSL_StateId_enum_T]	16	static
 stl_vector.h:507:7:std::vector<_Tp, _Alloc>::vector(std::vector<_Tp, _Alloc>::size_type, const allocator_type&) [with _Tp = TSL_StateId_enum_T; _Alloc = std::allocator<TSL_StateId_enum_T>]	32	static

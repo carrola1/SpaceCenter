@@ -20,7 +20,6 @@ public:
   std::vector<TSL_StateId_enum_T> getTouchStates();
   void updateTouchStates();
   bool getTouchDetected();
-  void updatePixelDMA();
   void updatePixelHalfDMA();
 
 private:

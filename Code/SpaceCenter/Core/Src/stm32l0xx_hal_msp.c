@@ -443,6 +443,7 @@ void HAL_TSC_MspInit(TSC_HandleTypeDef* htsc)
     /**TSC GPIO Configuration
     PC0     ------> TSC_G7_IO1
     PC1     ------> TSC_G7_IO2
+    PC2     ------> TSC_G7_IO3
     */
     GPIO_InitStruct.Pin = TOUCH_G7_1_SAMP_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
@@ -451,12 +452,12 @@ void HAL_TSC_MspInit(TSC_HandleTypeDef* htsc)
     GPIO_InitStruct.Alternate = GPIO_AF3_TSC;
     HAL_GPIO_Init(TOUCH_G7_1_SAMP_GPIO_Port, &GPIO_InitStruct);
 
-    GPIO_InitStruct.Pin = TOUCH_G7_2_STAR_0_Pin;
+    GPIO_InitStruct.Pin = TOUCH_G7_2_STAR_0_Pin|GPIO_PIN_2;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
     GPIO_InitStruct.Alternate = GPIO_AF3_TSC;
-    HAL_GPIO_Init(TOUCH_G7_2_STAR_0_GPIO_Port, &GPIO_InitStruct);
+    HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
   /* USER CODE BEGIN TSC_MspInit 1 */
 
@@ -484,8 +485,9 @@ void HAL_TSC_MspDeInit(TSC_HandleTypeDef* htsc)
     /**TSC GPIO Configuration
     PC0     ------> TSC_G7_IO1
     PC1     ------> TSC_G7_IO2
+    PC2     ------> TSC_G7_IO3
     */
-    HAL_GPIO_DeInit(GPIOC, TOUCH_G7_1_SAMP_Pin|TOUCH_G7_2_STAR_0_Pin);
+    HAL_GPIO_DeInit(GPIOC, TOUCH_G7_1_SAMP_Pin|TOUCH_G7_2_STAR_0_Pin|GPIO_PIN_2);
 
   /* USER CODE BEGIN TSC_MspDeInit 1 */
 
