@@ -29,8 +29,8 @@ Core/Src/TouchBoardGroup.o: ../Core/Src/TouchBoardGroup.cpp \
  ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_tim.h \
  ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_tim_ex.h \
  ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_tsc.h \
- ../TOUCHSENSING/App/touchsensing.h ../TOUCHSENSING/App/tsl_conf.h \
- ../Core/Inc/main.h \
+ ../Core/Inc/TouchBoard.hpp ../TOUCHSENSING/App/touchsensing.h \
+ ../TOUCHSENSING/App/tsl_conf.h ../Core/Inc/main.h \
  ../Middlewares/ST/STM32_TouchSensing_Library/inc/tsl_acq_tsc.h \
  ../TOUCHSENSING/App/tsl_conf.h \
  ../Middlewares/ST/STM32_TouchSensing_Library/inc/tsl_types.h \
@@ -109,6 +109,8 @@ Core/Src/TouchBoardGroup.o: ../Core/Src/TouchBoardGroup.cpp \
 ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_tim_ex.h:
 
 ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_tsc.h:
+
+../Core/Inc/TouchBoard.hpp:
 
 ../TOUCHSENSING/App/touchsensing.h:
 

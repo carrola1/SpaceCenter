@@ -1,0 +1,8 @@
+TouchBoard.cpp:4:1:TouchBoard::TouchBoard()	24	static
+TouchBoard.cpp:14:1:TouchBoard::~TouchBoard()	16	static
+TouchBoard.cpp:17:6:void TouchBoard::setPixelColor(uint8_t, uint8_t, uint8_t, uint8_t)	24	static
+TouchBoard.cpp:23:6:void TouchBoard::setAllPixelColor(uint8_t, uint8_t, uint8_t)	32	static
+TouchBoard.cpp:31:14:PixelColor_s TouchBoard::getPixelColor(uint8_t)	32	static
+TouchBoard.cpp:35:6:void TouchBoard::setTouchKeyOffset(uint8_t)	16	static
+TouchBoard.cpp:39:6:void TouchBoard::updateTouchState()	16	static
+TouchBoard.cpp:47:17:TouchState_enum TouchBoard::getTouchState()	16	static

@@ -35,6 +35,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+#define NUM_BOARDS 2
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -59,7 +60,8 @@ TSC_HandleTypeDef htsc;
 
 /* USER CODE BEGIN PV */
 FATFS FatFs;
-TouchBoardGroup touchGroup0 = TouchBoardGroup(2, 0, htim2, 0, hdma_tim2_ch1);
+TouchBoardGroup touchGroup0 = TouchBoardGroup(NUM_BOARDS, 0, htim2, 0, hdma_tim2_ch1);
+std::vector<TouchState_enum> touchStates(NUM_BOARDS);
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -132,6 +134,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   tsl_user_Exec();
   touchGroup0.setAllPixelColor(255,0,0);
+  touchGroup0.showPixels();
   tsl_user_Exec();
   bool touched = false;
   bool touched_last = false;
@@ -141,16 +144,28 @@ int main(void)
     
     tsl_user_Exec();
     touchGroup0.updateTouchStates();
-    touched = touchGroup0.getTouchDetected();
+    touchStates = touchGroup0.getTouchStates();
+
+    touched = false;
+    for (int i=0; i<NUM_BOARDS; i++) {
+      if (touchStates[i] == TOUCHED) {
+        touched = true;
+      }
+    }
+
     if ((touched == true) && (touched_last == false)) 
     {
-      touchGroup0.setAllPixelColor(0,255,0);
+      //touchGroup0.setAllPixelColor(0,255,0);
+      //touchGroup0.showPixels();
+      touchGroup0.twinkleBoard(0);
     }
     else if ((touched == false) && (touched_last == true)) 
     { 
       touchGroup0.setAllPixelColor(0,0,255);
+      touchGroup0.showPixels();
     }
     touched_last = touched;
+
     HAL_Delay(50);
 	/* USER CODE END WHILE */
 

@@ -20,8 +20,8 @@ void NeoPixel::updateLength(uint16_t n) {
 }
 
 void NeoPixel::setPixelColor(uint16_t n, uint8_t r, uint8_t g, uint8_t b) {
-  pixels[n * 3] = r;
-  pixels[n * 3 + 1] = g;
+  pixels[n * 3] = g;
+  pixels[n * 3 + 1] = r;
   pixels[n * 3 + 2] = b;
 }
 

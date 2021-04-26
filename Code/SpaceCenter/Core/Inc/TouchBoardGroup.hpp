@@ -4,6 +4,7 @@
 #include <stdint.h>
 #include <vector>
 #include "NeoPixel.hpp"
+#include "TouchBoard.hpp"
 #include "touchsensing.h"
 
 class TouchBoardGroup {
@@ -15,20 +16,29 @@ public:
                   TIM_HandleTypeDef &timHandle, uint32_t timChannel, DMA_HandleTypeDef &dmaHandle);
   ~TouchBoardGroup();
 
-  void setPixelColor(uint8_t board_num, uint8_t r, uint8_t g, uint8_t b);
+  // NeoPixels methods
+  void setPixelColor(uint8_t board_num, uint8_t pixel_ind, uint8_t r, uint8_t g, uint8_t b);
   void setAllPixelColor(uint8_t r, uint8_t g, uint8_t b);
-  std::vector<TSL_StateId_enum_T> getTouchStates();
-  void updateTouchStates();
-  bool getTouchDetected();
+  void setBoardColor(uint8_t board_num, uint8_t r, uint8_t g, uint8_t b);
+  void twinkleBoard(uint8_t board_num);
+  void showPixels();
+  PixelColor_s getPixelColor(uint8_t board_num, uint8_t pixel_ind);
   void updatePixelHalfDMA();
+
+  // Touch methods
+  std::vector<TouchState_enum> getTouchStates();
+  void updateTouchStates();
 
 private:
   uint8_t numBoards;
+  uint8_t numPixels;
+  
   NeoPixel ledArray;
-  uint8_t myTouchKeyOffset;
   bool dmaRunning;
-  std::vector<TSL_StateId_enum_T> touch_states;
-  bool touchDetected;
+
+  uint8_t myTouchKeyOffset;
+  std::vector<TouchBoard> touchBoards;
+  std::vector<TouchState_enum> touchStates;
 };
 
 #endif // TOUCHBOARDGROUP_HPP
