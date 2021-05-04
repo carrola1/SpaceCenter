@@ -14,28 +14,6 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L LED:SK6812MINI D1
-U 1 1 5F27FCDA
-P 6030 4000
-F 0 "D1" H 6374 4046 50  0000 L CNN
-F 1 "SK6812MINI" H 6374 3955 50  0000 L CNN
-F 2 "LED_SMD:LED_SK6812MINI_PLCC4_3.5x3.5mm_P1.75mm" H 6080 3700 50  0001 L TNN
-F 3 "https://cdn-shop.adafruit.com/product-files/2686/SK6812MINI_REV.01-1-2.pdf" H 6130 3625 50  0001 L TNN
-	1    6030 4000
-	1    0    0    -1  
-$EndComp
-$Comp
-L LED:SK6812MINI D2
-U 1 1 5F280339
-P 7300 4000
-F 0 "D2" H 7644 4046 50  0000 L CNN
-F 1 "SK6812MINI" H 7644 3955 50  0000 L CNN
-F 2 "LED_SMD:LED_SK6812MINI_PLCC4_3.5x3.5mm_P1.75mm" H 7350 3700 50  0001 L TNN
-F 3 "https://cdn-shop.adafruit.com/product-files/2686/SK6812MINI_REV.01-1-2.pdf" H 7400 3625 50  0001 L TNN
-	1    7300 4000
-	1    0    0    -1  
-$EndComp
-$Comp
 L Device:C C1
 U 1 1 5F288493
 P 6480 3380
@@ -126,10 +104,8 @@ F 3 "" H 4010 3660 50  0001 C CNN
 $EndComp
 Text GLabel 4110 3960 2    50   Input ~ 0
 DATA_OUT
-Text GLabel 4110 4060 2    50   Output ~ 0
+Text GLabel 4110 3860 2    50   Output ~ 0
 DATA_IN
-Wire Wire Line
-	4110 4060 3860 4060
 $Comp
 L Connector:Conn_01x05_Male J1
 U 1 1 5F2811C8
@@ -141,12 +117,8 @@ F 3 "~" H 3660 3960 50  0001 C CNN
 	1    3660 3960
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	3860 3960 4110 3960
-Text GLabel 4110 3860 2    50   Input ~ 0
+Text GLabel 4110 4060 2    50   Input ~ 0
 CAP_TOUCH
-Wire Wire Line
-	3860 3860 4110 3860
 $Comp
 L Connector:Conn_01x01_Female J2
 U 1 1 5F292CA3
@@ -275,4 +247,32 @@ F 3 "" H 7300 4370 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	7300 4370 7300 4300
+Wire Wire Line
+	3860 4060 4110 4060
+Wire Wire Line
+	4110 3960 3860 3960
+Wire Wire Line
+	3860 3860 4110 3860
+$Comp
+L LED:SK6812 D2
+U 1 1 608949E1
+P 7300 4000
+F 0 "D2" H 7644 4046 50  0000 L CNN
+F 1 "SK6812" H 7644 3955 50  0000 L CNN
+F 2 "LED_SMD:LED_SK6812_PLCC4_5.0x5.0mm_P3.2mm" H 7350 3700 50  0001 L TNN
+F 3 "https://cdn-shop.adafruit.com/product-files/1138/SK6812+LED+datasheet+.pdf" H 7400 3625 50  0001 L TNN
+	1    7300 4000
+	1    0    0    -1  
+$EndComp
+$Comp
+L LED:SK6812 D1
+U 1 1 60895375
+P 6030 4000
+F 0 "D1" H 6374 4046 50  0000 L CNN
+F 1 "SK6812" H 6374 3955 50  0000 L CNN
+F 2 "LED_SMD:LED_SK6812_PLCC4_5.0x5.0mm_P3.2mm" H 6080 3700 50  0001 L TNN
+F 3 "https://cdn-shop.adafruit.com/product-files/1138/SK6812+LED+datasheet+.pdf" H 6130 3625 50  0001 L TNN
+	1    6030 4000
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

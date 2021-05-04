@@ -1,3 +1,4 @@
 (sym_lib_table
   (lib (name MAX98357)(type Legacy)(uri ${KIPRJMOD}/Libraries/Symbols/MAX98357.lib)(options "")(descr ""))
+  (lib (name SpaceCenter_MainBoard_KiCAD-rescue)(type Legacy)(uri ${KIPRJMOD}/SpaceCenter_MainBoard_KiCAD-rescue.lib)(options "")(descr ""))
 )
