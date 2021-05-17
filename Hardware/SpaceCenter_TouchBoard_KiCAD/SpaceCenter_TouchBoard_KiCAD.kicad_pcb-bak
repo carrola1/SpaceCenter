@@ -90,7 +90,7 @@
       (mirror false)
       (drillshape 0)
       (scaleselection 1)
-      (outputdirectory "/home/andrew/GitHub/SpaceCenter/Hardware/SpaceCenter_TouchBoard_KiCAD/TouchBoard_Gerbers/"))
+      (outputdirectory "/home/andrew/GitHub/SpaceCenter/Hardware/SpaceCenter_TouchBoard_KiCAD/Fab Files/TouchBoard_Gerbers/"))
   )
 
   (net 0 "")
