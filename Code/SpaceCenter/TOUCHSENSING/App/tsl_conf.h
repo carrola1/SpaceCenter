@@ -107,7 +107,7 @@
   - This is the minimum acceptable value for the acquisition measure.
   - The acquisition will be in error if the measure is below this value.
 */
-#define TSLPRM_ACQ_MIN (100)
+#define TSLPRM_ACQ_MIN (10)
 
 /** Maximum acquisition measurement (range=255, 511, 1023, 2047, 8191, 16383)
   - This is the maximum acceptable value for the acquisition measure.
@@ -158,18 +158,18 @@
 /** TouchKeys Detect state input threshold (range=0..255)
   - Enter Detect state if delta is above
 */
-#define TSLPRM_TKEY_DETECT_IN_TH (12)
+#define TSLPRM_TKEY_DETECT_IN_TH (30)
 
 /** TouchKeys Detect state output threshold (range=0..255)
   - Exit Detect state if delta is below
 */
-#define TSLPRM_TKEY_DETECT_OUT_TH (8)
+#define TSLPRM_TKEY_DETECT_OUT_TH (20)
 
 /** TouchKeys re-Calibration threshold (range=0..255)
   - @warning The value is inverted in the sensor state machine
   - Enter Calibration state if delta is below
 */
-#define TSLPRM_TKEY_CALIB_TH (6)
+#define TSLPRM_TKEY_CALIB_TH (10)
 
 /** TouchKey, Linear and Rotary sensors thresholds coefficient (range=0..4)
     This multiplier coefficient is applied on Detect and Re-Calibration thresholds only.
@@ -425,7 +425,7 @@
     - 1000 gives around 125 microseconds delay whatever HCLK
     - 2000 gives around 250 microseconds delay whatever HCLK
 */
-#define TSLPRM_DELAY_DISCHARGE_ALL (2000)
+#define TSLPRM_DELAY_DISCHARGE_ALL (1000)
 
 /** IOs default mode when no on-going acquisition (range=0..1)
     - 0: Output push-pull low

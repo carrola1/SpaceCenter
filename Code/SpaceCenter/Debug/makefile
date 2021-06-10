@@ -79,8 +79,8 @@ all: main-build
 main-build: SpaceCenter.elf secondary-outputs
 
 # Tool invocations
-SpaceCenter.elf: $(OBJS) $(USER_OBJS) C:\GitHub\SpaceCenter\Code\SpaceCenter\STM32L072VBTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-g++ -o "SpaceCenter.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m0plus -T"C:\GitHub\SpaceCenter\Code\SpaceCenter\STM32L072VBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SpaceCenter.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+SpaceCenter.elf: $(OBJS) $(USER_OBJS) /home/andrew/GitHub/SpaceCenter/Code/SpaceCenter/STM32L072VBTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-g++ -o "SpaceCenter.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m0plus -T"/home/andrew/GitHub/SpaceCenter/Code/SpaceCenter/STM32L072VBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SpaceCenter.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

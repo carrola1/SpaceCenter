@@ -60,8 +60,9 @@ TSC_HandleTypeDef htsc;
 
 /* USER CODE BEGIN PV */
 FATFS FatFs;
-TouchBoardGroup touchGroup0 = TouchBoardGroup(NUM_BOARDS, 0, htim2, 0, hdma_tim2_ch1);
+TouchBoardGroup touchGroup0 = TouchBoardGroup(NUM_BOARDS, 0, htim2, TIM_CHANNEL_1, hdma_tim2_ch1);
 std::vector<TouchState_enum> touchStates(NUM_BOARDS);
+NeoPixel rocketStreamL = NeoPixel(32, htim2, TIM_CHANNEL_3, hdma_tim2_ch3);
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -135,6 +136,12 @@ int main(void)
   tsl_user_Exec();
   touchGroup0.setAllPixelColor(255,0,0);
   touchGroup0.showPixels();
+
+  for (int i=0; i<32; i++) {
+    rocketStreamL.setPixelColor(i, 0, 0, 255);
+  }
+  rocketStreamL.show();
+
   tsl_user_Exec();
   bool touched = false;
   bool touched_last = false;
@@ -158,11 +165,21 @@ int main(void)
       //touchGroup0.setAllPixelColor(0,255,0);
       //touchGroup0.showPixels();
       touchGroup0.twinkleBoard(0);
+
+      for (int i=0; i<32; i++) {
+        rocketStreamL.setPixelColor(i, 255, 0, 0);
+      }
+      rocketStreamL.show();
     }
     else if ((touched == false) && (touched_last == true)) 
     { 
       touchGroup0.setAllPixelColor(0,0,255);
       touchGroup0.showPixels();
+
+      for (int i=0; i<32; i++) {
+        rocketStreamL.setPixelColor(i, 0, 0, 255);
+      }
+      rocketStreamL.show();
     }
     touched_last = touched;
 
@@ -509,7 +526,11 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PWM_PulseFinishedHalfCpltCallback(TIM_HandleTypeDef *htim) {
-  touchGroup0.updatePixelHalfDMA();
+  if (htim->Channel == HAL_TIM_ACTIVE_CHANNEL_1) {
+	  touchGroup0.updatePixelHalfDMA();
+  } else if (htim->Channel == HAL_TIM_ACTIVE_CHANNEL_3) {
+	  rocketStreamL.updatePixelHalfDMA();
+  }
 }
 
 /* USER CODE END 4 */
