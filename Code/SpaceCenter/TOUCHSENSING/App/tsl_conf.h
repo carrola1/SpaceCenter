@@ -41,12 +41,12 @@
 
 /** Total number of channels in application (range=1..255)
 */
-#define TSLPRM_TOTAL_CHANNELS (2)
+#define TSLPRM_TOTAL_CHANNELS (24)
 
 /** Total number of banks in application (range=1..255)
 */
 
-#define TSLPRM_TOTAL_BANKS (2)
+#define TSLPRM_TOTAL_BANKS (4)
 
 /** Total number of "Extended" TouchKeys in application (range=0..255)
 */
@@ -54,7 +54,7 @@
 
 /** Total number of "Basic" TouchKeys in application (range=0..255)
 */
-#define TSLPRM_TOTAL_TOUCHKEYS_B (2)
+#define TSLPRM_TOTAL_TOUCHKEYS_B (24)
 
 /** Total number of "Extended" Linear and Rotary sensors in application (range=0..255)
   - Count also the 1-channel linear sensor used as TouchKey
@@ -74,7 +74,7 @@
 /** Total number of sensors/objects in application (range=1..255)
   - Count all TouchKeys, Linear and Rotary sensors
 */
-#define TSLPRM_TOTAL_OBJECTS (2)
+#define TSLPRM_TOTAL_OBJECTS (24)
 
 /** @} Common_Parameters_Number_Of_Elements */
 
@@ -107,13 +107,13 @@
   - This is the minimum acceptable value for the acquisition measure.
   - The acquisition will be in error if the measure is below this value.
 */
-#define TSLPRM_ACQ_MIN (10)
+#define TSLPRM_ACQ_MIN (1)
 
 /** Maximum acquisition measurement (range=255, 511, 1023, 2047, 8191, 16383)
   - This is the maximum acceptable value for the acquisition measure.
   - The acquisition will be in error if the measure is above this value.
 */
-#define TSLPRM_ACQ_MAX (8191)
+#define TSLPRM_ACQ_MAX (16383)
 
 /** @} Common_Parameters_Acquisition_Limits */
 
@@ -158,18 +158,18 @@
 /** TouchKeys Detect state input threshold (range=0..255)
   - Enter Detect state if delta is above
 */
-#define TSLPRM_TKEY_DETECT_IN_TH (30)
+#define TSLPRM_TKEY_DETECT_IN_TH (20)
 
 /** TouchKeys Detect state output threshold (range=0..255)
   - Exit Detect state if delta is below
 */
-#define TSLPRM_TKEY_DETECT_OUT_TH (20)
+#define TSLPRM_TKEY_DETECT_OUT_TH (10)
 
 /** TouchKeys re-Calibration threshold (range=0..255)
   - @warning The value is inverted in the sensor state machine
   - Enter Calibration state if delta is below
 */
-#define TSLPRM_TKEY_CALIB_TH (10)
+#define TSLPRM_TKEY_CALIB_TH (8)
 
 /** TouchKey, Linear and Rotary sensors thresholds coefficient (range=0..4)
     This multiplier coefficient is applied on Detect and Re-Calibration thresholds only.

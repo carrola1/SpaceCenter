@@ -15,13 +15,12 @@ class NeoPixel {
     void show(void);
     void setPixelColor(uint16_t n, uint8_t r, uint8_t g, uint8_t b);
     void updateLength(uint16_t n);
-    void updatePixelHalfDMA();
 
   private:
 
-    static const uint8_t WR_BUF_LEN = 8*6; // Hold 2 NeoPixels at a time
-    static const uint8_t PWM_HI = 29;
-    static const uint8_t PWM_LO = 10;
+    static const uint16_t WR_BUF_LEN = 48*3*8+8;//+8;//8*12; // Hold 4 NeoPixels at a time
+    static const uint8_t PWM_HI = 28;//29;
+    static const uint8_t PWM_LO = 12;//10;
 
     uint16_t numLEDs;    ///< Number of RGB LEDs in strip
     uint16_t numBytes;   ///< Size of 'pixels' buffer below
@@ -31,9 +30,6 @@ class NeoPixel {
     TIM_HandleTypeDef &htim;
     DMA_HandleTypeDef &hdma; 
     uint32_t timCh;
-    bool dmaRunning;
-    uint8_t ping_pong;
-  
 };
 
 #endif // NEOPIXEL_HPP

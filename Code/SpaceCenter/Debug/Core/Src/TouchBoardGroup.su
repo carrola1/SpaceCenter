@@ -4,7 +4,7 @@ TouchBoardGroup.cpp:17:1:TouchBoardGroup::~TouchBoardGroup()	16	static
 TouchBoardGroup.cpp:20:6:void TouchBoardGroup::setPixelColor(uint8_t, uint8_t, uint8_t, uint8_t, uint8_t)	32	static
 TouchBoardGroup.cpp:24:6:void TouchBoardGroup::setAllPixelColor(uint8_t, uint8_t, uint8_t)	32	static
 TouchBoardGroup.cpp:30:6:void TouchBoardGroup::setBoardColor(uint8_t, uint8_t, uint8_t, uint8_t)	24	static
-TouchBoardGroup.cpp:34:6:void TouchBoardGroup::twinkleBoard(uint8_t)	16	static
+TouchBoardGroup.cpp:34:6:void TouchBoardGroup::twinkleBoard(uint8_t)	24	static
 TouchBoardGroup.cpp:58:6:void TouchBoardGroup::showPixels()	48	static
 TouchBoardGroup.cpp:68:14:PixelColor_s TouchBoardGroup::getPixelColor(uint8_t, uint8_t)	24	static
 TouchBoardGroup.cpp:72:6:void TouchBoardGroup::updateTouchStates()	24	static

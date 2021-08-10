@@ -1,6 +1,6 @@
 NeoPixel.cpp:5:1:NeoPixel::NeoPixel(uint16_t, TIM_HandleTypeDef&, uint32_t, DMA_HandleTypeDef&)	24	static
-NeoPixel.cpp:11:1:NeoPixel::~NeoPixel()	16	static
-NeoPixel.cpp:14:6:void NeoPixel::updateLength(uint16_t)	16	static
-NeoPixel.cpp:22:6:void NeoPixel::setPixelColor(uint16_t, uint8_t, uint8_t, uint8_t)	24	static
-NeoPixel.cpp:28:6:void NeoPixel::show()	24	static
-NeoPixel.cpp:60:6:void NeoPixel::updatePixelHalfDMA()	32	static
+NeoPixel.cpp:10:1:NeoPixel::~NeoPixel()	16	static
+NeoPixel.cpp:13:6:void NeoPixel::updateLength(uint16_t)	16	static
+NeoPixel.cpp:21:6:void NeoPixel::setPixelColor(uint16_t, uint8_t, uint8_t, uint8_t)	24	static
+NeoPixel.cpp:27:6:void NeoPixel::show()	32	static
+NeoPixel.cpp:41:6:void NeoPixel::updatePixelHalfDMA()	16	static

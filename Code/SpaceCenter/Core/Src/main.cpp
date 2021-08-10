@@ -35,7 +35,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define NUM_BOARDS 2
+#define NUM_BOARDS 24
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -62,7 +62,7 @@ TSC_HandleTypeDef htsc;
 FATFS FatFs;
 TouchBoardGroup touchGroup0 = TouchBoardGroup(NUM_BOARDS, 0, htim2, TIM_CHANNEL_1, hdma_tim2_ch1);
 std::vector<TouchState_enum> touchStates(NUM_BOARDS);
-NeoPixel rocketStreamL = NeoPixel(32, htim2, TIM_CHANNEL_3, hdma_tim2_ch3);
+//NeoPixel rocketStreamL = NeoPixel(68, htim2, TIM_CHANNEL_3, hdma_tim2_ch3);
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -134,21 +134,25 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   tsl_user_Exec();
-  touchGroup0.setAllPixelColor(255,0,0);
+  touchGroup0.setAllPixelColor(0,0,255);
   touchGroup0.showPixels();
 
-  for (int i=0; i<32; i++) {
+  /*
+  for (int i=0; i<68; i++) {
     rocketStreamL.setPixelColor(i, 0, 0, 255);
   }
   rocketStreamL.show();
+  */
 
   tsl_user_Exec();
   bool touched = false;
   bool touched_last = false;
 
+  int board_touched = 0;
+
   while (1)
   {
-    
+
     tsl_user_Exec();
     touchGroup0.updateTouchStates();
     touchStates = touchGroup0.getTouchStates();
@@ -157,33 +161,66 @@ int main(void)
     for (int i=0; i<NUM_BOARDS; i++) {
       if (touchStates[i] == TOUCHED) {
         touched = true;
+        board_touched = i;
+        break;
       }
     }
 
-    if ((touched == true) && (touched_last == false)) 
+
+    if ((touched == true) && (touched_last == false))
     {
       //touchGroup0.setAllPixelColor(0,255,0);
       //touchGroup0.showPixels();
-      touchGroup0.twinkleBoard(0);
-
+      //touchGroup0.twinkleBoard(0);
+      touchGroup0.setBoardColor(board_touched, 255, 100, 0);
+      touchGroup0.showPixels();
+      /*
       for (int i=0; i<32; i++) {
         rocketStreamL.setPixelColor(i, 255, 0, 0);
       }
       rocketStreamL.show();
+      */
     }
-    else if ((touched == false) && (touched_last == true)) 
+    else if ((touched == false) && (touched_last == true))
     { 
-      touchGroup0.setAllPixelColor(0,0,255);
+      //touchGroup0.setAllPixelColor(0,0,255);
+      //touchGroup0.showPixels();
+      touchGroup0.setBoardColor(board_touched, 0, 100, 255);
       touchGroup0.showPixels();
-
+      /*
       for (int i=0; i<32; i++) {
         rocketStreamL.setPixelColor(i, 0, 0, 255);
       }
       rocketStreamL.show();
+      */
     }
+
+
     touched_last = touched;
 
+    /*
+    if (sw == 0) {
+      touchGroup0.setAllPixelColor(255,0,0);
+      touchGroup0.showPixels();
+      for (int i=0; i<68; i++) {
+        rocketStreamL.setPixelColor(i, 255, 0, 0);
+      }
+      rocketStreamL.show();
+    } else {
+      touchGroup0.setAllPixelColor(0,255,0);
+      touchGroup0.showPixels();
+      for (int i=0; i<68; i++) {
+        rocketStreamL.setPixelColor(i, 0, 255, 0);
+      }
+      rocketStreamL.show();
+    }
+    sw = !sw;
+    */
+
+
     HAL_Delay(50);
+
+
 	/* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -398,9 +435,15 @@ static void MX_TSC_Init(void)
   htsc.Init.SynchroPinPolarity = TSC_SYNC_POLARITY_FALLING;
   htsc.Init.AcquisitionMode = TSC_ACQ_MODE_NORMAL;
   htsc.Init.MaxCountInterrupt = DISABLE;
-  htsc.Init.ChannelIOs = TSC_GROUP7_IO2|TSC_GROUP7_IO3;
-  htsc.Init.ShieldIOs = 0;
-  htsc.Init.SamplingIOs = TSC_GROUP7_IO1;
+  htsc.Init.ChannelIOs = TSC_GROUP1_IO2|TSC_GROUP1_IO3|TSC_GROUP1_IO4|TSC_GROUP2_IO2
+                      |TSC_GROUP2_IO3|TSC_GROUP2_IO4|TSC_GROUP3_IO2|TSC_GROUP3_IO3
+                      |TSC_GROUP3_IO4|TSC_GROUP4_IO2|TSC_GROUP4_IO3|TSC_GROUP4_IO4
+                      |TSC_GROUP5_IO2|TSC_GROUP5_IO3|TSC_GROUP5_IO4|TSC_GROUP6_IO2
+                      |TSC_GROUP6_IO3|TSC_GROUP6_IO4|TSC_GROUP7_IO2|TSC_GROUP7_IO3
+                      |TSC_GROUP7_IO4|TSC_GROUP8_IO2|TSC_GROUP8_IO3|TSC_GROUP8_IO4;
+    htsc.Init.ShieldIOs = 0;
+    htsc.Init.SamplingIOs = TSC_GROUP1_IO1|TSC_GROUP2_IO1|TSC_GROUP3_IO1|TSC_GROUP4_IO1
+                      |TSC_GROUP5_IO1|TSC_GROUP6_IO1|TSC_GROUP7_IO1|TSC_GROUP8_IO1;
   if (HAL_TSC_Init(&htsc) != HAL_OK)
   {
     Error_Handler();
@@ -525,13 +568,6 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-void HAL_TIM_PWM_PulseFinishedHalfCpltCallback(TIM_HandleTypeDef *htim) {
-  if (htim->Channel == HAL_TIM_ACTIVE_CHANNEL_1) {
-	  touchGroup0.updatePixelHalfDMA();
-  } else if (htim->Channel == HAL_TIM_ACTIVE_CHANNEL_3) {
-	  rocketStreamL.updatePixelHalfDMA();
-  }
-}
 
 /* USER CODE END 4 */
 

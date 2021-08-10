@@ -34,6 +34,28 @@ CONST TSL_ChannelSrc_T MyChannels_Src[TSLPRM_TOTAL_CHANNELS] =
 {
     { CHANNEL_0_SRC, CHANNEL_0_IO_MSK, CHANNEL_0_GRP_MSK },
     { CHANNEL_1_SRC, CHANNEL_1_IO_MSK, CHANNEL_1_GRP_MSK },
+    { CHANNEL_2_SRC, CHANNEL_2_IO_MSK, CHANNEL_2_GRP_MSK },
+    { CHANNEL_3_SRC, CHANNEL_3_IO_MSK, CHANNEL_3_GRP_MSK },
+    { CHANNEL_4_SRC, CHANNEL_4_IO_MSK, CHANNEL_4_GRP_MSK },
+    { CHANNEL_5_SRC, CHANNEL_5_IO_MSK, CHANNEL_5_GRP_MSK },
+    { CHANNEL_6_SRC, CHANNEL_6_IO_MSK, CHANNEL_6_GRP_MSK },
+    { CHANNEL_7_SRC, CHANNEL_7_IO_MSK, CHANNEL_7_GRP_MSK },
+    { CHANNEL_8_SRC, CHANNEL_8_IO_MSK, CHANNEL_8_GRP_MSK },
+    { CHANNEL_9_SRC, CHANNEL_9_IO_MSK, CHANNEL_9_GRP_MSK },
+    { CHANNEL_10_SRC, CHANNEL_10_IO_MSK, CHANNEL_10_GRP_MSK },
+    { CHANNEL_11_SRC, CHANNEL_11_IO_MSK, CHANNEL_11_GRP_MSK },
+    { CHANNEL_12_SRC, CHANNEL_12_IO_MSK, CHANNEL_12_GRP_MSK },
+    { CHANNEL_13_SRC, CHANNEL_13_IO_MSK, CHANNEL_13_GRP_MSK },
+    { CHANNEL_14_SRC, CHANNEL_14_IO_MSK, CHANNEL_14_GRP_MSK },
+    { CHANNEL_15_SRC, CHANNEL_15_IO_MSK, CHANNEL_15_GRP_MSK },
+    { CHANNEL_16_SRC, CHANNEL_16_IO_MSK, CHANNEL_16_GRP_MSK },
+    { CHANNEL_17_SRC, CHANNEL_17_IO_MSK, CHANNEL_17_GRP_MSK },
+    { CHANNEL_18_SRC, CHANNEL_18_IO_MSK, CHANNEL_18_GRP_MSK },
+    { CHANNEL_19_SRC, CHANNEL_19_IO_MSK, CHANNEL_19_GRP_MSK },
+    { CHANNEL_20_SRC, CHANNEL_20_IO_MSK, CHANNEL_20_GRP_MSK },
+    { CHANNEL_21_SRC, CHANNEL_21_IO_MSK, CHANNEL_21_GRP_MSK },
+    { CHANNEL_22_SRC, CHANNEL_22_IO_MSK, CHANNEL_22_GRP_MSK },
+    { CHANNEL_23_SRC, CHANNEL_23_IO_MSK, CHANNEL_23_GRP_MSK },
 };
 
 /* Destination (ROM) */
@@ -41,6 +63,28 @@ CONST TSL_ChannelDest_T MyChannels_Dest[TSLPRM_TOTAL_CHANNELS] =
 {
     { CHANNEL_0_DEST },
     { CHANNEL_1_DEST },
+    { CHANNEL_2_DEST },
+    { CHANNEL_3_DEST },
+    { CHANNEL_4_DEST },
+    { CHANNEL_5_DEST },
+    { CHANNEL_6_DEST },
+    { CHANNEL_7_DEST },
+    { CHANNEL_8_DEST },
+    { CHANNEL_9_DEST },
+    { CHANNEL_10_DEST },
+    { CHANNEL_11_DEST },
+    { CHANNEL_12_DEST },
+    { CHANNEL_13_DEST },
+    { CHANNEL_14_DEST },
+    { CHANNEL_15_DEST },
+    { CHANNEL_16_DEST },
+    { CHANNEL_17_DEST },
+    { CHANNEL_18_DEST },
+    { CHANNEL_19_DEST },
+    { CHANNEL_20_DEST },
+    { CHANNEL_21_DEST },
+    { CHANNEL_22_DEST },
+    { CHANNEL_23_DEST },
 };
 
 /* Data (RAM) */
@@ -55,6 +99,8 @@ CONST TSL_Bank_T MyBanks[TSLPRM_TOTAL_BANKS] = {
 /* TOUCHKEYS_B bank(s) definition*/
    {&MyChannels_Src[0], &MyChannels_Dest[0], MyChannels_Data, BANK_0_NBCHANNELS, BANK_0_MSK_CHANNELS, BANK_0_MSK_GROUPS},
    {&MyChannels_Src[1], &MyChannels_Dest[1], MyChannels_Data, BANK_1_NBCHANNELS, BANK_1_MSK_CHANNELS, BANK_1_MSK_GROUPS},
+   {&MyChannels_Src[9], &MyChannels_Dest[9], MyChannels_Data, BANK_2_NBCHANNELS, BANK_2_MSK_CHANNELS, BANK_2_MSK_GROUPS},
+   {&MyChannels_Src[16], &MyChannels_Dest[16], MyChannels_Data, BANK_3_NBCHANNELS, BANK_3_MSK_CHANNELS, BANK_3_MSK_GROUPS},
 };
 /*============================================================================*/
 /* Touchkey sensors                                                           */
@@ -125,7 +171,29 @@ CONST TSL_TouchKeyMethods_T MyTKeys_Methods =
 CONST TSL_TouchKeyB_T MyTKeysB[TSLPRM_TOTAL_TOUCHKEYS_B] =
 {
   { &MyTKeys_Data[0], &MyTKeys_Param[0], &MyChannels_Data[CHANNEL_0_DEST] },
-  { &MyTKeys_Data[1], &MyTKeys_Param[1], &MyChannels_Data[CHANNEL_1_DEST] }
+  { &MyTKeys_Data[1], &MyTKeys_Param[1], &MyChannels_Data[CHANNEL_1_DEST] },
+  { &MyTKeys_Data[2], &MyTKeys_Param[2], &MyChannels_Data[CHANNEL_2_DEST] },
+  { &MyTKeys_Data[3], &MyTKeys_Param[3], &MyChannels_Data[CHANNEL_3_DEST] },
+  { &MyTKeys_Data[4], &MyTKeys_Param[4], &MyChannels_Data[CHANNEL_4_DEST] },
+  { &MyTKeys_Data[5], &MyTKeys_Param[5], &MyChannels_Data[CHANNEL_5_DEST] },
+  { &MyTKeys_Data[6], &MyTKeys_Param[6], &MyChannels_Data[CHANNEL_6_DEST] },
+  { &MyTKeys_Data[7], &MyTKeys_Param[7], &MyChannels_Data[CHANNEL_7_DEST] },
+  { &MyTKeys_Data[8], &MyTKeys_Param[8], &MyChannels_Data[CHANNEL_8_DEST] },
+  { &MyTKeys_Data[9], &MyTKeys_Param[9], &MyChannels_Data[CHANNEL_9_DEST] },
+  { &MyTKeys_Data[10], &MyTKeys_Param[10], &MyChannels_Data[CHANNEL_10_DEST] },
+  { &MyTKeys_Data[11], &MyTKeys_Param[11], &MyChannels_Data[CHANNEL_11_DEST] },
+  { &MyTKeys_Data[12], &MyTKeys_Param[12], &MyChannels_Data[CHANNEL_12_DEST] },
+  { &MyTKeys_Data[13], &MyTKeys_Param[13], &MyChannels_Data[CHANNEL_13_DEST] },
+  { &MyTKeys_Data[14], &MyTKeys_Param[14], &MyChannels_Data[CHANNEL_14_DEST] },
+  { &MyTKeys_Data[15], &MyTKeys_Param[15], &MyChannels_Data[CHANNEL_15_DEST] },
+  { &MyTKeys_Data[16], &MyTKeys_Param[16], &MyChannels_Data[CHANNEL_16_DEST] },
+  { &MyTKeys_Data[17], &MyTKeys_Param[17], &MyChannels_Data[CHANNEL_17_DEST] },
+  { &MyTKeys_Data[18], &MyTKeys_Param[18], &MyChannels_Data[CHANNEL_18_DEST] },
+  { &MyTKeys_Data[19], &MyTKeys_Param[19], &MyChannels_Data[CHANNEL_19_DEST] },
+  { &MyTKeys_Data[20], &MyTKeys_Param[20], &MyChannels_Data[CHANNEL_20_DEST] },
+  { &MyTKeys_Data[21], &MyTKeys_Param[21], &MyChannels_Data[CHANNEL_21_DEST] },
+  { &MyTKeys_Data[22], &MyTKeys_Param[22], &MyChannels_Data[CHANNEL_22_DEST] },
+  { &MyTKeys_Data[23], &MyTKeys_Param[23], &MyChannels_Data[CHANNEL_23_DEST] }
 };
 
 /*============================================================================*/
@@ -136,7 +204,29 @@ CONST TSL_TouchKeyB_T MyTKeysB[TSLPRM_TOTAL_TOUCHKEYS_B] =
 CONST TSL_Object_T MyObjects[TSLPRM_TOTAL_OBJECTS] =
 {
   { TSL_OBJ_TOUCHKEYB, (TSL_TouchKeyB_T *)&MyTKeysB[0] },
-  { TSL_OBJ_TOUCHKEYB, (TSL_TouchKeyB_T *)&MyTKeysB[1] }
+  { TSL_OBJ_TOUCHKEYB, (TSL_TouchKeyB_T *)&MyTKeysB[1] },
+  { TSL_OBJ_TOUCHKEYB, (TSL_TouchKeyB_T *)&MyTKeysB[2] },
+  { TSL_OBJ_TOUCHKEYB, (TSL_TouchKeyB_T *)&MyTKeysB[3] },
+  { TSL_OBJ_TOUCHKEYB, (TSL_TouchKeyB_T *)&MyTKeysB[4] },
+  { TSL_OBJ_TOUCHKEYB, (TSL_TouchKeyB_T *)&MyTKeysB[5] },
+  { TSL_OBJ_TOUCHKEYB, (TSL_TouchKeyB_T *)&MyTKeysB[6] },
+  { TSL_OBJ_TOUCHKEYB, (TSL_TouchKeyB_T *)&MyTKeysB[7] },
+  { TSL_OBJ_TOUCHKEYB, (TSL_TouchKeyB_T *)&MyTKeysB[8] },
+  { TSL_OBJ_TOUCHKEYB, (TSL_TouchKeyB_T *)&MyTKeysB[9] },
+  { TSL_OBJ_TOUCHKEYB, (TSL_TouchKeyB_T *)&MyTKeysB[10] },
+  { TSL_OBJ_TOUCHKEYB, (TSL_TouchKeyB_T *)&MyTKeysB[11] },
+  { TSL_OBJ_TOUCHKEYB, (TSL_TouchKeyB_T *)&MyTKeysB[12] },
+  { TSL_OBJ_TOUCHKEYB, (TSL_TouchKeyB_T *)&MyTKeysB[13] },
+  { TSL_OBJ_TOUCHKEYB, (TSL_TouchKeyB_T *)&MyTKeysB[14] },
+  { TSL_OBJ_TOUCHKEYB, (TSL_TouchKeyB_T *)&MyTKeysB[15] },
+  { TSL_OBJ_TOUCHKEYB, (TSL_TouchKeyB_T *)&MyTKeysB[16] },
+  { TSL_OBJ_TOUCHKEYB, (TSL_TouchKeyB_T *)&MyTKeysB[17] },
+  { TSL_OBJ_TOUCHKEYB, (TSL_TouchKeyB_T *)&MyTKeysB[18] },
+  { TSL_OBJ_TOUCHKEYB, (TSL_TouchKeyB_T *)&MyTKeysB[19] },
+  { TSL_OBJ_TOUCHKEYB, (TSL_TouchKeyB_T *)&MyTKeysB[20] },
+  { TSL_OBJ_TOUCHKEYB, (TSL_TouchKeyB_T *)&MyTKeysB[21] },
+  { TSL_OBJ_TOUCHKEYB, (TSL_TouchKeyB_T *)&MyTKeysB[22] },
+  { TSL_OBJ_TOUCHKEYB, (TSL_TouchKeyB_T *)&MyTKeysB[23] }
 };
 
 /* Group (RAM) */

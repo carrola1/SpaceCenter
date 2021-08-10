@@ -5,7 +5,6 @@
 NeoPixel::NeoPixel(uint16_t n, TIM_HandleTypeDef &timHandle, uint32_t timChannel, DMA_HandleTypeDef &dmaHandle) 
         : htim(timHandle), hdma(dmaHandle), timCh{timChannel} {
   updateLength(n);
-  dmaRunning = false;
 }
 
 NeoPixel::~NeoPixel() {
@@ -27,73 +26,14 @@ void NeoPixel::setPixelColor(uint16_t n, uint8_t r, uint8_t g, uint8_t b) {
 
 void NeoPixel::show(void) {
 
-  wr_buf_p = 0;
-  dmaRunning = true;
-  ping_pong = 0;
-
-  // This block should never get run as long as you don't try to run 
-  // the show method before the last transaction finished
-  if(wr_buf_p != 0 || hdma.State != HAL_DMA_STATE_READY) {
-    // Ongoing transfer, cancel!
-    for(uint8_t i = 0; i < WR_BUF_LEN; ++i) wr_buf[i] = 0;
-    wr_buf_p = 0;
-    HAL_TIM_PWM_Stop_DMA(&htim, timCh);
-    dmaRunning = false;
-    return;
+  for(uint16_t j = 0; j < numBytes; j++) {
+	  for(uint_fast8_t i = 0; i < 8; i++) {
+		  wr_buf[i+8*j   ] = PWM_LO << (((pixels[j]  << i) & 0x80) > 0);
+	  }
   }
-
-  // Ooh boi the first data buffer half (and the second!)
-  for(uint_fast8_t i = 0; i < 8; ++i) {
-    wr_buf[i     ] = PWM_LO << (((pixels[0] << i) & 0x80) > 0);
-    wr_buf[i +  8] = PWM_LO << (((pixels[1] << i) & 0x80) > 0);
-    wr_buf[i + 16] = PWM_LO << (((pixels[2] << i) & 0x80) > 0);
-    wr_buf[i + 24] = PWM_LO << (((pixels[3] << i) & 0x80) > 0);
-    wr_buf[i + 32] = PWM_LO << (((pixels[4] << i) & 0x80) > 0);
-    wr_buf[i + 40] = PWM_LO << (((pixels[5] << i) & 0x80) > 0);
+  for(uint_fast8_t i = 0; i < 8; i++) {
+	  wr_buf[i+8*numBytes   ] = 0;
   }
-
   HAL_TIM_PWM_Start_DMA(&htim, timCh, (uint32_t *)wr_buf, WR_BUF_LEN);
-  wr_buf_p = 1;
-}
-
-// Halfway through DMA wr_buf write, load up next 3 bytes in first half of wr_buf
-void NeoPixel::updatePixelHalfDMA() {
-  // Make sure callback is not from a different NeoPixel by checking dmaRunning
-  if (dmaRunning) {
-    // DMA buffer set from LED(wr_buf_p) to LED(wr_buf_p + 1)
-    if(wr_buf_p < numLEDs) {
-      // We're in. Fill the even buffer
-      if (ping_pong == 0) {
-		  for(uint_fast8_t i = 0; i < 8; ++i) {
-			wr_buf[i     ] = PWM_LO << (((pixels[3 * wr_buf_p    ] << i) & 0x80) > 0);
-			wr_buf[i +  8] = PWM_LO << (((pixels[3 * wr_buf_p + 1] << i) & 0x80) > 0);
-			wr_buf[i + 16] = PWM_LO << (((pixels[3 * wr_buf_p + 2] << i) & 0x80) > 0);
-		  }
-      } else {
-    	  for(uint_fast8_t i = 0; i < 8; ++i) {
-			wr_buf[i + 24] = PWM_LO << (((pixels[3 * wr_buf_p    ] << i) & 0x80) > 0);
-			wr_buf[i + 32] = PWM_LO << (((pixels[3 * wr_buf_p + 1] << i) & 0x80) > 0);
-			wr_buf[i + 40] = PWM_LO << (((pixels[3 * wr_buf_p + 2] << i) & 0x80) > 0);
-		  }
-      }
-      wr_buf_p++;
-      ping_pong = !ping_pong;
-    } else if (wr_buf_p < numLEDs + 2) {
-      // Last two transfers are resets. 64 * 1.25 us = 80 us == good enough reset
-      // First half reset zero fill
-      if (ping_pong == 0) {
-        for(uint8_t i = 0; i < WR_BUF_LEN / 2; ++i) wr_buf[i] = 0;
-      } else {
-    	for(uint8_t i = WR_BUF_LEN / 2; i < WR_BUF_LEN; ++i) wr_buf[i] = 0;
-      }
-      wr_buf_p++;
-      ping_pong = !ping_pong;
-    } else {
-      HAL_TIM_PWM_Stop_DMA(&htim, timCh);
-      wr_buf_p = 0;
-      dmaRunning = false;
-    }
-  }
-  return;
 }
 
