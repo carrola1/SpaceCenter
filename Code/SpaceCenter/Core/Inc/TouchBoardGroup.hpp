@@ -23,7 +23,6 @@ public:
   void twinkleBoard(uint8_t board_num);
   void showPixels();
   PixelColor_s getPixelColor(uint8_t board_num, uint8_t pixel_ind);
-  void updatePixelHalfDMA();
 
   // Touch methods
   std::vector<TouchState_enum> getTouchStates();

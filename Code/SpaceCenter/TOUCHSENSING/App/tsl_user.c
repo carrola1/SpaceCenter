@@ -98,9 +98,8 @@ TSL_ChannelData_T MyChannels_Data[TSLPRM_TOTAL_CHANNELS];
 CONST TSL_Bank_T MyBanks[TSLPRM_TOTAL_BANKS] = {
 /* TOUCHKEYS_B bank(s) definition*/
    {&MyChannels_Src[0], &MyChannels_Dest[0], MyChannels_Data, BANK_0_NBCHANNELS, BANK_0_MSK_CHANNELS, BANK_0_MSK_GROUPS},
-   {&MyChannels_Src[1], &MyChannels_Dest[1], MyChannels_Data, BANK_1_NBCHANNELS, BANK_1_MSK_CHANNELS, BANK_1_MSK_GROUPS},
-   {&MyChannels_Src[9], &MyChannels_Dest[9], MyChannels_Data, BANK_2_NBCHANNELS, BANK_2_MSK_CHANNELS, BANK_2_MSK_GROUPS},
-   {&MyChannels_Src[16], &MyChannels_Dest[16], MyChannels_Data, BANK_3_NBCHANNELS, BANK_3_MSK_CHANNELS, BANK_3_MSK_GROUPS},
+   {&MyChannels_Src[8], &MyChannels_Dest[8], MyChannels_Data, BANK_1_NBCHANNELS, BANK_1_MSK_CHANNELS, BANK_1_MSK_GROUPS},
+   {&MyChannels_Src[16], &MyChannels_Dest[16], MyChannels_Data, BANK_2_NBCHANNELS, BANK_2_MSK_CHANNELS, BANK_2_MSK_GROUPS}
 };
 /*============================================================================*/
 /* Touchkey sensors                                                           */

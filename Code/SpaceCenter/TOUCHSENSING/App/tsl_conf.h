@@ -46,7 +46,7 @@
 /** Total number of banks in application (range=1..255)
 */
 
-#define TSLPRM_TOTAL_BANKS (4)
+#define TSLPRM_TOTAL_BANKS (3)
 
 /** Total number of "Extended" TouchKeys in application (range=0..255)
 */
@@ -113,7 +113,7 @@
   - This is the maximum acceptable value for the acquisition measure.
   - The acquisition will be in error if the measure is above this value.
 */
-#define TSLPRM_ACQ_MAX (16383)
+#define TSLPRM_ACQ_MAX (8191)
 
 /** @} Common_Parameters_Acquisition_Limits */
 
@@ -158,18 +158,18 @@
 /** TouchKeys Detect state input threshold (range=0..255)
   - Enter Detect state if delta is above
 */
-#define TSLPRM_TKEY_DETECT_IN_TH (20)
+#define TSLPRM_TKEY_DETECT_IN_TH (30)
 
 /** TouchKeys Detect state output threshold (range=0..255)
   - Exit Detect state if delta is below
 */
-#define TSLPRM_TKEY_DETECT_OUT_TH (10)
+#define TSLPRM_TKEY_DETECT_OUT_TH (20)
 
 /** TouchKeys re-Calibration threshold (range=0..255)
   - @warning The value is inverted in the sensor state machine
   - Enter Calibration state if delta is below
 */
-#define TSLPRM_TKEY_CALIB_TH (8)
+#define TSLPRM_TKEY_CALIB_TH (10)
 
 /** TouchKey, Linear and Rotary sensors thresholds coefficient (range=0..4)
     This multiplier coefficient is applied on Detect and Re-Calibration thresholds only.

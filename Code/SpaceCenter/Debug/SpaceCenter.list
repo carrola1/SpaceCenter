@@ -7,45 +7,45 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
   1 .text         0000566c  080000c0  080000c0  000100c0  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .rodata       000004bc  0800572c  0800572c  0001572c  2**2
+  2 .rodata       000004a4  0800572c  0800572c  0001572c  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  3 .ARM.extab    00000000  08005be8  08005be8  00020088  2**0
+  3 .ARM.extab    00000000  08005bd0  08005bd0  00020088  2**0
                   CONTENTS
-  4 .ARM          00000000  08005be8  08005be8  00020088  2**0
+  4 .ARM          00000000  08005bd0  08005bd0  00020088  2**0
                   CONTENTS
-  5 .preinit_array 00000000  08005be8  08005be8  00020088  2**0
+  5 .preinit_array 00000000  08005bd0  08005bd0  00020088  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  6 .init_array   00000008  08005be8  08005be8  00015be8  2**2
+  6 .init_array   00000008  08005bd0  08005bd0  00015bd0  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  7 .fini_array   00000008  08005bf0  08005bf0  00015bf0  2**2
+  7 .fini_array   00000008  08005bd8  08005bd8  00015bd8  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  8 .data         00000088  20000000  08005bf8  00020000  2**2
+  8 .data         00000088  20000000  08005be0  00020000  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  9 .bss          00000c64  20000088  08005c80  00020088  2**2
+  9 .bss          00000c64  20000088  08005c68  00020088  2**2
                   ALLOC
- 10 ._user_heap_stack 00000604  20000cec  08005c80  00020cec  2**0
+ 10 ._user_heap_stack 00000604  20000cec  08005c68  00020cec  2**0
                   ALLOC
  11 .ARM.attributes 00000028  00000000  00000000  00020088  2**0
                   CONTENTS, READONLY
- 12 .debug_info   0002b2cf  00000000  00000000  000200b0  2**0
+ 12 .debug_info   0002b1fa  00000000  00000000  000200b0  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_abbrev 00005f0d  00000000  00000000  0004b37f  2**0
+ 13 .debug_abbrev 00005f0d  00000000  00000000  0004b2aa  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_aranges 000013d0  00000000  00000000  00051290  2**3
+ 14 .debug_aranges 000013c0  00000000  00000000  000511b8  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_ranges 00001a28  00000000  00000000  00052660  2**3
+ 15 .debug_ranges 00001a18  00000000  00000000  00052578  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  0001b258  00000000  00000000  00054088  2**0
+ 16 .debug_macro  0001b243  00000000  00000000  00053f90  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   0001e71f  00000000  00000000  0006f2e0  2**0
+ 17 .debug_line   0001e6f0  00000000  00000000  0006f1d3  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    000938a9  00000000  00000000  0008d9ff  2**0
+ 18 .debug_str    0009380c  00000000  00000000  0008d8c3  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000053  00000000  00000000  001212a8  2**0
+ 19 .comment      00000053  00000000  00000000  001210cf  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  000043dc  00000000  00000000  001212fc  2**2
+ 20 .debug_frame  0000439c  00000000  00000000  00121124  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_loc    0000d62b  00000000  00000000  001256d8  2**0
+ 21 .debug_loc    0000d62b  00000000  00000000  001254c0  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -801,7 +801,7 @@ void TouchBoard::updateTouchState() {
  80005c6:	b002      	add	sp, #8
  80005c8:	bd80      	pop	{r7, pc}
  80005ca:	46c0      	nop			; (mov r8, r8)
- 80005cc:	08005a20 	.word	0x08005a20
+ 80005cc:	08005a08 	.word	0x08005a08
 
 080005d0 <_ZN10TouchBoard13getTouchStateEv>:
 
@@ -6609,7 +6609,7 @@ LoopForever:
    ldr   r0, =_estack
  80026a4:	20005000 	.word	0x20005000
   ldr  r3, =_sidata
- 80026a8:	08005bf8 	.word	0x08005bf8
+ 80026a8:	08005be0 	.word	0x08005be0
   ldr  r0, =_sdata
  80026ac:	20000000 	.word	0x20000000
   ldr  r3, =_edata
@@ -11500,7 +11500,7 @@ TSL_Status_enum_T TSL_Init(CONST TSL_Bank_T *bank)
  8004010:	2202      	movs	r2, #2
  8004012:	9200      	str	r2, [sp, #0]
   if (idx_bk >= TSLPRM_TOTAL_BANKS)
- 8004014:	2803      	cmp	r0, #3
+ 8004014:	4290      	cmp	r0, r2
  8004016:	d80a      	bhi.n	800402e <TSL_acq_BankGetResult+0x32>
   CONST TSL_ChannelSrc_T *pchSrc = bank->p_chSrc;
  8004018:	2700      	movs	r7, #0
@@ -11712,7 +11712,7 @@ void SoftDelay(uint32_t val)
     return TSL_STATUS_ERROR;
  8004144:	2002      	movs	r0, #2
   if (idx_bk >= TSLPRM_TOTAL_BANKS)
- 8004146:	2a03      	cmp	r2, #3
+ 8004146:	4282      	cmp	r2, r0
  8004148:	d816      	bhi.n	8004178 <TSL_acq_BankConfig+0x38>
   bank = &(TSL_Globals.Bank_Array[idx_bk]);
  800414a:	2318      	movs	r3, #24
@@ -12741,11 +12741,10 @@ void TSL_tkey_SetStateCalibration(TSL_tCounter_T delay)
  8004604:	20000a62 	.word	0x20000a62
 
 08004608 <TSL_tkey_Init>:
+  THIS_DETECTOUT_TH = TSLPRM_TKEY_DETECT_OUT_TH;
+ 8004608:	2114      	movs	r1, #20
   THIS_DETECTIN_TH  = TSLPRM_TKEY_DETECT_IN_TH;
- 8004608:	2214      	movs	r2, #20
-  THIS_CALIB_TH     = TSLPRM_TKEY_CALIB_TH;
- 800460a:	2108      	movs	r1, #8
-  THIS_DETECTIN_TH  = TSLPRM_TKEY_DETECT_IN_TH;
+ 800460a:	221e      	movs	r2, #30
  800460c:	4b08      	ldr	r3, [pc, #32]	; (8004630 <TSL_tkey_Init+0x28>)
 {
  800460e:	b510      	push	{r4, lr}
@@ -12755,27 +12754,28 @@ void TSL_tkey_SetStateCalibration(TSL_tCounter_T delay)
  8004612:	2000      	movs	r0, #0
   THIS_DETECTIN_TH  = TSLPRM_TKEY_DETECT_IN_TH;
  8004614:	685b      	ldr	r3, [r3, #4]
- 8004616:	701a      	strb	r2, [r3, #0]
   THIS_DETECTOUT_TH = TSLPRM_TKEY_DETECT_OUT_TH;
- 8004618:	3a0a      	subs	r2, #10
- 800461a:	705a      	strb	r2, [r3, #1]
-  THIS_COUNTER_DEB_CALIB   = TSLPRM_DEBOUNCE_CALIB;
- 800461c:	70da      	strb	r2, [r3, #3]
-  THIS_COUNTER_DEB_DETECT  = TSLPRM_DEBOUNCE_DETECT;
- 800461e:	3a07      	subs	r2, #7
- 8004620:	711a      	strb	r2, [r3, #4]
-  THIS_COUNTER_DEB_RELEASE = TSLPRM_DEBOUNCE_RELEASE;
- 8004622:	715a      	strb	r2, [r3, #5]
-  THIS_COUNTER_DEB_ERROR   = TSLPRM_DEBOUNCE_ERROR;
- 8004624:	321b      	adds	r2, #27
+ 8004616:	7059      	strb	r1, [r3, #1]
   THIS_CALIB_TH     = TSLPRM_TKEY_CALIB_TH;
- 8004626:	7099      	strb	r1, [r3, #2]
+ 8004618:	390a      	subs	r1, #10
+ 800461a:	7099      	strb	r1, [r3, #2]
+  THIS_COUNTER_DEB_CALIB   = TSLPRM_DEBOUNCE_CALIB;
+ 800461c:	70d9      	strb	r1, [r3, #3]
+  THIS_COUNTER_DEB_DETECT  = TSLPRM_DEBOUNCE_DETECT;
+ 800461e:	3907      	subs	r1, #7
+  THIS_DETECTIN_TH  = TSLPRM_TKEY_DETECT_IN_TH;
+ 8004620:	701a      	strb	r2, [r3, #0]
+  THIS_COUNTER_DEB_DETECT  = TSLPRM_DEBOUNCE_DETECT;
+ 8004622:	7119      	strb	r1, [r3, #4]
+  THIS_COUNTER_DEB_RELEASE = TSLPRM_DEBOUNCE_RELEASE;
+ 8004624:	7159      	strb	r1, [r3, #5]
   THIS_COUNTER_DEB_ERROR   = TSLPRM_DEBOUNCE_ERROR;
- 8004628:	719a      	strb	r2, [r3, #6]
+ 8004626:	719a      	strb	r2, [r3, #6]
   TSL_tkey_SetStateCalibration(TSLPRM_CALIB_DELAY);
- 800462a:	f7ff ffc3 	bl	80045b4 <TSL_tkey_SetStateCalibration>
+ 8004628:	f7ff ffc4 	bl	80045b4 <TSL_tkey_SetStateCalibration>
 }
- 800462e:	bd10      	pop	{r4, pc}
+ 800462c:	bd10      	pop	{r4, pc}
+ 800462e:	46c0      	nop			; (mov r8, r8)
  8004630:	20000a88 	.word	0x20000a88
 
 08004634 <TSL_tkey_GetStateMask>:
@@ -15371,7 +15371,7 @@ tsl_user_status_t tsl_user_Exec(void)
   if (idx_bank > TSLPRM_TOTAL_BANKS-1)
  8005384:	6823      	ldr	r3, [r4, #0]
  8005386:	2000      	movs	r0, #0
- 8005388:	2b03      	cmp	r3, #3
+ 8005388:	2b02      	cmp	r3, #2
  800538a:	d917      	bls.n	80053bc <tsl_user_Exec+0x70>
   {
 /* USER CODE BEGIN before reset*/
@@ -15513,10 +15513,10 @@ tsl_user_status_t tsl_user_Exec(void)
  8005462:	4798      	blx	r3
  8005464:	3601      	adds	r6, #1
  8005466:	e7f2      	b.n	800544e <__libc_init_array+0x1e>
- 8005468:	08005be8 	.word	0x08005be8
- 800546c:	08005be8 	.word	0x08005be8
- 8005470:	08005be8 	.word	0x08005be8
- 8005474:	08005bf0 	.word	0x08005bf0
+ 8005468:	08005bd0 	.word	0x08005bd0
+ 800546c:	08005bd0 	.word	0x08005bd0
+ 8005470:	08005bd0 	.word	0x08005bd0
+ 8005474:	08005bd8 	.word	0x08005bd8
 
 08005478 <malloc>:
  8005478:	b510      	push	{r4, lr}
