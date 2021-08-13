@@ -37,15 +37,15 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  16 .debug_macro  0001b243  00000000  00000000  00053f90  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   0001e6f0  00000000  00000000  0006f1d3  2**0
+ 17 .debug_line   0001e6ee  00000000  00000000  0006f1d3  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    0009380c  00000000  00000000  0008d8c3  2**0
+ 18 .debug_str    0009380b  00000000  00000000  0008d8c1  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000053  00000000  00000000  001210cf  2**0
+ 19 .comment      00000053  00000000  00000000  001210cc  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  0000439c  00000000  00000000  00121124  2**2
+ 20 .debug_frame  0000439c  00000000  00000000  00121120  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_loc    0000d62b  00000000  00000000  001254c0  2**0
+ 21 .debug_loc    0000d62b  00000000  00000000  001254bc  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -12741,10 +12741,11 @@ void TSL_tkey_SetStateCalibration(TSL_tCounter_T delay)
  8004604:	20000a62 	.word	0x20000a62
 
 08004608 <TSL_tkey_Init>:
-  THIS_DETECTOUT_TH = TSLPRM_TKEY_DETECT_OUT_TH;
- 8004608:	2114      	movs	r1, #20
   THIS_DETECTIN_TH  = TSLPRM_TKEY_DETECT_IN_TH;
- 800460a:	221e      	movs	r2, #30
+ 8004608:	2214      	movs	r2, #20
+  THIS_CALIB_TH     = TSLPRM_TKEY_CALIB_TH;
+ 800460a:	2107      	movs	r1, #7
+  THIS_DETECTIN_TH  = TSLPRM_TKEY_DETECT_IN_TH;
  800460c:	4b08      	ldr	r3, [pc, #32]	; (8004630 <TSL_tkey_Init+0x28>)
 {
  800460e:	b510      	push	{r4, lr}
@@ -12754,28 +12755,27 @@ void TSL_tkey_SetStateCalibration(TSL_tCounter_T delay)
  8004612:	2000      	movs	r0, #0
   THIS_DETECTIN_TH  = TSLPRM_TKEY_DETECT_IN_TH;
  8004614:	685b      	ldr	r3, [r3, #4]
+ 8004616:	701a      	strb	r2, [r3, #0]
   THIS_DETECTOUT_TH = TSLPRM_TKEY_DETECT_OUT_TH;
- 8004616:	7059      	strb	r1, [r3, #1]
-  THIS_CALIB_TH     = TSLPRM_TKEY_CALIB_TH;
- 8004618:	390a      	subs	r1, #10
- 800461a:	7099      	strb	r1, [r3, #2]
+ 8004618:	3a0a      	subs	r2, #10
+ 800461a:	705a      	strb	r2, [r3, #1]
   THIS_COUNTER_DEB_CALIB   = TSLPRM_DEBOUNCE_CALIB;
- 800461c:	70d9      	strb	r1, [r3, #3]
+ 800461c:	70da      	strb	r2, [r3, #3]
   THIS_COUNTER_DEB_DETECT  = TSLPRM_DEBOUNCE_DETECT;
- 800461e:	3907      	subs	r1, #7
-  THIS_DETECTIN_TH  = TSLPRM_TKEY_DETECT_IN_TH;
- 8004620:	701a      	strb	r2, [r3, #0]
-  THIS_COUNTER_DEB_DETECT  = TSLPRM_DEBOUNCE_DETECT;
- 8004622:	7119      	strb	r1, [r3, #4]
+ 800461e:	3a07      	subs	r2, #7
+ 8004620:	711a      	strb	r2, [r3, #4]
   THIS_COUNTER_DEB_RELEASE = TSLPRM_DEBOUNCE_RELEASE;
- 8004624:	7159      	strb	r1, [r3, #5]
+ 8004622:	715a      	strb	r2, [r3, #5]
   THIS_COUNTER_DEB_ERROR   = TSLPRM_DEBOUNCE_ERROR;
- 8004626:	719a      	strb	r2, [r3, #6]
+ 8004624:	321b      	adds	r2, #27
+  THIS_CALIB_TH     = TSLPRM_TKEY_CALIB_TH;
+ 8004626:	7099      	strb	r1, [r3, #2]
+  THIS_COUNTER_DEB_ERROR   = TSLPRM_DEBOUNCE_ERROR;
+ 8004628:	719a      	strb	r2, [r3, #6]
   TSL_tkey_SetStateCalibration(TSLPRM_CALIB_DELAY);
- 8004628:	f7ff ffc4 	bl	80045b4 <TSL_tkey_SetStateCalibration>
+ 800462a:	f7ff ffc3 	bl	80045b4 <TSL_tkey_SetStateCalibration>
 }
- 800462c:	bd10      	pop	{r4, pc}
- 800462e:	46c0      	nop			; (mov r8, r8)
+ 800462e:	bd10      	pop	{r4, pc}
  8004630:	20000a88 	.word	0x20000a88
 
 08004634 <TSL_tkey_GetStateMask>:

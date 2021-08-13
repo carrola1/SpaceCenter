@@ -4111,7 +4111,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x16 Middlewares/ST/STM32_TouchSensing_Library/src/tsl_filter.o
  .debug_macro   0x0000000000000000       0x1c Middlewares/ST/STM32_TouchSensing_Library/src/tsl_filter.o
  .debug_line    0x0000000000000000      0x7e9 Middlewares/ST/STM32_TouchSensing_Library/src/tsl_filter.o
- .debug_str     0x0000000000000000    0x7b984 Middlewares/ST/STM32_TouchSensing_Library/src/tsl_filter.o
+ .debug_str     0x0000000000000000    0x7b983 Middlewares/ST/STM32_TouchSensing_Library/src/tsl_filter.o
  .comment       0x0000000000000000       0x54 Middlewares/ST/STM32_TouchSensing_Library/src/tsl_filter.o
  .debug_frame   0x0000000000000000       0x30 Middlewares/ST/STM32_TouchSensing_Library/src/tsl_filter.o
  .ARM.attributes
@@ -4304,7 +4304,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0xcf Middlewares/ST/STM32_TouchSensing_Library/src/tsl_linrot.o
  .debug_macro   0x0000000000000000       0x16 Middlewares/ST/STM32_TouchSensing_Library/src/tsl_linrot.o
  .debug_line    0x0000000000000000      0x7c6 Middlewares/ST/STM32_TouchSensing_Library/src/tsl_linrot.o
- .debug_str     0x0000000000000000    0x7c84c Middlewares/ST/STM32_TouchSensing_Library/src/tsl_linrot.o
+ .debug_str     0x0000000000000000    0x7c84b Middlewares/ST/STM32_TouchSensing_Library/src/tsl_linrot.o
  .comment       0x0000000000000000       0x54 Middlewares/ST/STM32_TouchSensing_Library/src/tsl_linrot.o
  .ARM.attributes
                 0x0000000000000000       0x32 Middlewares/ST/STM32_TouchSensing_Library/src/tsl_linrot.o
@@ -6990,7 +6990,7 @@ LOAD /opt/st/stm32cubeide_1.6.1/plugins/com.st.stm32cube.ide.mcu.externaltools.g
  .debug_macro   0x000000000001ad37      0x28b TOUCHSENSING/App/touchsensing.o
  .debug_macro   0x000000000001afc2      0x281 TOUCHSENSING/App/tsl_user.o
 
-.debug_line     0x0000000000000000    0x1e6f0
+.debug_line     0x0000000000000000    0x1e6ee
  .debug_line    0x0000000000000000      0xbc7 Core/Src/NeoPixel.o
  .debug_line    0x0000000000000bc7      0xfcf Core/Src/TouchBoard.o
  .debug_line    0x0000000000001b96     0x1bf6 Core/Src/TouchBoardGroup.o
@@ -7019,82 +7019,82 @@ LOAD /opt/st/stm32cubeide_1.6.1/plugins/com.st.stm32cube.ide.mcu.externaltools.g
  .debug_line    0x0000000000017e2c      0x7c7 Middlewares/ST/STM32_TouchSensing_Library/src/tsl_globals.o
  .debug_line    0x00000000000185f3      0x994 Middlewares/ST/STM32_TouchSensing_Library/src/tsl_object.o
  .debug_line    0x0000000000018f87      0x969 Middlewares/ST/STM32_TouchSensing_Library/src/tsl_time.o
- .debug_line    0x00000000000198f0      0xf73 Middlewares/ST/STM32_TouchSensing_Library/src/tsl_touchkey.o
- .debug_line    0x000000000001a863      0x7fd Middlewares/Third_Party/FatFs/src/diskio.o
- .debug_line    0x000000000001b060     0x10d3 Middlewares/Third_Party/FatFs/src/fat_sd_spi.o
- .debug_line    0x000000000001c133     0x143a Middlewares/Third_Party/FatFs/src/ff.o
- .debug_line    0x000000000001d56d      0x808 TOUCHSENSING/App/touchsensing.o
- .debug_line    0x000000000001dd75      0x97b TOUCHSENSING/App/tsl_user.o
+ .debug_line    0x00000000000198f0      0xf71 Middlewares/ST/STM32_TouchSensing_Library/src/tsl_touchkey.o
+ .debug_line    0x000000000001a861      0x7fd Middlewares/Third_Party/FatFs/src/diskio.o
+ .debug_line    0x000000000001b05e     0x10d3 Middlewares/Third_Party/FatFs/src/fat_sd_spi.o
+ .debug_line    0x000000000001c131     0x143a Middlewares/Third_Party/FatFs/src/ff.o
+ .debug_line    0x000000000001d56b      0x808 TOUCHSENSING/App/touchsensing.o
+ .debug_line    0x000000000001dd73      0x97b TOUCHSENSING/App/tsl_user.o
 
-.debug_str      0x0000000000000000    0x9380c
+.debug_str      0x0000000000000000    0x9380b
  .debug_str     0x0000000000000000    0x7fc5a Core/Src/NeoPixel.o
                                       0x801c7 (size before relaxing)
- .debug_str     0x000000000007fc5a     0x4a16 Core/Src/TouchBoard.o
-                                      0x8137d (size before relaxing)
- .debug_str     0x0000000000084670     0x65ff Core/Src/TouchBoardGroup.o
-                                      0x88079 (size before relaxing)
- .debug_str     0x000000000008ac6f     0x1b46 Core/Src/main.o
-                                      0x88dff (size before relaxing)
- .debug_str     0x000000000008c7b5      0x2fa Core/Src/stm32l0xx_hal_msp.o
+ .debug_str     0x000000000007fc5a     0x4a15 Core/Src/TouchBoard.o
+                                      0x8137c (size before relaxing)
+ .debug_str     0x000000000008466f     0x65ff Core/Src/TouchBoardGroup.o
+                                      0x88078 (size before relaxing)
+ .debug_str     0x000000000008ac6e     0x1b46 Core/Src/main.o
+                                      0x88dfe (size before relaxing)
+ .debug_str     0x000000000008c7b4      0x2fa Core/Src/stm32l0xx_hal_msp.o
                                       0x7bafb (size before relaxing)
- .debug_str     0x000000000008caaf       0xdb Core/Src/stm32l0xx_it.o
-                                      0x7bbba (size before relaxing)
- .debug_str     0x000000000008cb8a     0x2669 Core/Src/syscalls.o
+ .debug_str     0x000000000008caae       0xdb Core/Src/stm32l0xx_it.o
+                                      0x7bbb9 (size before relaxing)
+ .debug_str     0x000000000008cb89     0x2669 Core/Src/syscalls.o
                                        0x8e1b (size before relaxing)
- .debug_str     0x000000000008f1f3       0x6b Core/Src/sysmem.o
+ .debug_str     0x000000000008f1f2       0x6b Core/Src/sysmem.o
                                        0x61ca (size before relaxing)
- .debug_str     0x000000000008f25e       0x9c Core/Src/system_stm32l0xx.o
+ .debug_str     0x000000000008f25d       0x9c Core/Src/system_stm32l0xx.o
                                       0x7abf8 (size before relaxing)
- .debug_str     0x000000000008f2fa       0x36 Core/Startup/startup_stm32l072vbtx.o
+ .debug_str     0x000000000008f2f9       0x36 Core/Startup/startup_stm32l072vbtx.o
                                          0x6d (size before relaxing)
- .debug_str     0x000000000008f330      0x3ed Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal.o
+ .debug_str     0x000000000008f32f      0x3ed Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal.o
                                       0x7b252 (size before relaxing)
- .debug_str     0x000000000008f71d      0x26c Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_cortex.o
+ .debug_str     0x000000000008f71c      0x26c Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_cortex.o
                                       0x7b05d (size before relaxing)
- .debug_str     0x000000000008f989      0x23d Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_dma.o
+ .debug_str     0x000000000008f988      0x23d Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_dma.o
                                       0x7af71 (size before relaxing)
- .debug_str     0x000000000008fbc6      0x216 Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_gpio.o
+ .debug_str     0x000000000008fbc5      0x216 Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_gpio.o
                                       0x7aea8 (size before relaxing)
- .debug_str     0x000000000008fddc      0x28f Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_i2s.o
+ .debug_str     0x000000000008fddb      0x28f Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_i2s.o
                                       0x7b191 (size before relaxing)
- .debug_str     0x000000000009006b      0x2af Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_rcc.o
+ .debug_str     0x000000000009006a      0x2af Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_rcc.o
                                       0x7b10d (size before relaxing)
- .debug_str     0x000000000009031a      0x514 Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_spi.o
+ .debug_str     0x0000000000090319      0x514 Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_spi.o
                                       0x7b491 (size before relaxing)
- .debug_str     0x000000000009082e      0xcad Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_tim.o
+ .debug_str     0x000000000009082d      0xcad Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_tim.o
                                       0x7bd1d (size before relaxing)
- .debug_str     0x00000000000914db       0x7d Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_tim_ex.o
+ .debug_str     0x00000000000914da       0x7d Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_tim_ex.o
                                       0x7af86 (size before relaxing)
- .debug_str     0x0000000000091558      0x254 Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_tsc.o
+ .debug_str     0x0000000000091557      0x254 Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_tsc.o
                                       0x7afcc (size before relaxing)
- .debug_str     0x00000000000917ac       0x88 Middlewares/ST/STM32_TouchSensing_Library/src/tsl.o
-                                      0x7c8ce (size before relaxing)
- .debug_str     0x0000000000091834      0x275 Middlewares/ST/STM32_TouchSensing_Library/src/tsl_acq.o
-                                      0x7cad0 (size before relaxing)
- .debug_str     0x0000000000091aa9      0x113 Middlewares/ST/STM32_TouchSensing_Library/src/tsl_acq_tsc.o
-                                      0x7cb1e (size before relaxing)
- .debug_str     0x0000000000091bbc      0x21e Middlewares/ST/STM32_TouchSensing_Library/src/tsl_dxs.o
-                                      0x7cabb (size before relaxing)
- .debug_str     0x0000000000091dda      0x211 Middlewares/ST/STM32_TouchSensing_Library/src/tsl_ecs.o
-                                      0x7cc0e (size before relaxing)
- .debug_str     0x0000000000091feb       0x3f Middlewares/ST/STM32_TouchSensing_Library/src/tsl_globals.o
-                                      0x7c84d (size before relaxing)
- .debug_str     0x000000000009202a       0x77 Middlewares/ST/STM32_TouchSensing_Library/src/tsl_object.o
-                                      0x7c930 (size before relaxing)
- .debug_str     0x00000000000920a1       0x7e Middlewares/ST/STM32_TouchSensing_Library/src/tsl_time.o
-                                      0x7c917 (size before relaxing)
- .debug_str     0x000000000009211f      0x7f6 Middlewares/ST/STM32_TouchSensing_Library/src/tsl_touchkey.o
-                                      0x7d0e5 (size before relaxing)
- .debug_str     0x0000000000092915      0x207 Middlewares/Third_Party/FatFs/src/diskio.o
+ .debug_str     0x00000000000917ab       0x88 Middlewares/ST/STM32_TouchSensing_Library/src/tsl.o
+                                      0x7c8cd (size before relaxing)
+ .debug_str     0x0000000000091833      0x275 Middlewares/ST/STM32_TouchSensing_Library/src/tsl_acq.o
+                                      0x7cacf (size before relaxing)
+ .debug_str     0x0000000000091aa8      0x113 Middlewares/ST/STM32_TouchSensing_Library/src/tsl_acq_tsc.o
+                                      0x7cb1d (size before relaxing)
+ .debug_str     0x0000000000091bbb      0x21e Middlewares/ST/STM32_TouchSensing_Library/src/tsl_dxs.o
+                                      0x7caba (size before relaxing)
+ .debug_str     0x0000000000091dd9      0x211 Middlewares/ST/STM32_TouchSensing_Library/src/tsl_ecs.o
+                                      0x7cc0d (size before relaxing)
+ .debug_str     0x0000000000091fea       0x3f Middlewares/ST/STM32_TouchSensing_Library/src/tsl_globals.o
+                                      0x7c84c (size before relaxing)
+ .debug_str     0x0000000000092029       0x77 Middlewares/ST/STM32_TouchSensing_Library/src/tsl_object.o
+                                      0x7c92f (size before relaxing)
+ .debug_str     0x00000000000920a0       0x7e Middlewares/ST/STM32_TouchSensing_Library/src/tsl_time.o
+                                      0x7c916 (size before relaxing)
+ .debug_str     0x000000000009211e      0x7f6 Middlewares/ST/STM32_TouchSensing_Library/src/tsl_touchkey.o
+                                      0x7d0e4 (size before relaxing)
+ .debug_str     0x0000000000092914      0x207 Middlewares/Third_Party/FatFs/src/diskio.o
                                       0x7b232 (size before relaxing)
- .debug_str     0x0000000000092b1c      0x161 Middlewares/Third_Party/FatFs/src/fat_sd_spi.o
+ .debug_str     0x0000000000092b1b      0x161 Middlewares/Third_Party/FatFs/src/fat_sd_spi.o
                                       0x7b383 (size before relaxing)
- .debug_str     0x0000000000092c7d      0x995 Middlewares/Third_Party/FatFs/src/ff.o
+ .debug_str     0x0000000000092c7c      0x995 Middlewares/Third_Party/FatFs/src/ff.o
                                        0x4012 (size before relaxing)
- .debug_str     0x0000000000093612       0x46 TOUCHSENSING/App/touchsensing.o
-                                      0x7d92b (size before relaxing)
- .debug_str     0x0000000000093658      0x1b4 TOUCHSENSING/App/tsl_user.o
-                                      0x7de6a (size before relaxing)
+ .debug_str     0x0000000000093611       0x46 TOUCHSENSING/App/touchsensing.o
+                                      0x7d92a (size before relaxing)
+ .debug_str     0x0000000000093657      0x1b4 TOUCHSENSING/App/tsl_user.o
+                                      0x7de69 (size before relaxing)
 
 .comment        0x0000000000000000       0x53
  .comment       0x0000000000000000       0x53 Core/Src/NeoPixel.o
