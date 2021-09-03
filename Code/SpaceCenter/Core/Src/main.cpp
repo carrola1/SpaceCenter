@@ -60,7 +60,7 @@ TSC_HandleTypeDef htsc;
 
 /* USER CODE BEGIN PV */
 FATFS FatFs;
-TouchBoardGroup touchGroup0 = TouchBoardGroup(NUM_BOARDS, 0, htim2, TIM_CHANNEL_1, hdma_tim2_ch1);
+TouchBoardGroup touchGroup0 = TouchBoardGroup(NUM_BOARDS, htim2, TIM_CHANNEL_1, hdma_tim2_ch1);
 std::vector<TouchState_enum> touchStates(NUM_BOARDS);
 //NeoPixel rocketStreamL = NeoPixel(68, htim2, TIM_CHANNEL_3, hdma_tim2_ch3);
 /* USER CODE END PV */

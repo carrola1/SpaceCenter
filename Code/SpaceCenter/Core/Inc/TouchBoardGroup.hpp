@@ -12,8 +12,7 @@ class TouchBoardGroup {
 public:
 
   // Constructor: number of boards in group and pointer to touch buttons
-  TouchBoardGroup(uint8_t n, uint8_t touchKeyOffset,
-                  TIM_HandleTypeDef &timHandle, uint32_t timChannel, DMA_HandleTypeDef &dmaHandle);
+  TouchBoardGroup(uint8_t n, TIM_HandleTypeDef &timHandle, uint32_t timChannel, DMA_HandleTypeDef &dmaHandle);
   ~TouchBoardGroup();
 
   // NeoPixels methods

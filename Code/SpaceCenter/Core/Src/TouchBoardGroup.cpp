@@ -1,15 +1,15 @@
 #include "TouchBoardGroup.hpp"
+#include "TouchKeyMap.h"
 #include "stm32l0xx_hal.h"
 
-TouchBoardGroup::TouchBoardGroup(uint8_t n, uint8_t touchKeyOffset, TIM_HandleTypeDef &timHandle,
+TouchBoardGroup::TouchBoardGroup(uint8_t n, TIM_HandleTypeDef &timHandle,
                                   uint32_t timChannel, DMA_HandleTypeDef &dmaHandle) 
                 : ledArray((uint16_t)(n*NUM_PIXELS_PER_BOARD), timHandle, timChannel, dmaHandle),
                   touchStates(n), touchBoards(n) {
   numBoards = n;
   numPixels = n*NUM_PIXELS_PER_BOARD;
-  myTouchKeyOffset = touchKeyOffset;
   for (int i=0; i<numBoards; i++) {
-    touchBoards[i].setTouchKeyOffset(myTouchKeyOffset + i);
+    touchBoards[i].setTouchKeyOffset(touchKeyMap[i]);
     touchStates[i] = NOT_TOUCHED;
   }
 }

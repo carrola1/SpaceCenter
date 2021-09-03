@@ -46,7 +46,8 @@ Core/Src/TouchBoardGroup.o: ../Core/Src/TouchBoardGroup.cpp \
  ../Middlewares/ST/STM32_TouchSensing_Library/inc/tsl_dxs.h \
  ../Middlewares/ST/STM32_TouchSensing_Library/inc/tsl_ecs.h \
  ../Middlewares/ST/STM32_TouchSensing_Library/inc/tsl_filter.h \
- ../Middlewares/ST/STM32_TouchSensing_Library/inc/tsl_globals.h
+ ../Middlewares/ST/STM32_TouchSensing_Library/inc/tsl_globals.h \
+ ../Core/Inc/TouchKeyMap.h
 
 ../Core/Inc/TouchBoardGroup.hpp:
 
@@ -149,3 +150,5 @@ Core/Src/TouchBoardGroup.o: ../Core/Src/TouchBoardGroup.cpp \
 ../Middlewares/ST/STM32_TouchSensing_Library/inc/tsl_filter.h:
 
 ../Middlewares/ST/STM32_TouchSensing_Library/inc/tsl_globals.h:
+
+../Core/Inc/TouchKeyMap.h:

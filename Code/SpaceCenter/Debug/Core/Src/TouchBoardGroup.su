@@ -1,5 +1,5 @@
 new:173:33:void* operator new(std::size_t, void*)	16	static
-TouchBoardGroup.cpp:4:1:TouchBoardGroup::TouchBoardGroup(uint8_t, uint8_t, TIM_HandleTypeDef&, uint32_t, DMA_HandleTypeDef&)	64	static
+TouchBoardGroup.cpp:5:1:TouchBoardGroup::TouchBoardGroup(uint8_t, TIM_HandleTypeDef&, uint32_t, DMA_HandleTypeDef&)	64	static
 TouchBoardGroup.cpp:17:1:TouchBoardGroup::~TouchBoardGroup()	16	static
 TouchBoardGroup.cpp:20:6:void TouchBoardGroup::setPixelColor(uint8_t, uint8_t, uint8_t, uint8_t, uint8_t)	32	static
 TouchBoardGroup.cpp:24:6:void TouchBoardGroup::setAllPixelColor(uint8_t, uint8_t, uint8_t)	32	static
