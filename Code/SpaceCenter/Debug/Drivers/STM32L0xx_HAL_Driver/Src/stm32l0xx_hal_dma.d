@@ -1,5 +1,8 @@
 Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_dma.o: \
  ../Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_dma.c \
+ ../Middlewares/Third_Party/FatFs/src/ff.h \
+ ../Middlewares/Third_Party/FatFs/src/integer.h \
+ ../Middlewares/Third_Party/FatFs/src/ffconf.h \
  ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal.h \
  ../Core/Inc/stm32l0xx_hal_conf.h \
  ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_rcc.h \
@@ -31,6 +34,12 @@ Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_dma.o: \
  ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_spi.h \
  ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_tim.h \
  ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_tim_ex.h
+
+../Middlewares/Third_Party/FatFs/src/ff.h:
+
+../Middlewares/Third_Party/FatFs/src/integer.h:
+
+../Middlewares/Third_Party/FatFs/src/ffconf.h:
 
 ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal.h:
 
