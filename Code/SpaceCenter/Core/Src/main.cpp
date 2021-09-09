@@ -19,7 +19,6 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "touchsensing.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "diskio.h"
@@ -56,8 +55,6 @@ DMA_HandleTypeDef hdma_tim2_ch1;
 DMA_HandleTypeDef hdma_tim2_ch3;
 DMA_HandleTypeDef hdma_tim2_ch4;
 
-TSC_HandleTypeDef htsc;
-
 /* USER CODE BEGIN PV */
 FATFS FatFs;
 TouchBoardGroup touchGroup0 = TouchBoardGroup(NUM_BOARDS, htim2, TIM_CHANNEL_1, hdma_tim2_ch1);
@@ -71,7 +68,6 @@ static void MX_GPIO_Init(void);
 static void MX_DMA_Init(void);
 static void MX_I2S2_Init(void);
 static void MX_SPI1_Init(void);
-static void MX_TSC_Init(void);
 static void MX_TIM2_Init(void);
 /* USER CODE BEGIN PFP */
 
@@ -113,13 +109,8 @@ int main(void)
   MX_DMA_Init();
   MX_I2S2_Init();
   MX_SPI1_Init();
-  MX_TSC_Init();
-  MX_TOUCHSENSING_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-  
-  // Init ST touch application
-  tsl_user_Init();
 
   // Mount SD Card
   HAL_GPIO_WritePin(SD_SPI1_CS_N_GPIO_Port, SD_SPI1_CS_N_Pin, GPIO_PIN_SET);
@@ -133,7 +124,6 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  tsl_user_Exec();
   touchGroup0.setAllPixelColor(0,0,255);
   touchGroup0.showPixels();
 
@@ -144,7 +134,6 @@ int main(void)
   rocketStreamL.show();
   */
 
-  tsl_user_Exec();
   bool touched = false;
   bool touched_last = false;
 
@@ -153,7 +142,6 @@ int main(void)
   while (1)
   {
 
-    tsl_user_Exec();
     touchGroup0.updateTouchStates();
     touchStates = touchGroup0.getTouchStates();
 
@@ -403,54 +391,6 @@ static void MX_TIM2_Init(void)
 
   /* USER CODE END TIM2_Init 2 */
   HAL_TIM_MspPostInit(&htim2);
-
-}
-
-/**
-  * @brief TSC Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_TSC_Init(void)
-{
-
-  /* USER CODE BEGIN TSC_Init 0 */
-
-  /* USER CODE END TSC_Init 0 */
-
-  /* USER CODE BEGIN TSC_Init 1 */
-
-  /* USER CODE END TSC_Init 1 */
-  /** Configure the TSC peripheral
-  */
-  htsc.Instance = TSC;
-  htsc.Init.CTPulseHighLength = TSC_CTPH_8CYCLES;
-  htsc.Init.CTPulseLowLength = TSC_CTPL_8CYCLES;
-  htsc.Init.SpreadSpectrum = DISABLE;
-  htsc.Init.SpreadSpectrumDeviation = 1;
-  htsc.Init.SpreadSpectrumPrescaler = TSC_SS_PRESC_DIV1;
-  htsc.Init.PulseGeneratorPrescaler = TSC_PG_PRESC_DIV8;
-  htsc.Init.MaxCountValue = TSC_MCV_8191;
-  htsc.Init.IODefaultMode = TSC_IODEF_OUT_PP_LOW;
-  htsc.Init.SynchroPinPolarity = TSC_SYNC_POLARITY_FALLING;
-  htsc.Init.AcquisitionMode = TSC_ACQ_MODE_NORMAL;
-  htsc.Init.MaxCountInterrupt = DISABLE;
-  htsc.Init.ChannelIOs = TSC_GROUP1_IO2|TSC_GROUP1_IO3|TSC_GROUP1_IO4|TSC_GROUP2_IO2
-                      |TSC_GROUP2_IO3|TSC_GROUP2_IO4|TSC_GROUP3_IO2|TSC_GROUP3_IO3
-                      |TSC_GROUP3_IO4|TSC_GROUP4_IO2|TSC_GROUP4_IO3|TSC_GROUP4_IO4
-                      |TSC_GROUP5_IO2|TSC_GROUP5_IO3|TSC_GROUP5_IO4|TSC_GROUP6_IO2
-                      |TSC_GROUP6_IO3|TSC_GROUP6_IO4|TSC_GROUP7_IO2|TSC_GROUP7_IO3
-                      |TSC_GROUP7_IO4|TSC_GROUP8_IO2|TSC_GROUP8_IO3|TSC_GROUP8_IO4;
-    htsc.Init.ShieldIOs = 0;
-    htsc.Init.SamplingIOs = TSC_GROUP1_IO1|TSC_GROUP2_IO1|TSC_GROUP3_IO1|TSC_GROUP4_IO1
-                      |TSC_GROUP5_IO1|TSC_GROUP6_IO1|TSC_GROUP7_IO1|TSC_GROUP8_IO1;
-  if (HAL_TSC_Init(&htsc) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN TSC_Init 2 */
-
-  /* USER CODE END TSC_Init 2 */
 
 }
 

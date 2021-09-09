@@ -1,5 +1,5 @@
 #include "TouchBoardGroup.hpp"
-#include "TouchKeyMap.h"
+#include "TouchGpioMap.h"
 #include "stm32l0xx_hal.h"
 
 TouchBoardGroup::TouchBoardGroup(uint8_t n, TIM_HandleTypeDef &timHandle,
@@ -9,7 +9,7 @@ TouchBoardGroup::TouchBoardGroup(uint8_t n, TIM_HandleTypeDef &timHandle,
   numBoards = n;
   numPixels = n*NUM_PIXELS_PER_BOARD;
   for (int i=0; i<numBoards; i++) {
-    touchBoards[i].setTouchKeyOffset(touchKeyMap[i]);
+    touchBoards[i].setTouchGPIO(touchGpioMap_Port[i], touchGpioMap_Pin[i]);
     touchStates[i] = NOT_TOUCHED;
   }
 }

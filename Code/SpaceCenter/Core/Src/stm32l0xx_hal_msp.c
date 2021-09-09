@@ -188,6 +188,50 @@ void HAL_I2S_MspDeInit(I2S_HandleTypeDef* hi2s)
 }
 
 /**
+* @brief RNG MSP Initialization
+* This function configures the hardware resources used in this example
+* @param hrng: RNG handle pointer
+* @retval None
+*/
+void HAL_RNG_MspInit(RNG_HandleTypeDef* hrng)
+{
+  if(hrng->Instance==RNG)
+  {
+  /* USER CODE BEGIN RNG_MspInit 0 */
+
+  /* USER CODE END RNG_MspInit 0 */
+    /* Peripheral clock enable */
+    __HAL_RCC_RNG_CLK_ENABLE();
+  /* USER CODE BEGIN RNG_MspInit 1 */
+
+  /* USER CODE END RNG_MspInit 1 */
+  }
+
+}
+
+/**
+* @brief RNG MSP De-Initialization
+* This function freeze the hardware resources used in this example
+* @param hrng: RNG handle pointer
+* @retval None
+*/
+void HAL_RNG_MspDeInit(RNG_HandleTypeDef* hrng)
+{
+  if(hrng->Instance==RNG)
+  {
+  /* USER CODE BEGIN RNG_MspDeInit 0 */
+
+  /* USER CODE END RNG_MspDeInit 0 */
+    /* Peripheral clock disable */
+    __HAL_RCC_RNG_CLK_DISABLE();
+  /* USER CODE BEGIN RNG_MspDeInit 1 */
+
+  /* USER CODE END RNG_MspDeInit 1 */
+  }
+
+}
+
+/**
 * @brief SPI MSP Initialization
 * This function configures the hardware resources used in this example
 * @param hspi: SPI handle pointer
@@ -418,183 +462,6 @@ void HAL_TIM_Base_MspDeInit(TIM_HandleTypeDef* htim_base)
   /* USER CODE BEGIN TIM2_MspDeInit 1 */
 
   /* USER CODE END TIM2_MspDeInit 1 */
-  }
-
-}
-
-/**
-* @brief TSC MSP Initialization
-* This function configures the hardware resources used in this example
-* @param htsc: TSC handle pointer
-* @retval None
-*/
-void HAL_TSC_MspInit(TSC_HandleTypeDef* htsc)
-{
-  GPIO_InitTypeDef GPIO_InitStruct = {0};
-  if(htsc->Instance==TSC)
-  {
-  /* USER CODE BEGIN TSC_MspInit 0 */
-
-  /* USER CODE END TSC_MspInit 0 */
-    /* Peripheral clock enable */
-    __HAL_RCC_TSC_CLK_ENABLE();
-
-    __HAL_RCC_GPIOC_CLK_ENABLE();
-    __HAL_RCC_GPIOA_CLK_ENABLE();
-    __HAL_RCC_GPIOB_CLK_ENABLE();
-    /**TSC GPIO Configuration
-    PC0     ------> TSC_G7_IO1
-    PC1     ------> TSC_G7_IO2
-    PC2     ------> TSC_G7_IO3
-    PC3     ------> TSC_G7_IO4
-    PA0     ------> TSC_G1_IO1
-    PA1     ------> TSC_G1_IO2
-    PA2     ------> TSC_G1_IO3
-    PA3     ------> TSC_G1_IO4
-    PA4     ------> TSC_G2_IO1
-    PA5     ------> TSC_G2_IO2
-    PA6     ------> TSC_G2_IO3
-    PA7     ------> TSC_G2_IO4
-    PC5     ------> TSC_G3_IO1
-    PB0     ------> TSC_G3_IO2
-    PB1     ------> TSC_G3_IO3
-    PB2     ------> TSC_G3_IO4
-    PB11     ------> TSC_G6_IO1
-    PB12     ------> TSC_G6_IO2
-    PB13     ------> TSC_G6_IO3
-    PB14     ------> TSC_G6_IO4
-    PC6     ------> TSC_G8_IO1
-    PC7     ------> TSC_G8_IO2
-    PC8     ------> TSC_G8_IO3
-    PC9     ------> TSC_G8_IO4
-    PA9     ------> TSC_G4_IO1
-    PA10     ------> TSC_G4_IO2
-    PA11     ------> TSC_G4_IO3
-    PA12     ------> TSC_G4_IO4
-    PB3     ------> TSC_G5_IO1
-    PB4     ------> TSC_G5_IO2
-    PB6     ------> TSC_G5_IO3
-    PB7     ------> TSC_G5_IO4
-    */
-    GPIO_InitStruct.Pin = TOUCH_G7_1_SAMP_Pin|GPIO_PIN_5|GPIO_PIN_6;
-    GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-    GPIO_InitStruct.Alternate = GPIO_AF3_TSC;
-    HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
-
-    GPIO_InitStruct.Pin = TOUCH_G7_2_STAR_0_Pin|GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_7
-                          |GPIO_PIN_8|GPIO_PIN_9;
-    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-    GPIO_InitStruct.Alternate = GPIO_AF3_TSC;
-    HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
-
-    GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_4|GPIO_PIN_9;
-    GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-    GPIO_InitStruct.Alternate = GPIO_AF3_TSC;
-    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
-    GPIO_InitStruct.Pin = GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_5
-                          |GPIO_PIN_6|GPIO_PIN_7|GPIO_PIN_10|GPIO_PIN_11
-                          |GPIO_PIN_12;
-    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-    GPIO_InitStruct.Alternate = GPIO_AF3_TSC;
-    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
-    GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_12
-                          |GPIO_PIN_13|GPIO_PIN_14|GPIO_PIN_4|GPIO_PIN_6
-                          |GPIO_PIN_7;
-    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-    GPIO_InitStruct.Alternate = GPIO_AF3_TSC;
-    HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
-
-    GPIO_InitStruct.Pin = GPIO_PIN_11|GPIO_PIN_3;
-    GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-    GPIO_InitStruct.Alternate = GPIO_AF3_TSC;
-    HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
-
-  /* USER CODE BEGIN TSC_MspInit 1 */
-
-  /* USER CODE END TSC_MspInit 1 */
-  }
-
-}
-
-/**
-* @brief TSC MSP De-Initialization
-* This function freeze the hardware resources used in this example
-* @param htsc: TSC handle pointer
-* @retval None
-*/
-void HAL_TSC_MspDeInit(TSC_HandleTypeDef* htsc)
-{
-  if(htsc->Instance==TSC)
-  {
-  /* USER CODE BEGIN TSC_MspDeInit 0 */
-
-  /* USER CODE END TSC_MspDeInit 0 */
-    /* Peripheral clock disable */
-    __HAL_RCC_TSC_CLK_DISABLE();
-
-    /**TSC GPIO Configuration
-    PC0     ------> TSC_G7_IO1
-    PC1     ------> TSC_G7_IO2
-    PC2     ------> TSC_G7_IO3
-    PC3     ------> TSC_G7_IO4
-    PA0     ------> TSC_G1_IO1
-    PA1     ------> TSC_G1_IO2
-    PA2     ------> TSC_G1_IO3
-    PA3     ------> TSC_G1_IO4
-    PA4     ------> TSC_G2_IO1
-    PA5     ------> TSC_G2_IO2
-    PA6     ------> TSC_G2_IO3
-    PA7     ------> TSC_G2_IO4
-    PC5     ------> TSC_G3_IO1
-    PB0     ------> TSC_G3_IO2
-    PB1     ------> TSC_G3_IO3
-    PB2     ------> TSC_G3_IO4
-    PB11     ------> TSC_G6_IO1
-    PB12     ------> TSC_G6_IO2
-    PB13     ------> TSC_G6_IO3
-    PB14     ------> TSC_G6_IO4
-    PC6     ------> TSC_G8_IO1
-    PC7     ------> TSC_G8_IO2
-    PC8     ------> TSC_G8_IO3
-    PC9     ------> TSC_G8_IO4
-    PA9     ------> TSC_G4_IO1
-    PA10     ------> TSC_G4_IO2
-    PA11     ------> TSC_G4_IO3
-    PA12     ------> TSC_G4_IO4
-    PB3     ------> TSC_G5_IO1
-    PB4     ------> TSC_G5_IO2
-    PB6     ------> TSC_G5_IO3
-    PB7     ------> TSC_G5_IO4
-    */
-    HAL_GPIO_DeInit(GPIOC, TOUCH_G7_1_SAMP_Pin|TOUCH_G7_2_STAR_0_Pin|GPIO_PIN_2|GPIO_PIN_3
-                          |GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7|GPIO_PIN_8
-                          |GPIO_PIN_9);
-
-    HAL_GPIO_DeInit(GPIOA, GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3
-                          |GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7
-                          |GPIO_PIN_9|GPIO_PIN_10|GPIO_PIN_11|GPIO_PIN_12);
-
-    HAL_GPIO_DeInit(GPIOB, GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_11
-                          |GPIO_PIN_12|GPIO_PIN_13|GPIO_PIN_14|GPIO_PIN_3
-                          |GPIO_PIN_4|GPIO_PIN_6|GPIO_PIN_7);
-
-  /* USER CODE BEGIN TSC_MspDeInit 1 */
-
-  /* USER CODE END TSC_MspDeInit 1 */
   }
 
 }

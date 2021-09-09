@@ -5,7 +5,7 @@
 #include <vector>
 #include "NeoPixel.hpp"
 #include "TouchBoard.hpp"
-#include "touchsensing.h"
+#include "stm32l0xx_hal.h"
 
 class TouchBoardGroup {
 
