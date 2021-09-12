@@ -1,11 +1,11 @@
-main.cpp:85:5:int main()	56	static
-main.cpp:223:6:void SystemClock_Config()	96	static
-main.cpp:265:13:void MX_I2S2_Init()	8	static
-main.cpp:297:13:void MX_SPI1_Init()	8	static
-main.cpp:335:13:void MX_TIM2_Init()	48	static
-main.cpp:400:13:void MX_DMA_Init()	16	static
-main.cpp:424:13:void MX_GPIO_Init()	64	static
-main.cpp:518:6:void Error_Handler()	8	static,ignoring_inline_asm
+main.cpp:85:5:int main()	48	static
+main.cpp:195:6:void SystemClock_Config()	96	static
+main.cpp:237:13:void MX_I2S2_Init()	8	static
+main.cpp:269:13:void MX_SPI1_Init()	8	static
+main.cpp:307:13:void MX_TIM2_Init()	48	static
+main.cpp:372:13:void MX_DMA_Init()	16	static
+main.cpp:396:13:void MX_GPIO_Init()	64	static
+main.cpp:523:6:void Error_Handler()	8	static,ignoring_inline_asm
 stl_vector.h:675:7:std::vector<_Tp, _Alloc>::~vector() [with _Tp = TouchState_enum; _Alloc = std::allocator<TouchState_enum>]	24	static
 allocator.h:138:7:std::allocator< <template-parameter-1-1> >::allocator() [with _Tp = TouchState_enum]	16	static
 allocator.h:153:7:std::allocator< <template-parameter-1-1> >::~allocator() [with _Tp = TouchState_enum]	16	static
@@ -56,6 +56,6 @@ stl_algobase.h:802:5:_OI std::fill_n(_OI, _Size, const _Tp&) [with _OI = TouchSt
 stl_algobase.h:280:5:_Iterator std::__niter_base(_Iterator) [with _Iterator = TouchState_enum*]	16	static
 stl_algobase.h:295:5:_Iterator std::__niter_wrap(const _Iterator&, _Iterator) [with _Iterator = TouchState_enum*]	16	static
 stl_algobase.h:756:5:typename __gnu_cxx::__enable_if<(! std::__is_scalar<_Tp>::__value), _OutputIterator>::__type std::__fill_n_a(_OutputIterator, _Size, const _Tp&) [with _OutputIterator = TouchState_enum*; _Size = unsigned int; _Tp = TouchState_enum]	32	static
-main.cpp:527:1:void __static_initialization_and_destruction_0(int, int)	40	static
-main.cpp:527:1:cpp)	8	static
-main.cpp:527:1:cpp)	8	static
+main.cpp:532:1:void __static_initialization_and_destruction_0(int, int)	40	static
+main.cpp:532:1:cpp)	8	static
+main.cpp:532:1:cpp)	8	static

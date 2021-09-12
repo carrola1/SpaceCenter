@@ -148,40 +148,12 @@ int main(void)
     touched = false;
     for (int i=0; i<NUM_BOARDS; i++) {
       if (touchStates[i] == TOUCHED) {
-        touched = true;
-        board_touched = i;
-        break;
+        touchGroup0.setBoardColor(i, 255, 100, 0);
+      } else {
+        touchGroup0.setBoardColor(i, 0, 100, 255);
       }
     }
-
-
-    if ((touched == true) && (touched_last == false))
-    {
-      //touchGroup0.setAllPixelColor(0,255,0);
-      //touchGroup0.showPixels();
-      //touchGroup0.twinkleBoard(0);
-      touchGroup0.setBoardColor(board_touched, 255, 100, 0);
-      touchGroup0.showPixels();
-      /*
-      for (int i=0; i<32; i++) {
-        rocketStreamL.setPixelColor(i, 255, 0, 0);
-      }
-      rocketStreamL.show();
-      */
-    }
-    else if ((touched == false) && (touched_last == true))
-    { 
-      //touchGroup0.setAllPixelColor(0,0,255);
-      //touchGroup0.showPixels();
-      touchGroup0.setBoardColor(board_touched, 0, 100, 255);
-      touchGroup0.showPixels();
-      /*
-      for (int i=0; i<32; i++) {
-        rocketStreamL.setPixelColor(i, 0, 0, 255);
-      }
-      rocketStreamL.show();
-      */
-    }
+    touchGroup0.showPixels();
 
 
     touched_last = touched;
@@ -206,7 +178,7 @@ int main(void)
     */
 
 
-    HAL_Delay(50);
+    HAL_Delay(250);
 
 
 	/* USER CODE END WHILE */
@@ -445,6 +417,9 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOD, AUDIO_SD_N_L_Pin|AUDIO_SD_N_R_Pin, GPIO_PIN_RESET);
 
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(SD_SPI1_CS_N_GPIO_Port, SD_SPI1_CS_N_Pin, GPIO_PIN_RESET);
+
   /*Configure GPIO pins : BUTTON_L_Pin SD_DET_A_Pin SD_DET_B_Pin */
   GPIO_InitStruct.Pin = BUTTON_L_Pin|SD_DET_A_Pin|SD_DET_B_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
@@ -458,11 +433,13 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(BUTTON_LED_L_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : BUTTON_R_Pin */
-  GPIO_InitStruct.Pin = BUTTON_R_Pin;
+  /*Configure GPIO pins : BUTTON_R_Pin TOUCH_STAR_0_Pin TOUCH_STAR_1_Pin TOUCH_STAR_2_Pin
+                           TOUCH_STAR_15_Pin TOUCH_STAR_16_Pin TOUCH_STAR_17_Pin */
+  GPIO_InitStruct.Pin = BUTTON_R_Pin|TOUCH_STAR_0_Pin|TOUCH_STAR_1_Pin|TOUCH_STAR_2_Pin
+                          |TOUCH_STAR_15_Pin|TOUCH_STAR_16_Pin|TOUCH_STAR_17_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(BUTTON_R_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
   /*Configure GPIO pin : BUTTON_LED_R_Pin */
   GPIO_InitStruct.Pin = BUTTON_LED_R_Pin;
@@ -478,19 +455,40 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(TEST_LED_GPIO_Port, &GPIO_InitStruct);
 
+  /*Configure GPIO pin : TOUCH_G7_1_SAMP_Pin */
+  GPIO_InitStruct.Pin = TOUCH_G7_1_SAMP_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  GPIO_InitStruct.Alternate = GPIO_AF3_TSC;
+  HAL_GPIO_Init(TOUCH_G7_1_SAMP_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : TOUCH_STAR_3_Pin TOUCH_STAR_4_Pin TOUCH_STAR_5_Pin TOUCH_STAR_6_Pin
+                           TOUCH_STAR_7_Pin TOUCH_STAR_8_Pin TOUCH_STAR_18_Pin TOUCH_STAR_19_Pin
+                           TOUCH_STAR_20_Pin */
+  GPIO_InitStruct.Pin = TOUCH_STAR_3_Pin|TOUCH_STAR_4_Pin|TOUCH_STAR_5_Pin|TOUCH_STAR_6_Pin
+                          |TOUCH_STAR_7_Pin|TOUCH_STAR_8_Pin|TOUCH_STAR_18_Pin|TOUCH_STAR_19_Pin
+                          |TOUCH_STAR_20_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : TOUCH_STAR_9_Pin TOUCH_STAR_10_Pin TOUCH_STAR_11_Pin TOUCH_STAR_12_Pin
+                           TOUCH_STAR_13_Pin TOUCH_STAR_14_Pin TOUCH_STAR_21_Pin TOUCH_STAR_22_Pin
+                           TOUCH_STAR_23_Pin */
+  GPIO_InitStruct.Pin = TOUCH_STAR_9_Pin|TOUCH_STAR_10_Pin|TOUCH_STAR_11_Pin|TOUCH_STAR_12_Pin
+                          |TOUCH_STAR_13_Pin|TOUCH_STAR_14_Pin|TOUCH_STAR_21_Pin|TOUCH_STAR_22_Pin
+                          |TOUCH_STAR_23_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
   /*Configure GPIO pin : AUDIO_SD_N_L_Pin */
   GPIO_InitStruct.Pin = AUDIO_SD_N_L_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(AUDIO_SD_N_L_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : SD_SPI1_CS_N_Pin */
-  GPIO_InitStruct.Pin = SD_SPI1_CS_N_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-  HAL_GPIO_Init(SD_SPI1_CS_N_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pin : AUDIO_SD_N_R_Pin */
   GPIO_InitStruct.Pin = AUDIO_SD_N_R_Pin;
@@ -504,6 +502,13 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(MODE_SW_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : SD_SPI1_CS_N_Pin */
+  GPIO_InitStruct.Pin = SD_SPI1_CS_N_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(SD_SPI1_CS_N_GPIO_Port, &GPIO_InitStruct);
 
 }
 
