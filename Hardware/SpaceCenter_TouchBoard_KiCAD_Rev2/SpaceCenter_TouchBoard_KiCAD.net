@@ -1,7 +1,7 @@
 (export (version D)
   (design
     (source /home/andrew/GitHub/SpaceCenter/Hardware/SpaceCenter_TouchBoard_KiCAD_Rev2/SpaceCenter_TouchBoard_KiCAD.sch)
-    (date "Tue 31 Aug 2021 06:06:23 AM EDT")
+    (date "Sat 11 Sep 2021 10:08:52 PM EDT")
     (tool "Eeschema 5.1.10-88a1d61d58~90~ubuntu20.04.1")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
@@ -71,7 +71,7 @@
       (sheetpath (names /) (tstamps /))
       (tstamp 612E78E7))
     (comp (ref R2)
-      (value 100k)
+      (value 200k)
       (footprint Resistor_SMD:R_0402_1005Metric_Pad0.72x0.64mm_HandSolder)
       (datasheet ~)
       (libsource (lib Device) (part R) (description Resistor))

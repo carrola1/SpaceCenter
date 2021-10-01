@@ -2,7 +2,7 @@
 #define TOUCHBOARD_HPP
 
 #include <stdint.h>
-#include <vector>
+#include "stm32l0xx_hal.h"
 
 #define NUM_PIXELS_PER_BOARD 2
 
@@ -30,14 +30,15 @@ public:
   void setAllPixelColor(uint8_t r, uint8_t g, uint8_t b);
   PixelColor_s getPixelColor(uint8_t pixel_ind);
 
-  void setTouchKeyOffset(uint8_t touchKeyOffset);
+  void setTouchGPIO(GPIO_TypeDef *GPIOx, uint16_t GPIOpin);
   TouchState_enum getTouchState();
   void updateTouchState();
 
 private:
   PixelColor_s pixelColors[NUM_PIXELS_PER_BOARD];
 
-  uint8_t myTouchKeyOffset;
+  GPIO_TypeDef *myGpioPort;
+  uint16_t myGpioPin;
   TouchState_enum myTouchState;
 };
 

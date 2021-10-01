@@ -1,7 +1,0 @@
-### Module positions - created on Fri Apr 30 06:37:35 2021 ###
-### Printed by Pcbnew version kicad 5.1.10-88a1d61d58~88~ubuntu20.04.1
-## Unit = mm, Angle = deg.
-## Side : bottom
-# Ref     Val              Package                                              PosX       PosY       Rot  Side
-J1        Conn_01x05_Male  JST_SH_BM05B-SRSS-TB_1x05-1MP_P1.00mm_Vertical    15.2654    10.5283  270.0000  bottom
-## End

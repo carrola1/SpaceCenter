@@ -1,9 +1,7 @@
 #include "TouchBoard.hpp"
-#include "touchsensing.h"
 
 TouchBoard::TouchBoard() {
   myTouchState = NOT_TOUCHED;
-  myTouchKeyOffset = 0;
   for (int i=0; i<NUM_PIXELS_PER_BOARD; i++) {
     pixelColors[i].r = 0;
     pixelColors[i].g = 0;
@@ -32,14 +30,15 @@ PixelColor_s TouchBoard::getPixelColor(uint8_t pixel_ind) {
   return pixelColors[pixel_ind];
 }
 
-void TouchBoard::setTouchKeyOffset(uint8_t touchKeyOffset) {
-  myTouchKeyOffset = touchKeyOffset;
+void TouchBoard::setTouchGPIO(GPIO_TypeDef *GPIOx, uint16_t GPIOpin) {
+  myGpioPort = GPIOx;
+  myGpioPin = GPIOpin;
 }
 
 void TouchBoard::updateTouchState() {
-  if (MyTKeysB[myTouchKeyOffset].p_Data->StateId == TSL_STATEID_DETECT) {
+  if (HAL_GPIO_ReadPin(myGpioPort, myGpioPin) == GPIO_PIN_RESET) {
     myTouchState = TOUCHED;
-  } else if (MyTKeysB[myTouchKeyOffset].p_Data->StateId == TSL_STATEID_RELEASE) {
+  } else {
     myTouchState = NOT_TOUCHED;
   }
 }

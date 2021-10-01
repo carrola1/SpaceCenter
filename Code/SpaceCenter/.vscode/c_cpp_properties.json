@@ -1,0 +1,22 @@
+{
+  "configurations": [
+    {
+      "name": "My Configuration",
+      "includePath": [
+        "${workspaceFolder}/",
+        "${workspaceFolder}/Core/**",
+        "${workspaceFolder}/Drivers/**",
+        "${workspaceFolder}/Middlewares/**"
+      ],
+      "defines": [
+        "STM32L072xx",
+        "USE_HAL_DRIVER",
+        "_DEBUG",
+        "__CC_ARM"
+      ],
+      "cppStandard": "c++14",
+      "cStandard": "c11"
+    }
+  ],
+  "version": 4
+}

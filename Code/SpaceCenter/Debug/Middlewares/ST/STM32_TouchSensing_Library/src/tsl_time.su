@@ -1,3 +1,0 @@
-tsl_time.c:43:6:TSL_tim_ProcessIT	0	static
-tsl_time.c:71:19:TSL_tim_CheckDelay_ms	12	static
-tsl_time.c:130:19:TSL_tim_CheckDelay_sec	12	static
