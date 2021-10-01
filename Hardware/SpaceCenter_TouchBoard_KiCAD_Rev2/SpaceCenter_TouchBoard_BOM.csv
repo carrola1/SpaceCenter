@@ -1,5 +1,0 @@
-Item,Ref Des,Quantity,Part #,Digi-key Part #,Value/Description,Package,Type,Digi-key Cost
-1,J1,1,DO NOT POPULATE,DO NOT POPULATE,Conn_01x05_Male,JST_SH_BM05B-SRSS-TB_1x05-1MP_P1.00mm_Vertical,SMD,
-2,J2,1,DO NOT POPULATE,DO NOT POPULATE,Cap touch sensor,SolderWirePad_1x01_SMD_5x10mm,N/A,
-3,"C1,C2",2,Basic,N/A,Ceramic 0.1u 50V +/-10% or better,C_0603_1608Metric_Pad1.05x0.95mm_HandSolder,SMD,
-4,"D1,D2",2,SK6812,1528-1104-ND (qty 10),Serial Addressable RGB LED,LED_SK6812_PLCC4_5.0x5.0mm_P3.2mm,SMD,4.5
