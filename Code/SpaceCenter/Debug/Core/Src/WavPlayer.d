@@ -1,7 +1,4 @@
-Core/Src/wav_player.o: ../Core/Src/wav_player.c \
- ../Middlewares/Third_Party/FatFs/src/ff.h \
- ../Middlewares/Third_Party/FatFs/src/integer.h \
- ../Middlewares/Third_Party/FatFs/src/ffconf.h ../Core/Inc/wav_player.h \
+Core/Src/WavPlayer.o: ../Core/Src/WavPlayer.cpp ../Core/Inc/WavPlayer.hpp \
  ../Core/Inc/main.h ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal.h \
  ../Core/Inc/stm32l0xx_hal_conf.h \
  ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_rcc.h \
@@ -35,15 +32,10 @@ Core/Src/wav_player.o: ../Core/Src/wav_player.c \
  ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_tim_ex.h \
  ../Middlewares/Third_Party/FatFs/src/diskio.h \
  ../Middlewares/Third_Party/FatFs/src/integer.h \
- ../Middlewares/Third_Party/FatFs/src/ff.h
+ ../Middlewares/Third_Party/FatFs/src/ff.h \
+ ../Middlewares/Third_Party/FatFs/src/ffconf.h
 
-../Middlewares/Third_Party/FatFs/src/ff.h:
-
-../Middlewares/Third_Party/FatFs/src/integer.h:
-
-../Middlewares/Third_Party/FatFs/src/ffconf.h:
-
-../Core/Inc/wav_player.h:
+../Core/Inc/WavPlayer.hpp:
 
 ../Core/Inc/main.h:
 
@@ -114,3 +106,5 @@ Core/Src/wav_player.o: ../Core/Src/wav_player.c \
 ../Middlewares/Third_Party/FatFs/src/integer.h:
 
 ../Middlewares/Third_Party/FatFs/src/ff.h:
+
+../Middlewares/Third_Party/FatFs/src/ffconf.h:

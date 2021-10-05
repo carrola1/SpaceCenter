@@ -11,12 +11,12 @@ static void spi_set_speed(enum sd_speed speed)
 {
 	//CHECK YOUR APB1 FREQ!!!
 	SPI_InitTypeDef spi;
-	int prescaler = SPI_BAUDRATEPRESCALER_8;
+	int prescaler = SPI_BAUDRATEPRESCALER_4;
 
 	if (speed == SD_SPEED_400KHZ)
-		prescaler = SPI_BAUDRATEPRESCALER_64;
+		prescaler = SPI_BAUDRATEPRESCALER_32;
 	else if (speed == SD_SPEED_25MHZ)
-		prescaler = SPI_BAUDRATEPRESCALER_8;
+		prescaler = SPI_BAUDRATEPRESCALER_4;
 
 	FAT_SD_SPI.Init.BaudRatePrescaler = prescaler;
 	HAL_SPI_Init(&FAT_SD_SPI);

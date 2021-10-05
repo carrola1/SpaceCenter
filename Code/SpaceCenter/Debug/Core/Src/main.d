@@ -33,7 +33,7 @@ Core/Src/main.o: ../Core/Src/main.cpp ../Core/Inc/main.h \
  ../Middlewares/Third_Party/FatFs/src/diskio.h \
  ../Middlewares/Third_Party/FatFs/src/integer.h \
  ../Middlewares/Third_Party/FatFs/src/ff.h \
- ../Middlewares/Third_Party/FatFs/src/ffconf.h ../Core/Inc/wav_player.h \
+ ../Middlewares/Third_Party/FatFs/src/ffconf.h ../Core/Inc/WavPlayer.hpp \
  ../Core/Inc/main.h ../Core/Inc/TouchBoardGroup.hpp \
  ../Core/Inc/NeoPixel.hpp ../Core/Inc/TouchBoard.hpp
 
@@ -109,7 +109,7 @@ Core/Src/main.o: ../Core/Src/main.cpp ../Core/Inc/main.h \
 
 ../Middlewares/Third_Party/FatFs/src/ffconf.h:
 
-../Core/Inc/wav_player.h:
+../Core/Inc/WavPlayer.hpp:
 
 ../Core/Inc/main.h:
 

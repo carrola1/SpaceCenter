@@ -23,7 +23,7 @@
 /* USER CODE BEGIN Includes */
 #include "diskio.h"
 #include "ff.h"
-#include "wav_player.h"
+#include "WavPlayer.hpp"
 #include "TouchBoardGroup.hpp"
 /* USER CODE END Includes */
 
@@ -59,6 +59,7 @@ DMA_HandleTypeDef hdma_tim2_ch4;
 FATFS FatFs;
 TouchBoardGroup touchGroup0 = TouchBoardGroup(NUM_BOARDS, htim2, TIM_CHANNEL_1, hdma_tim2_ch1);
 std::vector<TouchState_enum> touchStates(NUM_BOARDS);
+WavPlayer audioPlayer = WavPlayer(hi2s2);
 //NeoPixel rocketStreamL = NeoPixel(68, htim2, TIM_CHANNEL_3, hdma_tim2_ch3);
 /* USER CODE END PV */
 
@@ -126,7 +127,9 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   touchGroup0.setAllPixelColor(0,0,255);
   touchGroup0.showPixels();
-
+  //audioPlayer.open_wav("green.wav");
+  //audioPlayer.play_dma();
+  audioPlayer.play_atomic("green.wav");
   /*
   for (int i=0; i<68; i++) {
     rocketStreamL.setPixelColor(i, 0, 0, 255);
@@ -142,6 +145,7 @@ int main(void)
   while (1)
   {
 
+    /*
     touchGroup0.updateTouchStates();
     touchStates = touchGroup0.getTouchStates();
 
@@ -154,7 +158,7 @@ int main(void)
       }
     }
     touchGroup0.showPixels();
-
+    */
 
     touched_last = touched;
 
@@ -177,8 +181,9 @@ int main(void)
     sw = !sw;
     */
 
-
-    HAL_Delay(250);
+    if (audioPlayer.audioPlaying == 1) {
+      audioPlayer.play_dma();
+    }
 
 
 	/* USER CODE END WHILE */
@@ -492,7 +497,7 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pin : AUDIO_SD_N_R_Pin */
   GPIO_InitStruct.Pin = AUDIO_SD_N_R_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_OD;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(AUDIO_SD_N_R_GPIO_Port, &GPIO_InitStruct);
