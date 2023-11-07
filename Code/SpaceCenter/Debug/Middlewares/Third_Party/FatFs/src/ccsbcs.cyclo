@@ -1,0 +1,2 @@
+../Middlewares/Third_Party/FatFs/src/ccsbcs.c:275:7:ff_convert	6
+../Middlewares/Third_Party/FatFs/src/ccsbcs.c:304:7:ff_wtoupper	6

@@ -1,4 +1,5 @@
 (sym_lib_table
-  (lib (name MAX98357)(type Legacy)(uri ${KIPRJMOD}/Libraries/Symbols/MAX98357.lib)(options "")(descr ""))
-  (lib (name SpaceCenter_MainBoard_KiCAD-rescue)(type Legacy)(uri ${KIPRJMOD}/SpaceCenter_MainBoard_KiCAD-rescue.lib)(options "")(descr ""))
+  (version 7)
+  (lib (name "MAX98357")(type "Legacy")(uri "${KIPRJMOD}/Libraries/Symbols/MAX98357.lib")(options "")(descr ""))
+  (lib (name "SpaceCenter_MainBoard_KiCAD-rescue")(type "KiCad")(uri "${KIPRJMOD}/SpaceCenter_MainBoard_KiCAD-rescue.kicad_sym")(options "")(descr ""))
 )

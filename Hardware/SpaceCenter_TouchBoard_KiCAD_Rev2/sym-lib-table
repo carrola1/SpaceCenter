@@ -1,3 +1,5 @@
 (sym_lib_table
-  (lib (name MTCH101T-I-OT)(type Legacy)(uri ${KIPRJMOD}/Libraries/Symbols/MTCH101T-I-OT.lib)(options "")(descr ""))
+  (version 7)
+  (lib (name "MTCH101T-I-OT")(type "Legacy")(uri "${KIPRJMOD}/Libraries/Symbols/MTCH101T-I-OT.lib")(options "")(descr ""))
+  (lib (name "SpaceCenter_TouchBoard_KiCAD-rescue")(type "KiCad")(uri "${KIPRJMOD}/SpaceCenter_TouchBoard_KiCAD-rescue.kicad_sym")(options "")(descr ""))
 )

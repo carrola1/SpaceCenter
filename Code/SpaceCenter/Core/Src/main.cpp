@@ -60,7 +60,7 @@ FATFS FatFs;
 TouchBoardGroup touchGroup0 = TouchBoardGroup(NUM_BOARDS, htim2, TIM_CHANNEL_1, hdma_tim2_ch1);
 std::vector<TouchState_enum> touchStates(NUM_BOARDS);
 WavPlayer audioPlayer = WavPlayer(hi2s2);
-//NeoPixel rocketStreamL = NeoPixel(68, htim2, TIM_CHANNEL_3, hdma_tim2_ch3);
+NeoPixel rocketStreamL = NeoPixel(72, htim2, TIM_CHANNEL_3, hdma_tim2_ch3);
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -127,29 +127,22 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   touchGroup0.setAllPixelColor(0,0,255);
   touchGroup0.showPixels();
-  //audioPlayer.open_wav("green.wav");
-  //audioPlayer.play_dma();
-  audioPlayer.play_atomic("green.wav");
-  /*
-  for (int i=0; i<68; i++) {
+  //audioPlayer.open_wav("01_Blues_Clues.wav");
+  //audioPlayer.play_chunk();
+  //audioPlayer.play_atomic("01_Blues_Clues.wav");
+
+  for (int i=0; i<72; i++) {
     rocketStreamL.setPixelColor(i, 0, 0, 255);
   }
   rocketStreamL.show();
-  */
-
-  bool touched = false;
-  bool touched_last = false;
-
-  int board_touched = 0;
 
   while (1)
   {
 
-    /*
+
     touchGroup0.updateTouchStates();
     touchStates = touchGroup0.getTouchStates();
 
-    touched = false;
     for (int i=0; i<NUM_BOARDS; i++) {
       if (touchStates[i] == TOUCHED) {
         touchGroup0.setBoardColor(i, 255, 100, 0);
@@ -158,9 +151,8 @@ int main(void)
       }
     }
     touchGroup0.showPixels();
-    */
-
-    touched_last = touched;
+    rocketStreamL.show();
+    HAL_Delay(100);
 
     /*
     if (sw == 0) {
@@ -181,9 +173,9 @@ int main(void)
     sw = !sw;
     */
 
-    if (audioPlayer.audioPlaying == 1) {
-      audioPlayer.play_dma();
-    }
+    //if (audioPlayer.audioPlaying == 1) {
+    //  audioPlayer.play_chunk();
+    //}
 
 
 	/* USER CODE END WHILE */
@@ -289,7 +281,7 @@ static void MX_SPI1_Init(void)
   hspi1.Init.CLKPolarity = SPI_POLARITY_LOW;
   hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
   hspi1.Init.NSS = SPI_NSS_SOFT;
-  hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_8;
+  hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_4;
   hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
   hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
   hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
@@ -518,7 +510,9 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-
+void HAL_I2S_TxCpltCallback(I2S_HandleTypeDef* hi2s) {
+  return;
+}
 /* USER CODE END 4 */
 
 /**

@@ -18,14 +18,14 @@ class NeoPixel {
 
   private:
 
-    static const uint16_t WR_BUF_LEN = 48*3*8+8;//+8;//8*12; // Hold 4 NeoPixels at a time
     static const uint8_t PWM_HI = 28;//29;
     static const uint8_t PWM_LO = 12;//10;
 
+    uint16_t wrBufLen;
     uint16_t numLEDs;    ///< Number of RGB LEDs in strip
     uint16_t numBytes;   ///< Size of 'pixels' buffer below
     uint8_t  *pixels;     ///< Holds LED color values (3 bytes each)
-    uint8_t  wr_buf[WR_BUF_LEN];
+    uint8_t  *wr_buf;
     uint_fast8_t wr_buf_p;
     TIM_HandleTypeDef &htim;
     DMA_HandleTypeDef &hdma; 
