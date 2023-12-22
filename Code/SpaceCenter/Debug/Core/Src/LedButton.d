@@ -1,8 +1,4 @@
-Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_rng.o: \
- ../Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_rng.c \
- ../Middlewares/Third_Party/FatFs/src/ff.h \
- ../Middlewares/Third_Party/FatFs/src/integer.h \
- ../Middlewares/Third_Party/FatFs/src/ffconf.h \
+Core/Src/LedButton.o: ../Core/Src/LedButton.cpp ../Core/Inc/LedButton.hpp \
  ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal.h \
  ../Core/Inc/stm32l0xx_hal_conf.h \
  ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_rcc.h \
@@ -35,11 +31,7 @@ Drivers/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_rng.o: \
  ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_tim.h \
  ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_tim_ex.h
 
-../Middlewares/Third_Party/FatFs/src/ff.h:
-
-../Middlewares/Third_Party/FatFs/src/integer.h:
-
-../Middlewares/Third_Party/FatFs/src/ffconf.h:
+../Core/Inc/LedButton.hpp:
 
 ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal.h:
 

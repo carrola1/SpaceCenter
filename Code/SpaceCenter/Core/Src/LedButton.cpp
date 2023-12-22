@@ -8,6 +8,8 @@ LedButton::LedButton(GPIO_TypeDef* ledGpioIn, uint16_t ledGpioPinIn,
   buttonGpioPin = buttonGpioPinIn;
   buttonState = NOT_PRESSED;
   ledState = OFF;
+  timeLast = 0;
+  debounceButton = false;
 }
 
 LedButton::~LedButton() {
@@ -22,21 +24,26 @@ LedState_enum LedButton::getLedState() {
   return ledState;
 }
 
-void LedButton::updateButtonState()
-
-void TouchBoard::setTouchGPIO(GPIO_TypeDef *GPIOx, uint16_t GPIOpin) {
-  myGpioPort = GPIOx;
-  myGpioPin = GPIOpin;
-}
-
-void TouchBoard::updateTouchState() {
-  if (HAL_GPIO_ReadPin(myGpioPort, myGpioPin) == GPIO_PIN_RESET) {
-    myTouchState = TOUCHED;
+void LedButton::updateButtonState() {
+  if (debounceButton == false) {
+    uint16_t gpioRead = HAL_GPIO_ReadPin(buttonGpio, buttonGpioPin);
+    ButtonState_enum newButtonState = gpioRead;
+    if (newButtonState != buttonState) {
+      debounceButton = true;
+      timeLast = HAL_GetTick();
+    }
+    buttonState = newButtonState;
   } else {
-    myTouchState = NOT_TOUCHED;
+    uint32_t timeNew = HAL_GetTick();
+    uint32_t timeDiff = timeNew - timeLast;
+    if (timeDiff >= BUTTON_DEBOUNCE_MS) {
+      debounceButton = false;
+    }
   }
 }
 
-TouchState_enum TouchBoard::getTouchState() {
-  return myTouchState;
+ButtonState_enum LedButton::getButtonState() {
+  return buttonState;
 }
+
+

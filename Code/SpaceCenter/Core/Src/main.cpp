@@ -158,11 +158,7 @@ int main(void)
       // Press a button to turn on
       ///////////////////////////////////////////////////////////////////////////////////
       case ST_off:
-        if (wake_sw_state == GPIO_PIN_RESET) {
-          new_audio_flag = 1;
-          audio_code = AUDIO_TRIG_START;
-          state = ST_awake;
-        }
+        state = ST_awake;
         HAL_Delay(200);
         break;
     

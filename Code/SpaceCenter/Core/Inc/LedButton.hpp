@@ -9,13 +9,13 @@
 typedef enum
   {
     NOT_PRESSED  = 0,
-    PRESSED      = 1
+    PRESSED
   } ButtonState_enum;
 
 typedef enum
   {
-    OFF  = 0,
-    ON   = 1
+    OFF  = 0U,
+    ON
   } LedState_enum;
 
 class LedButton {
@@ -37,6 +37,8 @@ private:
   uint16_t buttonGpioPin;
   ButtonState_enum buttonState;
   LedState_enum ledState;
+  uint32_t timeLast;
+  bool debounceButton;
 };
 
 #endif // LEDBUTTON_HPP
