@@ -60,7 +60,16 @@ FATFS FatFs;
 TouchBoardGroup touchGroup0 = TouchBoardGroup(NUM_BOARDS, htim2, TIM_CHANNEL_1, hdma_tim2_ch1);
 std::vector<TouchState_enum> touchStates(NUM_BOARDS);
 WavPlayer audioPlayer = WavPlayer(hi2s2);
-NeoPixel rocketStreamL = NeoPixel(72, htim2, TIM_CHANNEL_3, hdma_tim2_ch3);
+NeoPixel rocketStream = NeoPixel(72, htim2, TIM_CHANNEL_3, hdma_tim2_ch3);
+
+// States
+typedef enum states {ST_off, ST_awake} states;
+states state = ST_off;
+
+// Inactivity detection
+uint16_t inactivity_timeout = 600;
+uint16_t inactivity_timer = inactivity_timeout;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -118,41 +127,66 @@ int main(void)
   FRESULT fr;
   fr = f_mount(&FatFs, "", 1);
 
+  // Set LED defaults
   HAL_GPIO_WritePin(TEST_LED_GPIO_Port, TEST_LED_Pin, GPIO_PIN_SET);
   HAL_Delay(500);
+
+  touchGroup0.setAllPixelColor(0,0,255);
+  touchGroup0.showPixels();
+
+  for (int i=0; i<72; i++) {
+    rocketStream.setPixelColor(i, 0, 0, 255);
+  }
+  rocketStream.show();
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  touchGroup0.setAllPixelColor(0,0,255);
-  touchGroup0.showPixels();
+  
   //audioPlayer.open_wav("01_Blues_Clues.wav");
   //audioPlayer.play_chunk();
   //audioPlayer.play_atomic("01_Blues_Clues.wav");
 
-  for (int i=0; i<72; i++) {
-    rocketStreamL.setPixelColor(i, 0, 0, 255);
-  }
-  rocketStreamL.show();
-
   while (1)
   {
 
+    switch(state) {
+      
+      ///////////////////////////////////////////////////////////////////////////////////
+      // Off State
+      // Press a button to turn on
+      ///////////////////////////////////////////////////////////////////////////////////
+      case ST_off:
+        if (wake_sw_state == GPIO_PIN_RESET) {
+          new_audio_flag = 1;
+          audio_code = AUDIO_TRIG_START;
+          state = ST_awake;
+        }
+        HAL_Delay(200);
+        break;
+    
+      ///////////////////////////////////////////////////////////////////////////////////
+      // Awake State
+      ///////////////////////////////////////////////////////////////////////////////////
+      case ST_awake:
+        touchGroup0.updateTouchStates();
+        touchStates = touchGroup0.getTouchStates();
 
-    touchGroup0.updateTouchStates();
-    touchStates = touchGroup0.getTouchStates();
+        for (int i=0; i<NUM_BOARDS; i++) {
+          if (touchStates[i] == TOUCHED) {
+            touchGroup0.setBoardColor(i, 255, 100, 0);
+          } else {
+            touchGroup0.setBoardColor(i, 0, 100, 255);
+          }
+        }
+        touchGroup0.showPixels();
+        rocketStream.show();
+        HAL_Delay(100);
 
-    for (int i=0; i<NUM_BOARDS; i++) {
-      if (touchStates[i] == TOUCHED) {
-        touchGroup0.setBoardColor(i, 255, 100, 0);
-      } else {
-        touchGroup0.setBoardColor(i, 0, 100, 255);
-      }
+      default:
+        state = ST_awake;
     }
-    touchGroup0.showPixels();
-    rocketStreamL.show();
-    HAL_Delay(100);
 
     /*
     if (sw == 0) {
