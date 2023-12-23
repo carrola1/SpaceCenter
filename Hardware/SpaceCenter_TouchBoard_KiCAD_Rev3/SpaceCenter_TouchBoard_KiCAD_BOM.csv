@@ -1,10 +1,11 @@
 Id,Designator,Manufacturer Part #,Distributor Part #,Quantity,Description,Package,Type,Notes
-1,U1,MTCH101-I/OT,MTCH101-I/OT-ND,1,IC PROXIMITY DETECTOR,SOT-23-6,Surface Mount,
+1,U1,AT42QT1010-TSHR,AT42QT1010-TSHRCT-ND,1,IC PROXIMITY DETECTOR,SOT-23-6,Surface Mount,
 2,J1,BM05B-SRSS-TB(LF)(SN),455-1791-1-ND,1,CONN HEADER SMD 5POS 1MM,1x05-1MP_P1.00mm_Vertical,Surface Mount,
 3,"D1,D2",WS2812B,1568-COM-16346-ND (or equivalent),2,ADDRESS LED,PLCC4_5.0x5.0mm_P3.2mm,Surface Mount,
 4,"C1,C2,C3",Any (See Description),Any (See Description),3,CAP 0.1UF 25V X5R 0402,C_0402_1005Metric,Surface Mount,
-5,"R1,R4,R6",Any (See Description),Any (See Description),3,RES 4.7K 1% 0402,R_0402_1005Metric,Surface Mount,
-6,R2,Any (See Description),Any (See Description),1,RES 200K 1% 0402,R_0402_1005Metric,Surface Mount,
-7,R3,Any (See Description),Any (See Description),1,RES 100K 1% 0402,R_0402_1005Metric,Surface Mount,
-8,R5,DO NOT POPULATE,DO NOT POPULATE,1,DO NOT POPULATE,R_0402_1005Metric,Surface Mount,DO NOT POPULATE
-9,R7,Any (See Description),Any (See Description),1,RES 6.8K 1% 0402,R_0402_1005Metric,Surface Mount,
+5,R3,Any (See Description),Any (See Description),1,RES 1K 1% 0402,R_0402_1005Metric,Surface Mount,DO_NOT_POPULATE
+6,R4,Any (See Description),Any (See Description),1,RES 1K 1% 0402,R_0402_1005Metric,Surface Mount,
+7,R2,Any (See Description),Any (See Description),1,RES 10K 1% 0402,R_0402_1005Metric,Surface Mount,
+8,R1,Any (See Description),Any (See Description),1,RES 100K 1% 0402,R_0402_1005Metric,Surface Mount,
+9,R7,Any (See Description),Any (See Description),1,RES 16.9K 1% 0402,R_0402_1005Metric,Surface Mount,
+10,C5,Any (See Description),Any (See Description),1,CAP 10UF 6.3V X5R 0402,C_0402_1005Metric,Surface Mount,
