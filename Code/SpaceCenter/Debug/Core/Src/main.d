@@ -35,7 +35,8 @@ Core/Src/main.o: ../Core/Src/main.cpp ../Core/Inc/main.h \
  ../Middlewares/Third_Party/FatFs/src/ff.h \
  ../Middlewares/Third_Party/FatFs/src/ffconf.h ../Core/Inc/WavPlayer.hpp \
  ../Core/Inc/main.h ../Core/Inc/TouchBoardGroup.hpp \
- ../Core/Inc/NeoPixel.hpp ../Core/Inc/TouchBoard.hpp
+ ../Core/Inc/NeoPixel.hpp ../Core/Inc/TouchBoard.hpp \
+ ../Core/Inc/LedButton.hpp
 
 ../Core/Inc/main.h:
 
@@ -118,3 +119,5 @@ Core/Src/main.o: ../Core/Src/main.cpp ../Core/Inc/main.h \
 ../Core/Inc/NeoPixel.hpp:
 
 ../Core/Inc/TouchBoard.hpp:
+
+../Core/Inc/LedButton.hpp:

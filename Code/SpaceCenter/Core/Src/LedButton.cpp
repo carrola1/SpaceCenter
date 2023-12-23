@@ -16,7 +16,7 @@ LedButton::~LedButton() {
 }
 
 void LedButton::setLedState(LedState_enum state) {
-  HAL_GPIO_WritePin(ledGpio, ledGpioPin, state);
+  HAL_GPIO_WritePin(ledGpio, ledGpioPin, static_cast<GPIO_PinState>(state));
   ledState = state;
 }
 
@@ -26,8 +26,7 @@ LedState_enum LedButton::getLedState() {
 
 void LedButton::updateButtonState() {
   if (debounceButton == false) {
-    uint16_t gpioRead = HAL_GPIO_ReadPin(buttonGpio, buttonGpioPin);
-    ButtonState_enum newButtonState = gpioRead;
+	ButtonState_enum newButtonState = static_cast<ButtonState_enum>(HAL_GPIO_ReadPin(buttonGpio, buttonGpioPin));
     if (newButtonState != buttonState) {
       debounceButton = true;
       timeLast = HAL_GetTick();

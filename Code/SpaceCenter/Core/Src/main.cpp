@@ -25,6 +25,7 @@
 #include "ff.h"
 #include "WavPlayer.hpp"
 #include "TouchBoardGroup.hpp"
+#include "LedButton.hpp"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -56,11 +57,19 @@ DMA_HandleTypeDef hdma_tim2_ch3;
 DMA_HandleTypeDef hdma_tim2_ch4;
 
 /* USER CODE BEGIN PV */
+
+// Objects
 FATFS FatFs;
 TouchBoardGroup touchGroup0 = TouchBoardGroup(NUM_BOARDS, htim2, TIM_CHANNEL_1, hdma_tim2_ch1);
 std::vector<TouchState_enum> touchStates(NUM_BOARDS);
 WavPlayer audioPlayer = WavPlayer(hi2s2);
 NeoPixel rocketStream = NeoPixel(72, htim2, TIM_CHANNEL_3, hdma_tim2_ch3);
+LedButton buttonL = LedButton(BUTTON_L_GPIO_Port, BUTTON_L_Pin, BUTTON_LED_L_GPIO_Port, BUTTON_LED_L_Pin);
+LedButton buttonR = LedButton(BUTTON_R_GPIO_Port, BUTTON_R_Pin, BUTTON_LED_R_GPIO_Port, BUTTON_LED_R_Pin);
+
+// Variables
+ButtonState_enum buttonStateL;
+ButtonState_enum buttonStateR;
 
 // States
 typedef enum states {ST_off, ST_awake} states;
@@ -129,7 +138,6 @@ int main(void)
 
   // Set LED defaults
   HAL_GPIO_WritePin(TEST_LED_GPIO_Port, TEST_LED_Pin, GPIO_PIN_SET);
-  HAL_Delay(500);
 
   touchGroup0.setAllPixelColor(0,0,255);
   touchGroup0.showPixels();
@@ -166,7 +174,24 @@ int main(void)
       // Awake State
       ///////////////////////////////////////////////////////////////////////////////////
       case ST_awake:
-        touchGroup0.updateTouchStates();
+
+    	// Buttons
+        buttonL.updateButtonState();
+        buttonR.updateButtonState();
+        buttonStateL = buttonL.getButtonState();
+        buttonStateR = buttonR.getButtonState();
+        if (buttonStateL == PRESSED) {
+        	buttonL.setLedState(ON);
+        } else {
+        	buttonL.setLedState(OFF);
+        }
+        if (buttonStateR == PRESSED) {
+			buttonR.setLedState(ON);
+		} else {
+			buttonR.setLedState(OFF);
+		}
+
+    	touchGroup0.updateTouchStates();
         touchStates = touchGroup0.getTouchStates();
 
         for (int i=0; i<NUM_BOARDS; i++) {
