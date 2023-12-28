@@ -4,7 +4,7 @@
 #include <stdint.h>
 #include "stm32l0xx_hal.h"
 
-#define BUTTON_DEBOUNCE_MS 200
+#define BUTTON_DEBOUNCE_MS 100
 
 typedef enum
   {

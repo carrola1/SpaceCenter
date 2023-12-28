@@ -64,8 +64,8 @@ TouchBoardGroup touchGroup0 = TouchBoardGroup(NUM_BOARDS, htim2, TIM_CHANNEL_1, 
 std::vector<TouchState_enum> touchStates(NUM_BOARDS);
 WavPlayer audioPlayer = WavPlayer(hi2s2);
 NeoPixel rocketStream = NeoPixel(72, htim2, TIM_CHANNEL_3, hdma_tim2_ch3);
-LedButton buttonL = LedButton(BUTTON_L_GPIO_Port, BUTTON_L_Pin, BUTTON_LED_L_GPIO_Port, BUTTON_LED_L_Pin);
-LedButton buttonR = LedButton(BUTTON_R_GPIO_Port, BUTTON_R_Pin, BUTTON_LED_R_GPIO_Port, BUTTON_LED_R_Pin);
+LedButton buttonL = LedButton(BUTTON_LED_L_GPIO_Port, BUTTON_LED_L_Pin, BUTTON_L_GPIO_Port, BUTTON_L_Pin);
+LedButton buttonR = LedButton(BUTTON_LED_R_GPIO_Port, BUTTON_LED_R_Pin, BUTTON_R_GPIO_Port, BUTTON_R_Pin);
 
 // Variables
 ButtonState_enum buttonStateL;
@@ -143,7 +143,7 @@ int main(void)
   touchGroup0.showPixels();
 
   for (int i=0; i<72; i++) {
-    rocketStream.setPixelColor(i, 0, 0, 255);
+    rocketStream.setPixelColor(i, 0, 255, 0);
   }
   rocketStream.show();
 
@@ -203,7 +203,7 @@ int main(void)
         }
         touchGroup0.showPixels();
         rocketStream.show();
-        HAL_Delay(100);
+        HAL_Delay(20);
 
       default:
         state = ST_awake;
