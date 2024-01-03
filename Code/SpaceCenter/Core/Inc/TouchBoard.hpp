@@ -7,11 +7,11 @@
 #define NUM_PIXELS_PER_BOARD 2
 
 typedef struct PixelColor_s
-  {
-    uint8_t r;
-    uint8_t g;
-    uint8_t b;
-  } PixelColor_s;
+{
+  uint8_t r;
+  uint8_t g;
+  uint8_t b;
+} PixelColor_s;
 
 typedef enum
   {

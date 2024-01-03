@@ -1,4 +1,5 @@
-Core/Src/main.o: ../Core/Src/main.cpp ../Core/Inc/main.h \
+Core/Src/RocketStream.o: ../Core/Src/RocketStream.cpp \
+ ../Core/Inc/RocketStream.hpp \
  ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal.h \
  ../Core/Inc/stm32l0xx_hal_conf.h \
  ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_rcc.h \
@@ -30,14 +31,8 @@ Core/Src/main.o: ../Core/Src/main.cpp ../Core/Inc/main.h \
  ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_spi.h \
  ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_tim.h \
  ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_tim_ex.h \
- ../Middlewares/Third_Party/FatFs/src/diskio.h \
- ../Middlewares/Third_Party/FatFs/src/integer.h \
- ../Middlewares/Third_Party/FatFs/src/ff.h \
- ../Middlewares/Third_Party/FatFs/src/ffconf.h ../Core/Inc/WavPlayer.hpp \
- ../Core/Inc/main.h ../Core/Inc/TouchBoardGroup.hpp \
- ../Core/Inc/NeoPixel.hpp ../Core/Inc/TouchBoard.hpp \
- ../Core/Inc/LedButton.hpp ../Core/Inc/RocketStream.hpp
-../Core/Inc/main.h:
+ ../Core/Inc/NeoPixel.hpp
+../Core/Inc/RocketStream.hpp:
 ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal.h:
 ../Core/Inc/stm32l0xx_hal_conf.h:
 ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_rcc.h:
@@ -69,14 +64,4 @@ Core/Src/main.o: ../Core/Src/main.cpp ../Core/Inc/main.h \
 ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_spi.h:
 ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_tim.h:
 ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_tim_ex.h:
-../Middlewares/Third_Party/FatFs/src/diskio.h:
-../Middlewares/Third_Party/FatFs/src/integer.h:
-../Middlewares/Third_Party/FatFs/src/ff.h:
-../Middlewares/Third_Party/FatFs/src/ffconf.h:
-../Core/Inc/WavPlayer.hpp:
-../Core/Inc/main.h:
-../Core/Inc/TouchBoardGroup.hpp:
 ../Core/Inc/NeoPixel.hpp:
-../Core/Inc/TouchBoard.hpp:
-../Core/Inc/LedButton.hpp:
-../Core/Inc/RocketStream.hpp:

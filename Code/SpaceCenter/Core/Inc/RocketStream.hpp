@@ -6,19 +6,19 @@
 #include "NeoPixel.hpp"
 
 #define NUM_ROCKETS 4
-#define NUM_LEDS 72
+#define NUM_LEDS_ROCKET_STREAM 72
 #define NUM_LEDS_ROCKET 2
 #define NUM_LEDS_STREAM 32
 #define STREAM_START_IND 8
 
-typedef struct PixelColor_s
-  {
-    uint8_t r;
-    uint8_t g;
-    uint8_t b;
-  } PixelColor_s;
-
 class RocketStream {
+
+typedef struct PixelColor_s
+{
+  uint8_t r;
+  uint8_t g;
+  uint8_t b;
+} PixelColor_s;
 
 public:
 
@@ -38,7 +38,7 @@ public:
 private:
 
   NeoPixel ledArray;
-  PixelColor_s pixelColors[NUM_PIXELS_PER_BOARD];
-  bool dmaRunning;
+
+};
 
 #endif /* ROCKETSTREAM_HPP */

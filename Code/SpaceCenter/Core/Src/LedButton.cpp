@@ -26,11 +26,12 @@ LedState_enum LedButton::getLedState() {
 
 void LedButton::updateButtonState() {
   if (debounceButton == false) {
-	if (HAL_GPIO_ReadPin(buttonGpio, buttonGpioPin) == GPIO_PIN_SET) {
-	  ButtonState_enum newButtonState = NOT_PRESSED;
-	} else {
-	  ButtonState_enum newButtonState = PRESSED;
-	}
+    ButtonState_enum newButtonState;
+    if (HAL_GPIO_ReadPin(buttonGpio, buttonGpioPin) == GPIO_PIN_SET) {
+      newButtonState = NOT_PRESSED;
+    } else {
+      newButtonState = PRESSED;
+    }
     if (newButtonState != buttonState) {
       debounceButton = true;
       timeLast = HAL_GetTick();

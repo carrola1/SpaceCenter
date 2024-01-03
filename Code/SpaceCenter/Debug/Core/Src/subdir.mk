@@ -14,6 +14,7 @@ C_SRCS += \
 CPP_SRCS += \
 ../Core/Src/LedButton.cpp \
 ../Core/Src/NeoPixel.cpp \
+../Core/Src/RocketStream.cpp \
 ../Core/Src/TouchBoard.cpp \
 ../Core/Src/TouchBoardGroup.cpp \
 ../Core/Src/WavPlayer.cpp \
@@ -29,6 +30,7 @@ C_DEPS += \
 OBJS += \
 ./Core/Src/LedButton.o \
 ./Core/Src/NeoPixel.o \
+./Core/Src/RocketStream.o \
 ./Core/Src/TouchBoard.o \
 ./Core/Src/TouchBoardGroup.o \
 ./Core/Src/WavPlayer.o \
@@ -42,6 +44,7 @@ OBJS += \
 CPP_DEPS += \
 ./Core/Src/LedButton.d \
 ./Core/Src/NeoPixel.d \
+./Core/Src/RocketStream.d \
 ./Core/Src/TouchBoard.d \
 ./Core/Src/TouchBoardGroup.d \
 ./Core/Src/WavPlayer.d \
@@ -57,7 +60,7 @@ Core/Src/%.o Core/Src/%.su Core/Src/%.cyclo: ../Core/Src/%.c Core/Src/subdir.mk
 clean: clean-Core-2f-Src
 
 clean-Core-2f-Src:
-	-$(RM) ./Core/Src/LedButton.cyclo ./Core/Src/LedButton.d ./Core/Src/LedButton.o ./Core/Src/LedButton.su ./Core/Src/NeoPixel.cyclo ./Core/Src/NeoPixel.d ./Core/Src/NeoPixel.o ./Core/Src/NeoPixel.su ./Core/Src/TouchBoard.cyclo ./Core/Src/TouchBoard.d ./Core/Src/TouchBoard.o ./Core/Src/TouchBoard.su ./Core/Src/TouchBoardGroup.cyclo ./Core/Src/TouchBoardGroup.d ./Core/Src/TouchBoardGroup.o ./Core/Src/TouchBoardGroup.su ./Core/Src/WavPlayer.cyclo ./Core/Src/WavPlayer.d ./Core/Src/WavPlayer.o ./Core/Src/WavPlayer.su ./Core/Src/main.cyclo ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/main.su ./Core/Src/stm32l0xx_hal_msp.cyclo ./Core/Src/stm32l0xx_hal_msp.d ./Core/Src/stm32l0xx_hal_msp.o ./Core/Src/stm32l0xx_hal_msp.su ./Core/Src/stm32l0xx_it.cyclo ./Core/Src/stm32l0xx_it.d ./Core/Src/stm32l0xx_it.o ./Core/Src/stm32l0xx_it.su ./Core/Src/syscalls.cyclo ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/sysmem.cyclo ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/sysmem.su ./Core/Src/system_stm32l0xx.cyclo ./Core/Src/system_stm32l0xx.d ./Core/Src/system_stm32l0xx.o ./Core/Src/system_stm32l0xx.su
+	-$(RM) ./Core/Src/LedButton.cyclo ./Core/Src/LedButton.d ./Core/Src/LedButton.o ./Core/Src/LedButton.su ./Core/Src/NeoPixel.cyclo ./Core/Src/NeoPixel.d ./Core/Src/NeoPixel.o ./Core/Src/NeoPixel.su ./Core/Src/RocketStream.cyclo ./Core/Src/RocketStream.d ./Core/Src/RocketStream.o ./Core/Src/RocketStream.su ./Core/Src/TouchBoard.cyclo ./Core/Src/TouchBoard.d ./Core/Src/TouchBoard.o ./Core/Src/TouchBoard.su ./Core/Src/TouchBoardGroup.cyclo ./Core/Src/TouchBoardGroup.d ./Core/Src/TouchBoardGroup.o ./Core/Src/TouchBoardGroup.su ./Core/Src/WavPlayer.cyclo ./Core/Src/WavPlayer.d ./Core/Src/WavPlayer.o ./Core/Src/WavPlayer.su ./Core/Src/main.cyclo ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/main.su ./Core/Src/stm32l0xx_hal_msp.cyclo ./Core/Src/stm32l0xx_hal_msp.d ./Core/Src/stm32l0xx_hal_msp.o ./Core/Src/stm32l0xx_hal_msp.su ./Core/Src/stm32l0xx_it.cyclo ./Core/Src/stm32l0xx_it.d ./Core/Src/stm32l0xx_it.o ./Core/Src/stm32l0xx_it.su ./Core/Src/syscalls.cyclo ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/sysmem.cyclo ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/sysmem.su ./Core/Src/system_stm32l0xx.cyclo ./Core/Src/system_stm32l0xx.d ./Core/Src/system_stm32l0xx.o ./Core/Src/system_stm32l0xx.su
 
 .PHONY: clean-Core-2f-Src
 
