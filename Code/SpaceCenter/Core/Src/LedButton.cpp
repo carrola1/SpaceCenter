@@ -10,6 +10,7 @@ LedButton::LedButton(GPIO_TypeDef* ledGpioIn, uint16_t ledGpioPinIn,
   ledState = OFF;
   timeLast = 0;
   debounceButton = false;
+  buttonTriggerEvent = NONE;
 }
 
 LedButton::~LedButton() {
@@ -34,6 +35,11 @@ void LedButton::updateButtonState() {
     }
     if (newButtonState != buttonState) {
       debounceButton = true;
+      if (newButtonState == PRESSED) {
+        buttonTriggerEvent = RISING;
+      } else {
+        buttonTriggerEvent = FALLING;
+      }
       timeLast = HAL_GetTick();
     }
     buttonState = newButtonState;
@@ -48,6 +54,12 @@ void LedButton::updateButtonState() {
 
 ButtonState_enum LedButton::getButtonState() {
   return buttonState;
+}
+
+ButtonTriggerEvent_enum LedButton::getTriggerEvent() {
+  ButtonTriggerEvent_enum newButtonTriggerEvent = buttonTriggerEvent;
+  buttonTriggerEvent = NONE;
+  return newButtonTriggerEvent;
 }
 
 

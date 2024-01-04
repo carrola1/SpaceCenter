@@ -14,6 +14,13 @@ typedef enum
 
 typedef enum
   {
+    NONE  = 0,
+    RISING,
+    FALLING
+  } ButtonTriggerEvent_enum;
+
+typedef enum
+  {
     OFF  = 0U,
     ON
   } LedState_enum;
@@ -29,6 +36,7 @@ public:
   LedState_enum getLedState();
   ButtonState_enum getButtonState();
   void updateButtonState();
+  ButtonTriggerEvent_enum getTriggerEvent();
 
 private:
   GPIO_TypeDef* ledGpio;
@@ -39,6 +47,7 @@ private:
   LedState_enum ledState;
   uint32_t timeLast;
   bool debounceButton;
+  ButtonTriggerEvent_enum buttonTriggerEvent;
 };
 
 #endif // LEDBUTTON_HPP

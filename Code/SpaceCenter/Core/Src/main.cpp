@@ -37,6 +37,7 @@
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 #define NUM_BOARDS 24
+#define NUM_BOARDS_STAR_GAME 18
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -69,10 +70,12 @@ LedButton buttonL = LedButton(BUTTON_LED_L_GPIO_Port, BUTTON_LED_L_Pin, BUTTON_L
 LedButton buttonR = LedButton(BUTTON_LED_R_GPIO_Port, BUTTON_LED_R_Pin, BUTTON_R_GPIO_Port, BUTTON_R_Pin);
 
 // Variables
-ButtonState_enum buttonStateL;
-ButtonState_enum buttonStateR;
+ButtonTriggerEvent_enum buttonTriggerEventL;
+ButtonTriggerEvent_enum buttonTriggerEventR;
 uint8_t rocketInd = 0;
 uint8_t streamInd = 0;
+uint8_t starGameCount = 0;
+bool touchColorUpdate = false;
 
 // States
 typedef enum states {ST_off, ST_awake} states;
@@ -145,6 +148,9 @@ int main(void)
   touchGroup0.setAllPixelColor(0,0,255);
   touchGroup0.showPixels();
 
+  buttonR.setLedState(ON);
+  buttonL.setLedState(ON);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -173,37 +179,31 @@ int main(void)
       ///////////////////////////////////////////////////////////////////////////////////
       case ST_awake:
 
-    	// Buttons
-      buttonL.updateButtonState();
+    	// Star Count Game
       buttonR.updateButtonState();
-      buttonStateL = buttonL.getButtonState();
-      buttonStateR = buttonR.getButtonState();
-      if (buttonStateL == PRESSED) {
-        buttonL.setLedState(ON);
-      } else {
-        buttonL.setLedState(OFF);
-      }
-      if (buttonStateR == PRESSED) {
-        buttonR.setLedState(ON);
-      } else {
-        buttonR.setLedState(OFF);
+      buttonTriggerEventR = buttonR.getTriggerEvent();
+      if (buttonTriggerEventR == RISING) {
+        if (starGameCount == NUM_BOARDS_STAR_GAME){
+          starGameCount = 0;
+          for (int i=0; i<NUM_BOARDS_STAR_GAME; i++) {
+            touchGroup0.setBoardColor(i, 0, 0, 255);
+            touchColorUpdate = true;
+          }
+        } else {
+          touchGroup0.setBoardColor(starGameCount, 255, 100, 0);
+          touchColorUpdate = true;
+          starGameCount++;
+        }
       }
 
       // Touch Boards
-      touchGroup0.updateTouchStates();
-      touchStates = touchGroup0.getTouchStates();
-
-      for (int i=0; i<NUM_BOARDS; i++) {
-        if (touchStates[i] == TOUCHED) {
-          touchGroup0.setBoardColor(i, 255, 100, 0);
-        } else {
-          touchGroup0.setBoardColor(i, 0, 100, 255);
-        }
+      if (touchColorUpdate == true) {
+        touchGroup0.showPixels();
+        touchColorUpdate = false;
       }
-      touchGroup0.showPixels();
 
       // Rocket Stream
-      if (rocketInd == NUM_ROCKETS) {
+      /*if (rocketInd == NUM_ROCKETS) {
         rocketInd = 0;
         rocketStream.setAllRocketColor(0, 0, 0);
       } else {
@@ -217,9 +217,9 @@ int main(void)
         rocketStream.setStreamColor(streamInd, 0, 100, 0);
         streamInd++;
       }
-      rocketStream.showPixels();
+      rocketStream.showPixels();*/
 
-      HAL_Delay(200);
+      HAL_Delay(20);
 
       default:
         state = ST_awake;
