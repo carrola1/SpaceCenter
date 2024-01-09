@@ -5,12 +5,13 @@
 TouchBoardGroup::TouchBoardGroup(uint8_t n, TIM_HandleTypeDef &timHandle,
                                   uint32_t timChannel, DMA_HandleTypeDef &dmaHandle) 
                 : ledArray((uint16_t)(n*NUM_PIXELS_PER_BOARD), timHandle, timChannel, dmaHandle),
-                  touchStates(n), touchBoards(n) {
+                  touchStates(n), touchEvents(n), touchBoards(n) {
   numBoards = n;
   numPixels = n*NUM_PIXELS_PER_BOARD;
   for (int i=0; i<numBoards; i++) {
     touchBoards[i].setTouchGPIO(touchGpioMap_Port[i], touchGpioMap_Pin[i]);
     touchStates[i] = NOT_TOUCHED;
+    touchEvents[i] = TOUCH_NO_CHANGE;
   }
 }
 
@@ -32,25 +33,26 @@ void TouchBoardGroup::setBoardColor(uint8_t board_num, uint8_t r, uint8_t g, uin
 }
 
 void TouchBoardGroup::twinkleBoard(uint8_t board_num) {
-  touchBoards[board_num].setAllPixelColor(20, 20, 20);
+  PixelColor_s color = touchBoards[board_num].getPixelColor(0);
+  touchBoards[board_num].setAllPixelColor(color.r/10, color.g/10, color.b/10);
   showPixels();
   HAL_Delay(40);
-  touchBoards[board_num].setAllPixelColor(80, 80, 80);
+  touchBoards[board_num].setAllPixelColor(color.r/2, color.g/2, color.b/2);
   showPixels();
   HAL_Delay(40);
-  touchBoards[board_num].setAllPixelColor(20, 20, 20);
+  touchBoards[board_num].setAllPixelColor(color.r/5, color.g/5, color.b/5);
   showPixels();
   HAL_Delay(40);
-  touchBoards[board_num].setAllPixelColor(80, 80, 80);
+  touchBoards[board_num].setAllPixelColor(color.r/10, color.g/10, color.b/10);
   showPixels();
   HAL_Delay(40);
-  touchBoards[board_num].setAllPixelColor(80, 20, 20);
+  touchBoards[board_num].setAllPixelColor(color.r/5, color.g/5, color.b/5);
   showPixels();
   HAL_Delay(40);
-  touchBoards[board_num].setAllPixelColor(120, 20, 20);
+  touchBoards[board_num].setAllPixelColor(color.r/2, color.g/2, color.b/2);
   showPixels();
   HAL_Delay(40);
-  touchBoards[board_num].setAllPixelColor(255, 0, 0);
+  touchBoards[board_num].setAllPixelColor(color.r, color.g, color.b);
   showPixels();
   HAL_Delay(40);
 }
@@ -80,4 +82,11 @@ std::vector<TouchState_enum> TouchBoardGroup::getTouchStates() {
     touchStates[i] = touchBoards[i].getTouchState();
   }
   return touchStates;
+}
+
+std::vector<TouchEvent_enum> TouchBoardGroup::getTouchEvents() {
+  for (int i=0; i<numBoards; i++) {
+    touchEvents[i] = touchBoards[i].getTouchEvent();
+  }
+  return touchEvents;
 }

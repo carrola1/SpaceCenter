@@ -25,6 +25,7 @@ public:
 
   // Touch methods
   std::vector<TouchState_enum> getTouchStates();
+  std::vector<TouchEvent_enum> getTouchEvents();
   void updateTouchStates();
 
 private:
@@ -37,6 +38,7 @@ private:
   uint8_t myTouchKeyOffset;
   std::vector<TouchBoard> touchBoards;
   std::vector<TouchState_enum> touchStates;
+  std::vector<TouchEvent_enum> touchEvents;
 };
 
 #endif // TOUCHBOARDGROUP_HPP

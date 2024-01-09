@@ -19,6 +19,13 @@ typedef enum
     NOT_TOUCHED    = 1
   } TouchState_enum;
 
+typedef enum
+  {
+    TOUCH_NO_CHANGE  = 0,
+    TOUCH_RISING = 1,
+    TOUCH_FALLING = 2
+  } TouchEvent_enum;
+
 class TouchBoard {
 
 public:
@@ -33,6 +40,7 @@ public:
   void setTouchGPIO(GPIO_TypeDef *GPIOx, uint16_t GPIOpin);
   TouchState_enum getTouchState();
   void updateTouchState();
+  TouchEvent_enum getTouchEvent();
 
 private:
   PixelColor_s pixelColors[NUM_PIXELS_PER_BOARD];
@@ -40,6 +48,7 @@ private:
   GPIO_TypeDef *myGpioPort;
   uint16_t myGpioPin;
   TouchState_enum myTouchState;
+  TouchEvent_enum touchEvent;
 };
 
 #endif // TOUCHBOARD_HPP

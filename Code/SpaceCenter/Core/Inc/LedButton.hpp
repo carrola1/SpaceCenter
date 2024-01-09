@@ -14,7 +14,7 @@ typedef enum
 
 typedef enum
   {
-    NONE  = 0,
+    NO_CHANGE  = 0,
     RISING,
     FALLING
   } ButtonTriggerEvent_enum;

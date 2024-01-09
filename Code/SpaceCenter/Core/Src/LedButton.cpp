@@ -10,7 +10,7 @@ LedButton::LedButton(GPIO_TypeDef* ledGpioIn, uint16_t ledGpioPinIn,
   ledState = OFF;
   timeLast = 0;
   debounceButton = false;
-  buttonTriggerEvent = NONE;
+  buttonTriggerEvent = NO_CHANGE;
 }
 
 LedButton::~LedButton() {
@@ -58,7 +58,7 @@ ButtonState_enum LedButton::getButtonState() {
 
 ButtonTriggerEvent_enum LedButton::getTriggerEvent() {
   ButtonTriggerEvent_enum newButtonTriggerEvent = buttonTriggerEvent;
-  buttonTriggerEvent = NONE;
+  buttonTriggerEvent = NO_CHANGE;
   return newButtonTriggerEvent;
 }
 

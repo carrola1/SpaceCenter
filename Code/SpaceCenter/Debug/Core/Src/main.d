@@ -34,9 +34,10 @@ Core/Src/main.o: ../Core/Src/main.cpp ../Core/Inc/main.h \
  ../Middlewares/Third_Party/FatFs/src/integer.h \
  ../Middlewares/Third_Party/FatFs/src/ff.h \
  ../Middlewares/Third_Party/FatFs/src/ffconf.h ../Core/Inc/WavPlayer.hpp \
- ../Core/Inc/main.h ../Core/Inc/TouchBoardGroup.hpp \
- ../Core/Inc/NeoPixel.hpp ../Core/Inc/TouchBoard.hpp \
- ../Core/Inc/LedButton.hpp ../Core/Inc/RocketStream.hpp
+ ../Core/Inc/main.h ../Core/Inc/TouchBoard.hpp \
+ ../Core/Inc/TouchBoardGroup.hpp ../Core/Inc/NeoPixel.hpp \
+ ../Core/Inc/TouchBoard.hpp ../Core/Inc/LedButton.hpp \
+ ../Core/Inc/RocketStream.hpp
 ../Core/Inc/main.h:
 ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal.h:
 ../Core/Inc/stm32l0xx_hal_conf.h:
@@ -75,6 +76,7 @@ Core/Src/main.o: ../Core/Src/main.cpp ../Core/Inc/main.h \
 ../Middlewares/Third_Party/FatFs/src/ffconf.h:
 ../Core/Inc/WavPlayer.hpp:
 ../Core/Inc/main.h:
+../Core/Inc/TouchBoard.hpp:
 ../Core/Inc/TouchBoardGroup.hpp:
 ../Core/Inc/NeoPixel.hpp:
 ../Core/Inc/TouchBoard.hpp:
