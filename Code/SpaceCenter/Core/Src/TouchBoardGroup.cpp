@@ -8,6 +8,9 @@ TouchBoardGroup::TouchBoardGroup(uint8_t n, TIM_HandleTypeDef &timHandle,
                   touchStates(n), touchEvents(n), touchBoards(n) {
   numBoards = n;
   numPixels = n*NUM_PIXELS_PER_BOARD;
+  starInd = 0;
+  colorInd = 0;
+  timer = 0;
   for (int i=0; i<numBoards; i++) {
     touchBoards[i].setTouchGPIO(touchGpioMap_Port[i], touchGpioMap_Pin[i]);
     touchStates[i] = NOT_TOUCHED;
@@ -55,6 +58,41 @@ void TouchBoardGroup::twinkleBoard(uint8_t board_num) {
   touchBoards[board_num].setAllPixelColor(color.r, color.g, color.b);
   showPixels();
   HAL_Delay(40);
+}
+
+void TouchBoardGroup::imAStarSetup() {
+  starInd = 0;
+  colorInd = 0;
+  starCount = 0;
+  setAllPixelColor(0, 0, 0);
+  timer = HAL_GetTick();
+}
+
+bool TouchBoardGroup::imAStarUpdate() {
+  uint32_t newTime = HAL_GetTick();
+  bool finished = false;
+  if (newTime - timer >= IM_A_STAR_DELAY) {
+    timer = newTime;
+    setAllPixelColor(0, 0, 0);
+    setBoardColor(starInd, imAStarColors[colorInd].r, imAStarColors[colorInd].g, imAStarColors[colorInd].b);
+
+    if (starInd == numBoards-1){
+      starInd = 0;
+    } else {
+      starInd++;
+    }
+    if (colorInd == IM_A_STAR_NUM_COLORS-1){
+      colorInd = 0;
+    } else {
+      colorInd++;
+    }
+    showPixels();
+    starCount++;
+    if (starCount == IM_A_STAR_NUM_STARS) {
+      finished = true;
+    }
+  }
+  return finished;
 }
 
 void TouchBoardGroup::showPixels() {

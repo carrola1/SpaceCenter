@@ -90,7 +90,7 @@ std::vector<PixelColor_s> starColors = {
 };
 
 // States
-typedef enum states {ST_off, ST_awake} states;
+typedef enum states {ST_off, ST_awake, ST_imAStar} states;
 states state = ST_off;
 
 // Inactivity detection
@@ -171,10 +171,6 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  
-  //audioPlayer.open_wav("01_Blues_Clues.wav");
-  //audioPlayer.play_chunk();
-  //audioPlayer.play_atomic("01_Blues_Clues.wav");
 
   while (1)
   {
@@ -211,9 +207,13 @@ int main(void)
         buttonR.updateButtonState();
         buttonTriggerEventR = buttonR.getTriggerEvent();
         if (buttonTriggerEventR == RISING) {
-          if (starGameCount == NUM_BOARDS-1){
+          if (starGameCount == NUM_BOARDS){
             starGameCount = 0;
-            touchGroup0.setAllPixelColor(starColorDef.r, starColorDef.g, starColorDef.b);
+            colorInd = 0;
+            touchGroup0.imAStarSetup();
+            HAL_Delay(1000);
+            audioPlayer.open_wav("ImAStar.wav");
+            state = ST_imAStar;
           } else {
             touchGroup0.setBoardColor(starGameCount, starColors[colorInd].r, starColors[colorInd].g, starColors[colorInd].b);
             if (colorInd == NUM_STAR_COLORS-1) {
@@ -222,8 +222,8 @@ int main(void)
               colorInd++;
             }
             starGameCount++;
-            touchColorUpdate = true;
           }
+          touchColorUpdate = true;
         }
 
 
@@ -233,6 +233,7 @@ int main(void)
         for (int i=0; i<NUM_BOARDS; i++) {
           if (touchEvents[i] == TOUCH_RISING) {
             touchGroup0.twinkleBoard(i);
+            audioPlayer.play_atomic("Twinkle.wav");
           }
         }
 
@@ -240,6 +241,20 @@ int main(void)
           touchGroup0.showPixels();
           touchColorUpdate = false;
         }
+        break;
+
+      ///////////////////////////////////////////////////////////////////////////////////
+      // I'm A Star
+      ///////////////////////////////////////////////////////////////////////////////////
+      case ST_imAStar:
+        if (touchGroup0.imAStarUpdate()) {
+          audioPlayer.close_wav();
+          touchGroup0.setAllPixelColor(starColorDef.r, starColorDef.g, starColorDef.b);
+          state = ST_awake;
+        } else {
+          audioPlayer.play_chunk();
+        }
+        break;
 
 
         // Rocket Stream
@@ -259,35 +274,11 @@ int main(void)
         }
         rocketStream.showPixels();*/
 
-        HAL_Delay(200);
-
       default:
         state = ST_awake;
     }
 
-    /*
-    if (sw == 0) {
-      touchGroup0.setAllPixelColor(255,0,0);
-      touchGroup0.showPixels();
-      for (int i=0; i<68; i++) {
-        rocketStreamL.setPixelColor(i, 255, 0, 0);
-      }
-      rocketStreamL.show();
-    } else {
-      touchGroup0.setAllPixelColor(0,255,0);
-      touchGroup0.showPixels();
-      for (int i=0; i<68; i++) {
-        rocketStreamL.setPixelColor(i, 0, 255, 0);
-      }
-      rocketStreamL.show();
-    }
-    sw = !sw;
-    */
-
-    //if (audioPlayer.audioPlaying == 1) {
-    //  audioPlayer.play_chunk();
-    //}
-
+    HAL_Delay(20);
 
 	/* USER CODE END WHILE */
 
