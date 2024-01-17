@@ -69,7 +69,7 @@ void WavPlayer::open_wav(char wav_file[32]) {
 }
 
 uint8_t WavPlayer::play_chunk(void) {
-  //while (i2sHandle.State != HAL_I2S_STATE_READY);    // Wait for I2S to be ready
+  while (i2sHandle.State != HAL_I2S_STATE_READY);    // Wait for I2S to be ready
   HAL_I2S_Transmit_DMA(&i2sHandle, audio_buf_ptr_start, CHUNK_SIZE/2);    // play buffer
   audioPlaying = 1;
   ping_pong(); // switch buffer pointers

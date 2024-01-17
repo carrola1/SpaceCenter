@@ -24,7 +24,10 @@
 #include "diskio.h"
 #include "ff.h"
 #include "WavPlayer.hpp"
+#include "TouchBoard.hpp"
 #include "TouchBoardGroup.hpp"
+#include "LedButton.hpp"
+#include "RocketStream.hpp"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -35,6 +38,7 @@
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 #define NUM_BOARDS 24
+#define NUM_STAR_COLORS 4
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -56,11 +60,43 @@ DMA_HandleTypeDef hdma_tim2_ch3;
 DMA_HandleTypeDef hdma_tim2_ch4;
 
 /* USER CODE BEGIN PV */
+
+// Objects
 FATFS FatFs;
 TouchBoardGroup touchGroup0 = TouchBoardGroup(NUM_BOARDS, htim2, TIM_CHANNEL_1, hdma_tim2_ch1);
 std::vector<TouchState_enum> touchStates(NUM_BOARDS);
+std::vector<TouchEvent_enum> touchEvents(NUM_BOARDS);
 WavPlayer audioPlayer = WavPlayer(hi2s2);
-NeoPixel rocketStreamL = NeoPixel(72, htim2, TIM_CHANNEL_3, hdma_tim2_ch3);
+RocketStream rocketStream = RocketStream(htim2, TIM_CHANNEL_3, hdma_tim2_ch3);
+LedButton buttonL = LedButton(BUTTON_LED_L_GPIO_Port, BUTTON_LED_L_Pin, BUTTON_L_GPIO_Port, BUTTON_L_Pin);
+LedButton buttonR = LedButton(BUTTON_LED_R_GPIO_Port, BUTTON_LED_R_Pin, BUTTON_R_GPIO_Port, BUTTON_R_Pin);
+
+// Variables
+ButtonTriggerEvent_enum buttonTriggerEventL;
+ButtonTriggerEvent_enum buttonTriggerEventR;
+uint8_t rocketInd = 0;
+uint8_t streamInd = 0;
+uint8_t starGameCount = 0;
+bool touchColorUpdate = false;
+uint8_t colorInd = 0;
+
+// Colors
+PixelColor_s starColorDef = PixelColor_s{50, 50, 50};
+std::vector<PixelColor_s> starColors = {
+    {200, 10, 200},
+    {50, 50, 200},
+    {200, 50, 50},
+    {50, 200, 100}
+};
+
+// States
+typedef enum states {ST_off, ST_awake, ST_imAStar} states;
+states state = ST_off;
+
+// Inactivity detection
+uint16_t inactivity_timeout = 600;
+uint16_t inactivity_timer = inactivity_timeout;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -118,65 +154,133 @@ int main(void)
   FRESULT fr;
   fr = f_mount(&FatFs, "", 1);
 
+  // Set LED defaults
   HAL_GPIO_WritePin(TEST_LED_GPIO_Port, TEST_LED_Pin, GPIO_PIN_SET);
-  HAL_Delay(500);
+
+  touchGroup0.setAllPixelColor(0,0,0);
+  touchGroup0.showPixels();
+
+  rocketStream.setAllRocketColor(0, 0, 0);
+  rocketStream.setAllStreamColor(0, 0, 0);
+  rocketStream.showPixels();
+
+  buttonR.setLedState(OFF);
+  buttonL.setLedState(OFF);
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  touchGroup0.setAllPixelColor(0,0,255);
-  touchGroup0.showPixels();
-  //audioPlayer.open_wav("01_Blues_Clues.wav");
-  //audioPlayer.play_chunk();
-  //audioPlayer.play_atomic("01_Blues_Clues.wav");
-
-  for (int i=0; i<72; i++) {
-    rocketStreamL.setPixelColor(i, 0, 0, 255);
-  }
-  rocketStreamL.show();
 
   while (1)
   {
 
+    switch(state) {
+      
+      ///////////////////////////////////////////////////////////////////////////////////
+      // Off State
+      // Press a button to turn on
+      ///////////////////////////////////////////////////////////////////////////////////
+      case ST_off:
+        while (1) {
+          state = ST_awake;
+          buttonR.updateButtonState();
+          buttonL.updateButtonState();
+          buttonTriggerEventR = buttonR.getTriggerEvent();
+          buttonTriggerEventL = buttonL.getTriggerEvent();
+          if (buttonTriggerEventR == RISING || buttonTriggerEventL == RISING) {
+            buttonR.setLedState(ON);
+            buttonL.setLedState(ON);
+            touchGroup0.setAllPixelColor(starColorDef.r,starColorDef.g,starColorDef.b);
+            touchGroup0.showPixels();
+            state = ST_awake;
+            break;
+          }
+        }
+    
+      ///////////////////////////////////////////////////////////////////////////////////
+      // Awake State
+      ///////////////////////////////////////////////////////////////////////////////////
+      case ST_awake:
 
-    touchGroup0.updateTouchStates();
-    touchStates = touchGroup0.getTouchStates();
+        // Star Count Game
+        buttonR.updateButtonState();
+        buttonTriggerEventR = buttonR.getTriggerEvent();
+        if (buttonTriggerEventR == RISING) {
+          if (starGameCount == NUM_BOARDS){
+            starGameCount = 0;
+            colorInd = 0;
+            touchGroup0.imAStarSetup();
+            HAL_Delay(1000);
+            audioPlayer.open_wav("ImAStar.wav");
+            state = ST_imAStar;
+          } else {
+            touchGroup0.setBoardColor(starGameCount, starColors[colorInd].r, starColors[colorInd].g, starColors[colorInd].b);
+            if (colorInd == NUM_STAR_COLORS-1) {
+              colorInd = 0;
+            } else {
+              colorInd++;
+            }
+            starGameCount++;
+          }
+          touchColorUpdate = true;
+        }
 
-    for (int i=0; i<NUM_BOARDS; i++) {
-      if (touchStates[i] == TOUCHED) {
-        touchGroup0.setBoardColor(i, 255, 100, 0);
-      } else {
-        touchGroup0.setBoardColor(i, 0, 100, 255);
-      }
+
+        // Touch Boards
+        touchGroup0.updateTouchStates();
+        touchEvents = touchGroup0.getTouchEvents();
+        for (int i=0; i<NUM_BOARDS; i++) {
+          if (touchEvents[i] == TOUCH_RISING) {
+            touchGroup0.twinkleBoard(i);
+            audioPlayer.play_atomic("Twinkle.wav");
+          }
+        }
+
+        if (touchColorUpdate == true) {
+          touchGroup0.showPixels();
+          touchColorUpdate = false;
+        }
+        break;
+
+      ///////////////////////////////////////////////////////////////////////////////////
+      // I'm A Star
+      ///////////////////////////////////////////////////////////////////////////////////
+      case ST_imAStar:
+        if (touchGroup0.imAStarUpdate()) {
+          audioPlayer.close_wav();
+          touchGroup0.setAllPixelColor(0, 0, 0);
+          touchGroup0.showPixels();
+          HAL_Delay(1000);
+          touchGroup0.setAllPixelColor(starColorDef.r, starColorDef.g, starColorDef.b);
+          touchGroup0.showPixels();
+          state = ST_awake;
+        } else {
+          audioPlayer.play_chunk();
+        }
+        break;
+
+
+        // Rocket Stream
+        /*if (rocketInd == NUM_ROCKETS) {
+          rocketInd = 0;
+          rocketStream.setAllRocketColor(0, 0, 0);
+        } else {
+          rocketStream.setRocketColor(rocketInd, 0, 100, 0);
+          rocketInd++;
+        }
+        if (streamInd == NUM_LEDS_STREAM) {
+          streamInd = 0;
+          rocketStream.setAllStreamColor(0, 0, 0);
+        } else {
+          rocketStream.setStreamColor(streamInd, 0, 100, 0);
+          streamInd++;
+        }
+        rocketStream.showPixels();*/
+
+      default:
+        state = ST_awake;
     }
-    touchGroup0.showPixels();
-    rocketStreamL.show();
-    HAL_Delay(100);
-
-    /*
-    if (sw == 0) {
-      touchGroup0.setAllPixelColor(255,0,0);
-      touchGroup0.showPixels();
-      for (int i=0; i<68; i++) {
-        rocketStreamL.setPixelColor(i, 255, 0, 0);
-      }
-      rocketStreamL.show();
-    } else {
-      touchGroup0.setAllPixelColor(0,255,0);
-      touchGroup0.showPixels();
-      for (int i=0; i<68; i++) {
-        rocketStreamL.setPixelColor(i, 0, 255, 0);
-      }
-      rocketStreamL.show();
-    }
-    sw = !sw;
-    */
-
-    //if (audioPlayer.audioPlaying == 1) {
-    //  audioPlayer.play_chunk();
-    //}
-
 
 	/* USER CODE END WHILE */
 

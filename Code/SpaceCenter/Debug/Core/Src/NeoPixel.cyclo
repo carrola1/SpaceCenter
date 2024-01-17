@@ -1,5 +1,5 @@
 ../Core/Src/NeoPixel.cpp:5:1:NeoPixel::NeoPixel(uint16_t, TIM_HandleTypeDef&, uint32_t, DMA_HandleTypeDef&)	1
 ../Core/Src/NeoPixel.cpp:10:1:NeoPixel::~NeoPixel()	1
 ../Core/Src/NeoPixel.cpp:13:6:void NeoPixel::updateLength(uint16_t)	1
-../Core/Src/NeoPixel.cpp:23:6:void NeoPixel::setPixelColor(uint16_t, uint8_t, uint8_t, uint8_t)	1
-../Core/Src/NeoPixel.cpp:29:6:void NeoPixel::show()	5
+../Core/Src/NeoPixel.cpp:25:6:void NeoPixel::setPixelColor(uint16_t, uint8_t, uint8_t, uint8_t)	1
+../Core/Src/NeoPixel.cpp:31:6:void NeoPixel::show()	6

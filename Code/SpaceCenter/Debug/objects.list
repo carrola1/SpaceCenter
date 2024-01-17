@@ -1,4 +1,6 @@
+"./Core/Src/LedButton.o"
 "./Core/Src/NeoPixel.o"
+"./Core/Src/RocketStream.o"
 "./Core/Src/TouchBoard.o"
 "./Core/Src/TouchBoardGroup.o"
 "./Core/Src/WavPlayer.o"
