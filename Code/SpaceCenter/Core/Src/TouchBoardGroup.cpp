@@ -65,6 +65,7 @@ void TouchBoardGroup::imAStarSetup() {
   colorInd = 0;
   starCount = 0;
   setAllPixelColor(0, 0, 0);
+  showPixels();
   timer = HAL_GetTick();
 }
 

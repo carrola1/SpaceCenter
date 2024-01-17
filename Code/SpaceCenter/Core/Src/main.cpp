@@ -249,7 +249,11 @@ int main(void)
       case ST_imAStar:
         if (touchGroup0.imAStarUpdate()) {
           audioPlayer.close_wav();
+          touchGroup0.setAllPixelColor(0, 0, 0);
+          touchGroup0.showPixels();
+          HAL_Delay(1000);
           touchGroup0.setAllPixelColor(starColorDef.r, starColorDef.g, starColorDef.b);
+          touchGroup0.showPixels();
           state = ST_awake;
         } else {
           audioPlayer.play_chunk();
@@ -277,8 +281,6 @@ int main(void)
       default:
         state = ST_awake;
     }
-
-    HAL_Delay(20);
 
 	/* USER CODE END WHILE */
 
