@@ -9,8 +9,8 @@
 
 class TouchBoardGroup {
 
-#define IM_A_STAR_DELAY 650 // Delay between star animation
-#define IM_A_STAR_NUM_STARS 96 // # of stars to cycle through
+#define IM_A_STAR_DELAY 652 // Delay between star animation
+#define IM_A_STAR_NUM_STARS 31 // # of stars to cycle through
 #define IM_A_STAR_NUM_COLORS 4
 
 public:

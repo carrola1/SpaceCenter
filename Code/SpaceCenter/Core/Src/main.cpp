@@ -77,7 +77,6 @@ ButtonTriggerEvent_enum buttonTriggerEventR;
 uint8_t rocketInd = 0;
 uint8_t streamInd = 0;
 uint8_t starGameCount = 0;
-bool touchColorUpdate = false;
 uint8_t colorInd = 0;
 
 // Colors
@@ -90,7 +89,8 @@ std::vector<PixelColor_s> starColors = {
 };
 
 // States
-typedef enum states {ST_off, ST_awake, ST_imAStar} states;
+typedef enum states {ST_off, ST_idle, ST_imAStar, ST_rocketCountdown,
+                     ST_rocketLaunch} states;
 states state = ST_off;
 
 // Inactivity detection
@@ -160,10 +160,6 @@ int main(void)
   touchGroup0.setAllPixelColor(0,0,0);
   touchGroup0.showPixels();
 
-  rocketStream.setAllRocketColor(0, 0, 0);
-  rocketStream.setAllStreamColor(0, 0, 0);
-  rocketStream.showPixels();
-
   buttonR.setLedState(OFF);
   buttonL.setLedState(OFF);
 
@@ -183,7 +179,6 @@ int main(void)
       ///////////////////////////////////////////////////////////////////////////////////
       case ST_off:
         while (1) {
-          state = ST_awake;
           buttonR.updateButtonState();
           buttonL.updateButtonState();
           buttonTriggerEventR = buttonR.getTriggerEvent();
@@ -193,15 +188,16 @@ int main(void)
             buttonL.setLedState(ON);
             touchGroup0.setAllPixelColor(starColorDef.r,starColorDef.g,starColorDef.b);
             touchGroup0.showPixels();
-            state = ST_awake;
+            state = ST_idle;
             break;
           }
         }
     
+
       ///////////////////////////////////////////////////////////////////////////////////
-      // Awake State
+      // Idle State
       ///////////////////////////////////////////////////////////////////////////////////
-      case ST_awake:
+      case ST_idle:
 
         // Star Count Game
         buttonR.updateButtonState();
@@ -223,11 +219,22 @@ int main(void)
             }
             starGameCount++;
           }
-          touchColorUpdate = true;
+          touchGroup0.showPixels();
         }
 
+        // Check for Rocket Launch
+        buttonL.updateButtonState();
+        buttonTriggerEventL = buttonL.getTriggerEvent();
+        if (buttonTriggerEventL == RISING) {
+          touchGroup0.setAllPixelColor(0, 0, 0);
+          touchGroup0.showPixels();
+          starGameCount = 0;
+          colorInd = 0;
+          rocketStream.rocketLaunch(true);
+          state = ST_rocketCountdown;
+        }
 
-        // Touch Boards
+        // Detect Touches
         touchGroup0.updateTouchStates();
         touchEvents = touchGroup0.getTouchEvents();
         for (int i=0; i<NUM_BOARDS; i++) {
@@ -237,11 +244,8 @@ int main(void)
           }
         }
 
-        if (touchColorUpdate == true) {
-          touchGroup0.showPixels();
-          touchColorUpdate = false;
-        }
         break;
+
 
       ///////////////////////////////////////////////////////////////////////////////////
       // I'm A Star
@@ -254,32 +258,30 @@ int main(void)
           HAL_Delay(1000);
           touchGroup0.setAllPixelColor(starColorDef.r, starColorDef.g, starColorDef.b);
           touchGroup0.showPixels();
-          state = ST_awake;
+          state = ST_idle;
         } else {
           audioPlayer.play_chunk();
         }
         break;
 
 
-        // Rocket Stream
-        /*if (rocketInd == NUM_ROCKETS) {
-          rocketInd = 0;
-          rocketStream.setAllRocketColor(0, 0, 0);
+      ///////////////////////////////////////////////////////////////////////////////////
+      // Rocket Launch
+      ///////////////////////////////////////////////////////////////////////////////////
+      case ST_rocketCountdown:
+        // Check for Rocket Launch
+        buttonL.updateButtonState();
+        buttonTriggerEventL = buttonL.getTriggerEvent();
+        if (buttonTriggerEventL == RISING) {
+          rocketStream.rocketLaunch(true);
         } else {
-          rocketStream.setRocketColor(rocketInd, 0, 100, 0);
-          rocketInd++;
+          rocketStream.rocketLaunch(false);
         }
-        if (streamInd == NUM_LEDS_STREAM) {
-          streamInd = 0;
-          rocketStream.setAllStreamColor(0, 0, 0);
-        } else {
-          rocketStream.setStreamColor(streamInd, 0, 100, 0);
-          streamInd++;
-        }
-        rocketStream.showPixels();*/
+        break;
+
 
       default:
-        state = ST_awake;
+        state = ST_idle;
     }
 
 	/* USER CODE END WHILE */

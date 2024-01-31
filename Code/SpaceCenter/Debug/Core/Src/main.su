@@ -1,14 +1,14 @@
 /opt/st/stm32cubeide_1.13.2/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.linux64_1.1.1.202309131626/tools/arm-none-eabi/include/c++/11.3.1/bits/stl_algobase.h:1006:3:constexpr unsigned int std::__size_to_integer(unsigned int)	16	static
 /opt/st/stm32cubeide_1.13.2/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.linux64_1.1.1.202309131626/tools/arm-none-eabi/include/c++/11.3.1/new:174:33:void* operator new(std::size_t, void*)	16	static
 ../Core/Src/main.cpp:122:5:int main()	56	static
-../Core/Src/main.cpp:296:6:void SystemClock_Config()	96	static
-../Core/Src/main.cpp:338:13:void MX_I2S2_Init()	8	static
-../Core/Src/main.cpp:370:13:void MX_SPI1_Init()	8	static
-../Core/Src/main.cpp:408:13:void MX_TIM2_Init()	48	static
-../Core/Src/main.cpp:473:13:void MX_DMA_Init()	16	static
-../Core/Src/main.cpp:497:13:void MX_GPIO_Init()	64	static
-../Core/Src/main.cpp:617:6:void HAL_I2S_TxCpltCallback(I2S_HandleTypeDef*)	16	static
-../Core/Src/main.cpp:626:6:void Error_Handler()	8	static,ignoring_inline_asm
+../Core/Src/main.cpp:298:6:void SystemClock_Config()	96	static
+../Core/Src/main.cpp:340:13:void MX_I2S2_Init()	8	static
+../Core/Src/main.cpp:372:13:void MX_SPI1_Init()	8	static
+../Core/Src/main.cpp:410:13:void MX_TIM2_Init()	48	static
+../Core/Src/main.cpp:475:13:void MX_DMA_Init()	16	static
+../Core/Src/main.cpp:499:13:void MX_GPIO_Init()	64	static
+../Core/Src/main.cpp:619:6:void HAL_I2S_TxCpltCallback(I2S_HandleTypeDef*)	16	static
+../Core/Src/main.cpp:628:6:void Error_Handler()	8	static,ignoring_inline_asm
 /opt/st/stm32cubeide_1.13.2/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.linux64_1.1.1.202309131626/tools/arm-none-eabi/include/c++/11.3.1/bits/allocator.h:156:7:std::allocator< <template-parameter-1-1> >::allocator() [with _Tp = PixelColor_s]	16	static
 /opt/st/stm32cubeide_1.13.2/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.linux64_1.1.1.202309131626/tools/arm-none-eabi/include/c++/11.3.1/bits/allocator.h:174:7:std::allocator< <template-parameter-1-1> >::~allocator() [with _Tp = PixelColor_s]	16	static
 /opt/st/stm32cubeide_1.13.2/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.linux64_1.1.1.202309131626/tools/arm-none-eabi/include/c++/11.3.1/bits/stl_vector.h:625:7:std::vector<_Tp, _Alloc>::vector(std::initializer_list<_Tp>, const allocator_type&) [with _Tp = PixelColor_s; _Alloc = std::allocator<PixelColor_s>]	40	static
@@ -151,6 +151,6 @@
 /opt/st/stm32cubeide_1.13.2/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.linux64_1.1.1.202309131626/tools/arm-none-eabi/include/c++/11.3.1/bits/stl_algobase.h:420:2:static _Tp* std::__copy_move<_IsMove, true, std::random_access_iterator_tag>::__copy_m(const _Tp*, const _Tp*, _Tp*) [with _Tp = PixelColor_s; bool _IsMove = false]	32	static
 /opt/st/stm32cubeide_1.13.2/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.linux64_1.1.1.202309131626/tools/arm-none-eabi/include/c++/11.3.1/bits/stl_algobase.h:908:5:typename __gnu_cxx::__enable_if<(! std::__is_scalar<_Tp>::__value), void>::__type std::__fill_a1(_ForwardIterator, _ForwardIterator, const _Tp&) [with _ForwardIterator = TouchState_enum*; _Tp = TouchState_enum]	24	static
 /opt/st/stm32cubeide_1.13.2/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.linux64_1.1.1.202309131626/tools/arm-none-eabi/include/c++/11.3.1/bits/stl_algobase.h:908:5:typename __gnu_cxx::__enable_if<(! std::__is_scalar<_Tp>::__value), void>::__type std::__fill_a1(_ForwardIterator, _ForwardIterator, const _Tp&) [with _ForwardIterator = TouchEvent_enum*; _Tp = TouchEvent_enum]	24	static
-../Core/Src/main.cpp:635:1:void __static_initialization_and_destruction_0(int, int)	64	static
-../Core/Src/main.cpp:635:1:cpp)	8	static
-../Core/Src/main.cpp:635:1:cpp)	8	static
+../Core/Src/main.cpp:637:1:void __static_initialization_and_destruction_0(int, int)	64	static
+../Core/Src/main.cpp:637:1:cpp)	8	static
+../Core/Src/main.cpp:637:1:cpp)	8	static

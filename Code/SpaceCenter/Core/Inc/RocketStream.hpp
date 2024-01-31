@@ -10,6 +10,7 @@
 #define NUM_LEDS_ROCKET 2
 #define NUM_LEDS_STREAM 32
 #define STREAM_START_IND 8
+#define STREAM_TIMEOUT_MS 600
 
 class RocketStream {
 
@@ -31,6 +32,7 @@ public:
   void setAllRocketColor(uint8_t r, uint8_t g, uint8_t b);
   void setStreamColor(uint8_t index, uint8_t r, uint8_t g, uint8_t b);
   void setAllStreamColor(uint8_t r, uint8_t g, uint8_t b);
+  void rocketLaunch(bool newSwitchPress);
   void showPixels();
   PixelColor_s getRocketColor(uint8_t index);
   PixelColor_s getStreamColor(uint8_t index);
@@ -38,6 +40,10 @@ public:
 private:
 
   NeoPixel ledArray;
+  uint32_t lastUpdateTime;
+  uint8_t streamCnt;
+  void decrementLaunch();
+  void incrementLaunch();
 
 };
 
