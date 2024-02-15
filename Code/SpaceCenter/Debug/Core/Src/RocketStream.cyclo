@@ -4,7 +4,7 @@
 ../Core/Src/RocketStream.cpp:26:6:void RocketStream::setAllRocketColor(uint8_t, uint8_t, uint8_t)	2
 ../Core/Src/RocketStream.cpp:32:6:void RocketStream::setStreamColor(uint8_t, uint8_t, uint8_t, uint8_t)	1
 ../Core/Src/RocketStream.cpp:40:6:void RocketStream::setAllStreamColor(uint8_t, uint8_t, uint8_t)	2
-../Core/Src/RocketStream.cpp:46:6:void RocketStream::rocketLaunch(bool)	4
-../Core/Src/RocketStream.cpp:62:6:void RocketStream::incrementLaunch()	9
-../Core/Src/RocketStream.cpp:97:6:void RocketStream::decrementLaunch()	5
-../Core/Src/RocketStream.cpp:117:6:void RocketStream::showPixels()	1
+../Core/Src/RocketStream.cpp:46:18:LaunchState_enum RocketStream::rocketLaunch(bool)	5
+../Core/Src/RocketStream.cpp:70:6:void RocketStream::incrementLaunch()	9
+../Core/Src/RocketStream.cpp:105:6:void RocketStream::decrementLaunch()	5
+../Core/Src/RocketStream.cpp:125:6:void RocketStream::showPixels()	1

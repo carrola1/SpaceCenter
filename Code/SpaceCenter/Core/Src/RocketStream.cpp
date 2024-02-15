@@ -43,19 +43,27 @@ void RocketStream::setAllStreamColor(uint8_t r, uint8_t g, uint8_t b) {
   }
 }
 
-void RocketStream::rocketLaunch(bool newSwitchPress) {
+LaunchState_enum RocketStream::rocketLaunch(bool newSwitchPress) {
   uint32_t newTime = HAL_GetTick();
 
   if (newSwitchPress == 0) {
     if (newTime - lastUpdateTime >= STREAM_TIMEOUT_MS) {
       if (streamCnt > 0) {
         lastUpdateTime = newTime;
-        decrementLaunch();
+        return DECREMENT;
+      } else {
+        return LANDED;
       }
+    } else {
+      return STABLE;
     }
   } else {
     lastUpdateTime = newTime;
-    incrementLaunch();
+    if (streamCnt > 30) {
+      return LAUNCHED;
+    } else {
+      return INCREMENT;
+    }
   }
 }
 
@@ -91,7 +99,6 @@ void RocketStream::incrementLaunch() {
     setRocketColor(0, 250, 0, 0);
   }
   streamCnt = streamCnt + 2;
-  showPixels();
 }
 
 void RocketStream::decrementLaunch() {
@@ -111,7 +118,6 @@ void RocketStream::decrementLaunch() {
   } else if (streamCnt == 24) {
     setRocketColor(3, 0, 0, 0);
   }
-  showPixels();
 }
 
 void RocketStream::showPixels() {

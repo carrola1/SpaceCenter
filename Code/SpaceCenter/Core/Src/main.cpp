@@ -78,6 +78,7 @@ uint8_t rocketInd = 0;
 uint8_t streamInd = 0;
 uint8_t starGameCount = 0;
 uint8_t colorInd = 0;
+uint32_t timestamp = 0;
 
 // Colors
 PixelColor_s starColorDef = PixelColor_s{50, 50, 50};
@@ -89,8 +90,8 @@ std::vector<PixelColor_s> starColors = {
 };
 
 // States
-typedef enum states {ST_off, ST_idle, ST_imAStar, ST_rocketCountdown,
-                     ST_rocketLaunch} states;
+typedef enum states {ST_off, ST_reset, ST_idle, ST_imAStar, ST_rocketCountdown,
+                     ST_rocketLaunch, ST_rocketExplode, ST_rocketSong} states;
 states state = ST_off;
 
 // Inactivity detection
@@ -159,6 +160,9 @@ int main(void)
 
   touchGroup0.setAllPixelColor(0,0,0);
   touchGroup0.showPixels();
+  rocketStream.setAllRocketColor(0, 0, 0);
+  rocketStream.setAllStreamColor(0, 0, 0);
+  rocketStream.showPixels();
 
   buttonR.setLedState(OFF);
   buttonL.setLedState(OFF);
@@ -178,6 +182,8 @@ int main(void)
       // Press a button to turn on
       ///////////////////////////////////////////////////////////////////////////////////
       case ST_off:
+        touchGroup0.setAllPixelColor(0,0,0);
+        touchGroup0.showPixels();
         while (1) {
           buttonR.updateButtonState();
           buttonL.updateButtonState();
@@ -192,7 +198,18 @@ int main(void)
             break;
           }
         }
-    
+
+      ///////////////////////////////////////////////////////////////////////////////////
+      // Reset State
+      ///////////////////////////////////////////////////////////////////////////////////
+      case ST_reset:
+        touchGroup0.setAllPixelColor(starColorDef.r,starColorDef.g,starColorDef.b);
+        touchGroup0.showPixels();
+        rocketStream.setAllRocketColor(0, 0, 0);
+        rocketStream.setAllStreamColor(0, 0, 0);
+        rocketStream.showPixels();
+        state = ST_idle;
+        break;
 
       ///////////////////////////////////////////////////////////////////////////////////
       // Idle State
@@ -231,6 +248,7 @@ int main(void)
           starGameCount = 0;
           colorInd = 0;
           rocketStream.rocketLaunch(true);
+          audioPlayer.open_wav("RocketBuilding.wav");
           state = ST_rocketCountdown;
         }
 
@@ -256,9 +274,7 @@ int main(void)
           touchGroup0.setAllPixelColor(0, 0, 0);
           touchGroup0.showPixels();
           HAL_Delay(1000);
-          touchGroup0.setAllPixelColor(starColorDef.r, starColorDef.g, starColorDef.b);
-          touchGroup0.showPixels();
-          state = ST_idle;
+          state = ST_reset;
         } else {
           audioPlayer.play_chunk();
         }
@@ -266,17 +282,49 @@ int main(void)
 
 
       ///////////////////////////////////////////////////////////////////////////////////
-      // Rocket Launch
+      // Rocket Countdown
       ///////////////////////////////////////////////////////////////////////////////////
       case ST_rocketCountdown:
         // Check for Rocket Launch
         buttonL.updateButtonState();
         buttonTriggerEventL = buttonL.getTriggerEvent();
+        LaunchState_enum launchState;
+
         if (buttonTriggerEventL == RISING) {
-          rocketStream.rocketLaunch(true);
+          launchState = rocketStream.rocketLaunch(true);
         } else {
-          rocketStream.rocketLaunch(false);
+          launchState = rocketStream.rocketLaunch(false);
         }
+
+        if (launchState == INCREMENT) {
+          rocketStream.incrementLaunch();
+          audioPlayer.play_chunk();
+          rocketStream.showPixels();
+        } else if (launchState == DECREMENT){
+          rocketStream.decrementLaunch();
+          audioPlayer.play_chunk();
+          rocketStream.showPixels();
+        } else if (launchState == LAUNCHED) {
+          audioPlayer.close_wav();
+          HAL_Delay(500);
+          timestamp = HAL_GetTick();
+          state = ST_rocketExplode;
+          break;
+        } else if (launchState == LANDED) {
+          audioPlayer.close_wav();
+          state = ST_reset;
+          break;
+        } else {
+          //DO NOTHING
+        }
+        audioPlayer.play_chunk();
+        break;
+
+      ///////////////////////////////////////////////////////////////////////////////////
+      // Rocket Explosion
+      ///////////////////////////////////////////////////////////////////////////////////
+      case ST_rocketExplode:
+
         break;
 
 
@@ -424,7 +472,7 @@ static void MX_TIM2_Init(void)
   htim2.Instance = TIM2;
   htim2.Init.Prescaler = 0;
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim2.Init.Period = 39;
+  htim2.Init.Period = 35;
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim2) != HAL_OK)

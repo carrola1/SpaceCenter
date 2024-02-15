@@ -12,6 +12,15 @@
 #define STREAM_START_IND 8
 #define STREAM_TIMEOUT_MS 600
 
+typedef enum
+  {
+    STABLE  = 0,
+    DECREMENT,
+    INCREMENT,
+    LANDED,
+    LAUNCHED
+  } LaunchState_enum;
+
 class RocketStream {
 
 typedef struct PixelColor_s
@@ -32,18 +41,18 @@ public:
   void setAllRocketColor(uint8_t r, uint8_t g, uint8_t b);
   void setStreamColor(uint8_t index, uint8_t r, uint8_t g, uint8_t b);
   void setAllStreamColor(uint8_t r, uint8_t g, uint8_t b);
-  void rocketLaunch(bool newSwitchPress);
+  LaunchState_enum rocketLaunch(bool newSwitchPress);
   void showPixels();
   PixelColor_s getRocketColor(uint8_t index);
   PixelColor_s getStreamColor(uint8_t index);
+  void decrementLaunch();
+  void incrementLaunch();
 
 private:
 
   NeoPixel ledArray;
   uint32_t lastUpdateTime;
   uint8_t streamCnt;
-  void decrementLaunch();
-  void incrementLaunch();
 
 };
 

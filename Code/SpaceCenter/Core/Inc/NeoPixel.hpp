@@ -18,8 +18,8 @@ class NeoPixel {
 
   private:
 
-    static const uint8_t PWM_HI = 28;//29;
-    static const uint8_t PWM_LO = 12;//10;
+    static const uint8_t PWM_HI = 25;//29;
+    static const uint8_t PWM_LO = 10;//10;
 
     uint16_t wrBufLen;
     uint16_t numLEDs;    ///< Number of RGB LEDs in strip
