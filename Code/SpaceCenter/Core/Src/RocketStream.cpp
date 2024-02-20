@@ -76,7 +76,7 @@ void RocketStream::incrementLaunch() {
     setStreamColor(streamCnt, 250, 136, 3);
     setStreamColor(streamCnt+1, 250, 136, 3);
   } else if (streamCnt < 31) {
-    setStreamColor(streamCnt, 240, 252, 0);
+    setStreamColor(streamCnt, 240, 252, 3);
     setStreamColor(streamCnt+1, 240, 252, 3);
   } else {
     setAllStreamColor(0, 0, 0);
@@ -90,9 +90,9 @@ void RocketStream::incrementLaunch() {
   } else if (streamCnt == 8) {
     setRocketColor(1, 250, 0, 0);
   } else if (streamCnt == 16) {
-    setRocketColor(2, 250, 0, 0);
+    setRocketColor(2, 250, 136, 3);
   } else if (streamCnt == 24) {
-    setRocketColor(3, 250, 0, 0);
+    setRocketColor(3, 240, 252, 3);
   } else if (streamCnt == 32) {
     streamCnt = 0;
     setAllRocketColor(0, 0, 0);
@@ -118,6 +118,13 @@ void RocketStream::decrementLaunch() {
   } else if (streamCnt == 24) {
     setRocketColor(3, 0, 0, 0);
   }
+}
+
+void RocketStream::reset() {
+  streamCnt = 0;
+  setAllRocketColor(0, 0, 0);
+  setAllStreamColor(0, 0, 0);
+  showPixels();
 }
 
 void RocketStream::showPixels() {

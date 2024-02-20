@@ -74,7 +74,7 @@ uint8_t WavPlayer::play_chunk(void) {
   audioPlaying = 1;
   ping_pong(); // switch buffer pointers
   get_next_chunk();
-  return 0;
+  return audioPlaying;
 }
 
 void WavPlayer::ping_pong(void) {

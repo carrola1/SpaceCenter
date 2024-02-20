@@ -78,7 +78,7 @@ uint8_t rocketInd = 0;
 uint8_t streamInd = 0;
 uint8_t starGameCount = 0;
 uint8_t colorInd = 0;
-uint32_t timestamp = 0;
+uint32_t timer = 0;
 
 // Colors
 PixelColor_s starColorDef = PixelColor_s{50, 50, 50};
@@ -94,9 +94,10 @@ typedef enum states {ST_off, ST_reset, ST_idle, ST_imAStar, ST_rocketCountdown,
                      ST_rocketLaunch, ST_rocketExplode, ST_rocketSong} states;
 states state = ST_off;
 
-// Inactivity detection
-uint16_t inactivity_timeout = 600;
-uint16_t inactivity_timer = inactivity_timeout;
+// Timers
+uint32_t INACTIVITY_TO_MS = 600;
+uint32_t ROCKET_EXPLOSION_TRANS_MS = 50;
+uint32_t ROCKET_SONG_TRANS_MS = 200;
 
 /* USER CODE END PV */
 
@@ -205,9 +206,7 @@ int main(void)
       case ST_reset:
         touchGroup0.setAllPixelColor(starColorDef.r,starColorDef.g,starColorDef.b);
         touchGroup0.showPixels();
-        rocketStream.setAllRocketColor(0, 0, 0);
-        rocketStream.setAllStreamColor(0, 0, 0);
-        rocketStream.showPixels();
+        rocketStream.reset();
         state = ST_idle;
         break;
 
@@ -307,7 +306,8 @@ int main(void)
         } else if (launchState == LAUNCHED) {
           audioPlayer.close_wav();
           HAL_Delay(500);
-          timestamp = HAL_GetTick();
+          timer = HAL_GetTick();
+          audioPlayer.open_wav("Explosion.wav");
           state = ST_rocketExplode;
           break;
         } else if (launchState == LANDED) {
@@ -324,9 +324,38 @@ int main(void)
       // Rocket Explosion
       ///////////////////////////////////////////////////////////////////////////////////
       case ST_rocketExplode:
-
+        if (audioPlayer.play_chunk()) {
+          uint32_t timer_new = HAL_GetTick();
+          if (timer_new - timer > ROCKET_EXPLOSION_TRANS_MS) {
+            rocketStream.incrementLaunch();
+            audioPlayer.play_chunk();
+            rocketStream.showPixels();
+            audioPlayer.play_chunk();
+            timer = timer_new;
+          }
+        } else {
+          audioPlayer.open_wav("ToTheMoon.wav");
+          state = ST_rocketSong;
+        }
         break;
 
+      ///////////////////////////////////////////////////////////////////////////////////
+      // Rocket Song
+      ///////////////////////////////////////////////////////////////////////////////////
+      case ST_rocketSong:
+        if (audioPlayer.play_chunk()) {
+          uint32_t timer_new = HAL_GetTick();
+          if (timer_new - timer > ROCKET_SONG_TRANS_MS) {
+            rocketStream.incrementLaunch();
+            audioPlayer.play_chunk();
+            rocketStream.showPixels();
+            audioPlayer.play_chunk();
+            timer = timer_new;
+          }
+        } else {
+          state = ST_reset;
+        }
+        break;
 
       default:
         state = ST_idle;

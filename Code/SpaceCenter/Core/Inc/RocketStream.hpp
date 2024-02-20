@@ -47,6 +47,7 @@ public:
   PixelColor_s getStreamColor(uint8_t index);
   void decrementLaunch();
   void incrementLaunch();
+  void reset();
 
 private:
 
