@@ -59,6 +59,8 @@ DMA_HandleTypeDef hdma_tim2_ch1;
 DMA_HandleTypeDef hdma_tim2_ch3;
 DMA_HandleTypeDef hdma_tim2_ch4;
 
+RNG_HandleTypeDef hrng;
+
 /* USER CODE BEGIN PV */
 
 // Objects
@@ -79,6 +81,7 @@ uint8_t streamInd = 0;
 uint8_t starGameCount = 0;
 uint8_t colorInd = 0;
 uint32_t timer = 0;
+uint32_t timer2 = 0;
 
 // Colors
 PixelColor_s starColorDef = PixelColor_s{50, 50, 50};
@@ -98,6 +101,7 @@ states state = ST_off;
 uint32_t INACTIVITY_TO_MS = 600;
 uint32_t ROCKET_EXPLOSION_TRANS_MS = 50;
 uint32_t ROCKET_SONG_TRANS_MS = 200;
+uint32_t ROCKET_SONG_STAR_TRANS_MS = 600;
 
 /* USER CODE END PV */
 
@@ -108,6 +112,7 @@ static void MX_DMA_Init(void);
 static void MX_I2S2_Init(void);
 static void MX_SPI1_Init(void);
 static void MX_TIM2_Init(void);
+static void MX_RNG_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -149,6 +154,7 @@ int main(void)
   MX_I2S2_Init();
   MX_SPI1_Init();
   MX_TIM2_Init();
+  MX_RNG_Init();
   /* USER CODE BEGIN 2 */
 
   // Mount SD Card
@@ -351,6 +357,19 @@ int main(void)
             rocketStream.showPixels();
             audioPlayer.play_chunk();
             timer = timer_new;
+          }
+          if (timer_new - timer2 > ROCKET_SONG_STAR_TRANS_MS) {
+            uint8_t star1 = (HAL_RNG_GetRandomNumber(&hrng) % NUM_BOARDS);
+            uint8_t star2 = (HAL_RNG_GetRandomNumber(&hrng) % NUM_BOARDS);
+            uint8_t star3 = (HAL_RNG_GetRandomNumber(&hrng) % NUM_BOARDS);
+            uint8_t star4 = (HAL_RNG_GetRandomNumber(&hrng) % NUM_BOARDS);
+            touchGroup0.setAllPixelColor(0, 0, 0);
+            touchGroup0.setBoardColor(star1, starColorDef.r, starColorDef.g, starColorDef.b);
+            touchGroup0.setBoardColor(star2, starColorDef.r, starColorDef.g, starColorDef.b);
+            touchGroup0.setBoardColor(star3, starColorDef.r, starColorDef.g, starColorDef.b);
+            touchGroup0.setBoardColor(star4, starColorDef.r, starColorDef.g, starColorDef.b);
+            touchGroup0.showPixels();
+            timer2 = timer_new;
           }
         } else {
           state = ST_reset;
@@ -690,6 +709,16 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(SD_SPI1_CS_N_GPIO_Port, &GPIO_InitStruct);
 
+}
+
+/* RNG init function */
+static void MX_RNG_Init(void)
+{
+  hrng.Instance = RNG;
+  if (HAL_RNG_Init(&hrng) != HAL_OK)
+  {
+    Error_Handler();
+  }
 }
 
 /* USER CODE BEGIN 4 */
