@@ -1,15 +1,15 @@
 /opt/st/stm32cubeide_1.13.2/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.linux64_1.1.1.202309131626/tools/arm-none-eabi/include/c++/11.3.1/bits/stl_algobase.h:1006:3:constexpr unsigned int std::__size_to_integer(unsigned int)	1
 /opt/st/stm32cubeide_1.13.2/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.linux64_1.1.1.202309131626/tools/arm-none-eabi/include/c++/11.3.1/new:174:33:void* operator new(std::size_t, void*)	1
-../Core/Src/main.cpp:129:5:int main()	28
-../Core/Src/main.cpp:392:6:void SystemClock_Config()	3
-../Core/Src/main.cpp:434:13:void MX_I2S2_Init()	2
-../Core/Src/main.cpp:466:13:void MX_SPI1_Init()	2
-../Core/Src/main.cpp:504:13:void MX_TIM2_Init()	8
-../Core/Src/main.cpp:569:13:void MX_DMA_Init()	1
-../Core/Src/main.cpp:593:13:void MX_GPIO_Init()	1
-../Core/Src/main.cpp:713:13:void MX_RNG_Init()	2
-../Core/Src/main.cpp:723:6:void HAL_I2S_TxCpltCallback(I2S_HandleTypeDef*)	1
-../Core/Src/main.cpp:732:6:void Error_Handler()	1
+../Core/Src/main.cpp:137:5:int main()	29
+../Core/Src/main.cpp:412:6:void SystemClock_Config()	3
+../Core/Src/main.cpp:454:13:void MX_I2S2_Init()	2
+../Core/Src/main.cpp:486:13:void MX_SPI1_Init()	2
+../Core/Src/main.cpp:524:13:void MX_TIM2_Init()	8
+../Core/Src/main.cpp:589:13:void MX_DMA_Init()	1
+../Core/Src/main.cpp:613:13:void MX_GPIO_Init()	1
+../Core/Src/main.cpp:733:13:void MX_RNG_Init()	2
+../Core/Src/main.cpp:743:6:void HAL_I2S_TxCpltCallback(I2S_HandleTypeDef*)	1
+../Core/Src/main.cpp:752:6:void Error_Handler()	1
 /opt/st/stm32cubeide_1.13.2/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.linux64_1.1.1.202309131626/tools/arm-none-eabi/include/c++/11.3.1/bits/allocator.h:156:7:std::allocator< <template-parameter-1-1> >::allocator() [with _Tp = PixelColor_s]	1
 /opt/st/stm32cubeide_1.13.2/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.linux64_1.1.1.202309131626/tools/arm-none-eabi/include/c++/11.3.1/bits/allocator.h:174:7:std::allocator< <template-parameter-1-1> >::~allocator() [with _Tp = PixelColor_s]	1
 /opt/st/stm32cubeide_1.13.2/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.linux64_1.1.1.202309131626/tools/arm-none-eabi/include/c++/11.3.1/bits/stl_vector.h:625:7:std::vector<_Tp, _Alloc>::vector(std::initializer_list<_Tp>, const allocator_type&) [with _Tp = PixelColor_s; _Alloc = std::allocator<PixelColor_s>]	1
@@ -152,6 +152,6 @@
 /opt/st/stm32cubeide_1.13.2/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.linux64_1.1.1.202309131626/tools/arm-none-eabi/include/c++/11.3.1/bits/stl_algobase.h:420:2:static _Tp* std::__copy_move<_IsMove, true, std::random_access_iterator_tag>::__copy_m(const _Tp*, const _Tp*, _Tp*) [with _Tp = PixelColor_s; bool _IsMove = false]	2
 /opt/st/stm32cubeide_1.13.2/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.linux64_1.1.1.202309131626/tools/arm-none-eabi/include/c++/11.3.1/bits/stl_algobase.h:908:5:typename __gnu_cxx::__enable_if<(! std::__is_scalar<_Tp>::__value), void>::__type std::__fill_a1(_ForwardIterator, _ForwardIterator, const _Tp&) [with _ForwardIterator = TouchState_enum*; _Tp = TouchState_enum]	2
 /opt/st/stm32cubeide_1.13.2/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.linux64_1.1.1.202309131626/tools/arm-none-eabi/include/c++/11.3.1/bits/stl_algobase.h:908:5:typename __gnu_cxx::__enable_if<(! std::__is_scalar<_Tp>::__value), void>::__type std::__fill_a1(_ForwardIterator, _ForwardIterator, const _Tp&) [with _ForwardIterator = TouchEvent_enum*; _Tp = TouchEvent_enum]	2
-../Core/Src/main.cpp:741:1:void __static_initialization_and_destruction_0(int, int)	5
-../Core/Src/main.cpp:741:1:cpp)	1
-../Core/Src/main.cpp:741:1:cpp)	1
+../Core/Src/main.cpp:761:1:void __static_initialization_and_destruction_0(int, int)	5
+../Core/Src/main.cpp:761:1:cpp)	1
+../Core/Src/main.cpp:761:1:cpp)	1

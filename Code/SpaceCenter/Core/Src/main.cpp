@@ -28,6 +28,7 @@
 #include "TouchBoardGroup.hpp"
 #include "LedButton.hpp"
 #include "RocketStream.hpp"
+//#include "StarCountAudio.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -82,6 +83,13 @@ uint8_t starGameCount = 0;
 uint8_t colorInd = 0;
 uint32_t timer = 0;
 uint32_t timer2 = 0;
+
+char* starCountAudioFiles[24] =
+{"One.wav", "Two.wav", "Three.wav", "Four.wav", "Five.wav", "Six.wav", "Seven.wav",
+ "Eight.wav", "Nine.wav", "Ten.wav", "Eleven.wav", "Twelve.wav", "Thirteen.wav",
+ "Fourteen.wav", "Fifteen.wav", "Sixteen.wav", "Seventeen.wav", "Eighteen.wav",
+ "Nineteen.wav", "Twenty.wav", "Twenty-One.wav", "Twenty-Two.wav", "Twenty-Three.wav",
+ "Twenty-Four.wav"};
 
 // Colors
 PixelColor_s starColorDef = PixelColor_s{50, 50, 50};
@@ -225,15 +233,21 @@ int main(void)
         buttonR.updateButtonState();
         buttonTriggerEventR = buttonR.getTriggerEvent();
         if (buttonTriggerEventR == RISING) {
-          if (starGameCount == NUM_BOARDS){
+          if (starGameCount == NUM_BOARDS-1){
+            touchGroup0.setBoardColor(starGameCount, starColors[colorInd].r, starColors[colorInd].g, starColors[colorInd].b);
+            touchGroup0.showPixels();
+            audioPlayer.play_atomic(starCountAudioFiles[starGameCount]);
             starGameCount = 0;
             colorInd = 0;
+            HAL_Delay(200);
             touchGroup0.imAStarSetup();
             HAL_Delay(1000);
             audioPlayer.open_wav("ImAStar.wav");
             state = ST_imAStar;
           } else {
             touchGroup0.setBoardColor(starGameCount, starColors[colorInd].r, starColors[colorInd].g, starColors[colorInd].b);
+            touchGroup0.showPixels();
+            audioPlayer.play_atomic(starCountAudioFiles[starGameCount]);
             if (colorInd == NUM_STAR_COLORS-1) {
               colorInd = 0;
             } else {
@@ -241,7 +255,6 @@ int main(void)
             }
             starGameCount++;
           }
-          touchGroup0.showPixels();
         }
 
         // Check for Rocket Launch
@@ -263,8 +276,13 @@ int main(void)
         for (int i=0; i<NUM_BOARDS; i++) {
           if (touchEvents[i] == TOUCH_RISING) {
             touchGroup0.twinkleBoard(i);
-            audioPlayer.play_atomic("Twinkle.wav");
+            audioPlayer.open_wav("Twinkle.wav");
+            audioPlayer.play_chunk();
           }
+        }
+
+        if (audioPlayer.audioPlaying) {
+          audioPlayer.play_chunk();
         }
 
         break;
