@@ -83,6 +83,7 @@ uint8_t starGameCount = 0;
 uint8_t colorInd = 0;
 uint32_t timer = 0;
 uint32_t timer2 = 0;
+uint32_t inactivity_timer = 0;
 
 char* starCountAudioFiles[24] =
 {"One.wav", "Two.wav", "Three.wav", "Four.wav", "Five.wav", "Six.wav", "Seven.wav",
@@ -106,7 +107,7 @@ typedef enum states {ST_off, ST_reset, ST_idle, ST_imAStar, ST_rocketCountdown,
 states state = ST_off;
 
 // Timers
-uint32_t INACTIVITY_TO_MS = 600;
+uint32_t INACTIVITY_TO_MS = 180000;
 uint32_t ROCKET_EXPLOSION_TRANS_MS = 50;
 uint32_t ROCKET_SONG_TRANS_MS = 200;
 uint32_t ROCKET_SONG_STAR_TRANS_MS = 600;
@@ -197,8 +198,6 @@ int main(void)
       // Press a button to turn on
       ///////////////////////////////////////////////////////////////////////////////////
       case ST_off:
-        touchGroup0.setAllPixelColor(0,0,0);
-        touchGroup0.showPixels();
         while (1) {
           buttonR.updateButtonState();
           buttonL.updateButtonState();
@@ -209,6 +208,7 @@ int main(void)
             buttonL.setLedState(ON);
             touchGroup0.setAllPixelColor(starColorDef.r,starColorDef.g,starColorDef.b);
             touchGroup0.showPixels();
+            inactivity_timer = HAL_GetTick();
             state = ST_idle;
             break;
           }
@@ -247,7 +247,8 @@ int main(void)
           } else {
             touchGroup0.setBoardColor(starGameCount, starColors[colorInd].r, starColors[colorInd].g, starColors[colorInd].b);
             touchGroup0.showPixels();
-            audioPlayer.play_atomic(starCountAudioFiles[starGameCount]);
+            audioPlayer.open_wav(starCountAudioFiles[starGameCount]);
+            audioPlayer.play_chunk();
             if (colorInd == NUM_STAR_COLORS-1) {
               colorInd = 0;
             } else {
@@ -255,6 +256,7 @@ int main(void)
             }
             starGameCount++;
           }
+          inactivity_timer = HAL_GetTick();
         }
 
         // Check for Rocket Launch
@@ -267,6 +269,7 @@ int main(void)
           colorInd = 0;
           rocketStream.rocketLaunch(true);
           audioPlayer.open_wav("RocketBuilding.wav");
+          inactivity_timer = HAL_GetTick();
           state = ST_rocketCountdown;
         }
 
@@ -275,9 +278,12 @@ int main(void)
         touchEvents = touchGroup0.getTouchEvents();
         for (int i=0; i<NUM_BOARDS; i++) {
           if (touchEvents[i] == TOUCH_RISING) {
-            touchGroup0.twinkleBoard(i);
-            audioPlayer.open_wav("Twinkle.wav");
-            audioPlayer.play_chunk();
+            if (audioPlayer.audioPlaying == 0) {
+              touchGroup0.twinkleBoard(i);
+              audioPlayer.open_wav("Twinkle.wav");
+              audioPlayer.play_chunk();
+            }
+            inactivity_timer = HAL_GetTick();
           }
         }
 
@@ -297,6 +303,7 @@ int main(void)
           touchGroup0.setAllPixelColor(0, 0, 0);
           touchGroup0.showPixels();
           HAL_Delay(1000);
+          inactivity_timer = HAL_GetTick();
           state = ST_reset;
         } else {
           audioPlayer.play_chunk();
@@ -390,12 +397,27 @@ int main(void)
             timer2 = timer_new;
           }
         } else {
+          inactivity_timer = HAL_GetTick();
           state = ST_reset;
         }
         break;
 
       default:
         state = ST_idle;
+    }
+
+    if (state != ST_off) {
+      uint32_t inactivity_timer_new = HAL_GetTick();
+      if (inactivity_timer_new - inactivity_timer > INACTIVITY_TO_MS) {
+        touchGroup0.setAllPixelColor(0,0,0);
+        touchGroup0.showPixels();
+        rocketStream.setAllRocketColor(0, 0, 0);
+        rocketStream.setAllStreamColor(0, 0, 0);
+        rocketStream.showPixels();
+        buttonR.setLedState(OFF);
+        buttonL.setLedState(OFF);
+        state = ST_off;
+      }
     }
 
 	/* USER CODE END WHILE */

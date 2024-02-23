@@ -94,9 +94,9 @@ void RocketStream::incrementLaunch() {
   } else if (streamCnt == 24) {
     setRocketColor(3, 240, 252, 3);
   } else if (streamCnt == 32) {
-    streamCnt = 0;
+    streamCnt = -2;
     setAllRocketColor(0, 0, 0);
-    setRocketColor(0, 250, 0, 0);
+    setAllStreamColor(0, 0, 0);
   }
   streamCnt = streamCnt + 2;
 }
